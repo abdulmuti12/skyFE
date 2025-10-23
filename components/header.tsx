@@ -17,7 +17,7 @@ export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
   return (
     <>
       <header className="bg-background border-b border-border sticky top-0 z-40">
-        <div className="flex items-center justify-between p-3 md:p-4 lg:p-6 gap-2 lg:gap-4 lg:ml-56">
+        <div className="flex items-center justify-between p-3 lg:p-6 gap-2 lg:gap-4 pl-[72px]">
           {/* Left (Menu + Search Mobile) */}
           <div className="flex items-center gap-2">
             {/* Menu Button */}
@@ -39,7 +39,7 @@ export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
             </button>
           </div>
 
-          {/* Search Bar - Tablet & Desktop */}
+          {/* Search Bar - Desktop */}
           <div className="hidden md:block flex-grow max-w-2xl relative">
             <div className="relative w-[336px] h-[36px]">
               {/* Search Icon */}
@@ -68,28 +68,28 @@ export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-2 md:gap-3 lg:gap-4 flex-shrink-0 ml-auto">
-            <button className="px-3 md:px-4 py-2 md:py-2.5 bg-muted text-foreground rounded-full font-semibold hover:bg-muted/80 transition-colors text-xs md:text-sm lg:text-base border border-border whitespace-nowrap">
+          <div className="flex items-center gap-10 lg:gap-4 flex-shrink-0 ml-auto">
+            <button className="px-4 py-2.5 bg-muted text-foreground rounded-full font-semibold hover:bg-muted/80 transition-colors text-sm md:text-base border border-border whitespace-nowrap">
               Become a Creator
             </button>
 
             {/* Theme Toggle */}
             <button
               onClick={onToggleTheme}
-              className="p-2 md:p-2.5 rounded-lg hover:bg-muted transition-colors hidden md:block flex-shrink-0"
+              className="p-2.5 rounded-lg hover:bg-muted transition-colors hidden md:block flex-shrink-0"
               aria-label="Toggle theme"
             >
               {isDark ? (
-                <Sun className="w-4 h-4 md:w-5 md:h-5 text-yellow-500" />
+                <Sun className="w-5 h-5 text-yellow-500" />
               ) : (
-                <Moon className="w-4 h-4 md:w-5 md:h-5 text-slate-600" />
+                <Moon className="w-5 h-5 text-slate-600" />
               )}
             </button>
 
             {/* Sign In */}
             <Link
               href="/auth"
-              className="px-3 md:px-4 py-2 md:py-2.5 bg-yellow-400 text-black rounded-full font-semibold hover:bg-yellow-500 transition-colors text-xs md:text-sm lg:text-base whitespace-nowrap flex-shrink-0"
+              className="px-4 py-2.5 bg-yellow-400 text-black rounded-full font-semibold hover:bg-yellow-500 transition-colors text-sm md:text-base whitespace-nowrap flex-shrink-0"
             >
               Sign In
             </Link>
@@ -100,7 +100,7 @@ export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
       {/* Mobile Search */}
       {isSearchOpen && (
         <div className="bg-background border-b border-border md:hidden">
-          <div className="p-3 md:p-4 flex items-center gap-3">
+          <div className="p-4 flex items-center gap-3">
             <button
               onClick={() => {
                 setIsSearchOpen(false)
