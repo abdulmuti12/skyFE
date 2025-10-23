@@ -5,9 +5,9 @@ import { useState } from "react"
 
 export function MovieGrid() {
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 10
+  const itemsPerPage = 8 // ✅ hanya 8 data per halaman
 
-  const movies = Array.from({ length: 12 }, (_, i) => ({
+  const movies = Array.from({ length: 8 }, (_, i) => ({
     id: i + 1,
     title: "Beyond the Horizon",
     category: "Adventure",
@@ -22,6 +22,7 @@ export function MovieGrid() {
     <section>
       <h2 className="text-xl lg:text-2xl font-bold mb-4 lg:mb-6">Latest Movie</h2>
 
+      {/* Grid Movies */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
         {movies.map((movie) => (
           <div
@@ -77,16 +78,17 @@ export function MovieGrid() {
         ))}
       </div>
 
+      {/* Pagination / Footer Info */}
       <div className="flex flex-col lg:flex-row items-center justify-between mt-6 lg:mt-8 text-xs lg:text-sm text-muted-foreground gap-4">
-        <span className="hidden lg:block">0 of 100 row(s) selected.</span>
+        <span className="hidden lg:block">0 of 8 row(s) selected.</span>
         <div className="flex items-center gap-2 lg:gap-4">
           <span className="hidden lg:block">Rows per page</span>
           <select className="bg-muted border border-border rounded px-2 py-1 text-foreground text-xs lg:text-sm">
-            <option>10</option>
-            <option>20</option>
-            <option>50</option>
+            <option>8</option>
+            <option>16</option>
+            <option>24</option>
           </select>
-          <span className="text-xs lg:text-sm">Page {currentPage} of 10</span>
+          <span className="text-xs lg:text-sm">Page {currentPage} of 1</span>
           <div className="flex gap-1 lg:gap-2">
             <button className="p-1 hover:bg-muted rounded text-xs lg:text-sm">‹</button>
             <button className="p-1 hover:bg-muted rounded text-xs lg:text-sm">›</button>
