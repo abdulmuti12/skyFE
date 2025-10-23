@@ -14,7 +14,7 @@ export function TrendingSection() {
       creator: "cinemaxdev",
       marketCap: "$5.2K",
       comments: 12,
-      image: "/latest-movie.png",
+      image: "/02.jpg",
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ export function TrendingSection() {
       creator: "nova_studio",
       marketCap: "$4.7K",
       comments: 9,
-      image: "/latest-movie.png",
+      image: "/01.jpg",
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ export function TrendingSection() {
       creator: "dreamworks",
       marketCap: "$3.9K",
       comments: 15,
-      image: "/latest-movie.png",
+      image: "/03.jpg",
     },
   ]
 
