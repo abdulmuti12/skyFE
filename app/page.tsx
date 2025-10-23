@@ -52,7 +52,7 @@ export default function Home() {
           <div className="flex-1 w-full">
             <Header isDark={isDark} onToggleTheme={toggleTheme} onMenuClick={() => setIsSidebarOpen(true)} />
 
-            <main className="p-3 lg:p-6 pb-6">
+            <main className="p-3 md:p-4 lg:p-6 pb-6">
               <TrendingSection />
               <MovieGrid />
             </main>
