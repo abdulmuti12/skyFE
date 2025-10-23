@@ -51,7 +51,7 @@ export default function AuthPage() {
           {/* Section Welcome */}
           <div className="space-y-3 text-center">
             <h1 className="text-3xl lg:text-4xl font-bold text-white">
-              AI Film Makers
+             AI Film Makers
             </h1>
             <p className="text-gray-400 text-base">
               Log in to continue your cinematic journey.
@@ -86,7 +86,7 @@ export default function AuthPage() {
                   />
                 </svg>
               </span>
-              <span>Login as Creator</span>
+              <span>Login as Investor</span>
             </Button>
 
             <p className="text-center text-gray-500 text-sm">
@@ -113,18 +113,29 @@ export default function AuthPage() {
           </Button>
 
           {/* Link Investor */}
-         <div className="text-center">
-          <p className="text-gray-400">
-            Want to invest?{" "}
-            <Link
-              href="/authInvestor"
-              className="text-yellow-400 hover:text-yellow-300 underline transition-colors"
-            >
-              Login as an Investor
-            </Link>
-          </p>
-        </div>
+          {/* <div className="text-center">
+            <p className="text-gray-400">
+              Want to invest?{" "}
+              <Link
+                href="#"
+                className="text-yellow-400 hover:text-yellow-300 underline transition-colors"
+              >
+                Login as an Creator
+              </Link>
+            </p>
+          </div> */}
 
+            <div className="text-center">
+            <p className="text-gray-400">
+                Want to invest?{" "}
+                <Link
+                href="/auth"
+                className="text-yellow-400 hover:text-yellow-300 underline transition-colors"
+                >
+                Login as Creator
+                </Link>
+            </p>
+            </div>
 
           {/* Footer */}
           <div className="text-center text-xs text-gray-500">
