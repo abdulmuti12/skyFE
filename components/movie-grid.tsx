@@ -15,7 +15,7 @@ export function MovieGrid() {
     growth: "1.8%",
     views: "5.2K",
     maxViews: "50K",
-    image: "/abstract-movie-poster.png",
+    image: "/latest-movie.png",
   }))
 
   return (
@@ -69,7 +69,7 @@ export function MovieGrid() {
 
                 {/* Progress Bar */}
                 <div className="w-full bg-muted rounded-full h-1.5 lg:h-2 overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-purple-500 to-blue-500" style={{ width: "60%" }} />
+                  <div className="h-full bg-yellow-500" style={{ width: "60%" }} />
                 </div>
               </div>
             </div>
