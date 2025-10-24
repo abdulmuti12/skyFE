@@ -20,23 +20,38 @@ export function CreatorHeader({ onMenuClick }: CreatorHeaderProps) {
 
   return (
     <header className="bg-background border-b border-border sticky top-0 z-40 w-full">
-      <div className="flex items-center justify-between px-3 md:px-6 py-3 md:py-4 gap-4">
-        {/* Left Section */}
+      <div className="relative flex items-center justify-between px-3 md:px-6 py-3 md:py-4 gap-4">
+        {/* === Left Section (Mobile + Desktop) === */}
         <div className="flex items-center gap-4">
           {/* Menu Button - Mobile only */}
           <button
             onClick={onMenuClick}
-            className="p-2 hover:bg-muted rounded-lg border border-border transition-colors lg:hidden"
+            className="w-9 h-9 md:w-auto md:h-auto p-2 hover:bg-muted rounded-lg border border-border transition-colors flex items-center justify-center lg:hidden"
             aria-label="Toggle menu"
           >
-            <Menu className="w-5 h-5" />
+            <Menu className="w-5 h-5 md:w-6 md:h-6" />
           </button>
 
-          <h1 className="text-sm md:text-xl font-semibold">Creator Playground</h1>
+          {/* Title (Desktop only) */}
+          <h1 className="hidden md:block text-sm md:text-xl font-semibold">
+            Creator Playground
+          </h1>
         </div>
 
-        {/* Right Section */}
+        {/* === Mobile Center Title === */}
+        <h1
+          className="
+            absolute left-1/2 -translate-x-1/2 
+            text-sm font-semibold md:hidden 
+            text-center w-[230px] h-[36px] flex items-center justify-center
+          "
+        >
+          Creator Playground
+        </h1>
+
+        {/* === Right Section === */}
         <div className="flex items-center gap-4">
+          {/* Theme Toggle - Desktop only */}
           <button
             onClick={toggleTheme}
             className="p-2 hover:bg-muted rounded-lg border border-border transition-colors hidden lg:block"
@@ -45,7 +60,7 @@ export function CreatorHeader({ onMenuClick }: CreatorHeaderProps) {
             {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
           </button>
 
-          {/* Balance */}
+          {/* Balance (Desktop only) */}
           <div className="hidden md:flex items-center gap-2 px-4 py-2 bg-muted rounded-lg border border-border">
             <span className="text-sm text-muted-foreground">Balance:</span>
             <span className="font-semibold">200 USKY</span>
@@ -64,8 +79,14 @@ export function CreatorHeader({ onMenuClick }: CreatorHeaderProps) {
           {/* User Profile Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="flex items-center gap-3 p-2 hover:bg-muted rounded-lg transition-colors">
-                <Avatar className="h-8 w-8">
+              <button
+                className="
+                  flex items-center justify-center gap-3 
+                  w-9 h-9 md:w-auto md:h-auto 
+                  hover:bg-muted rounded-lg transition-colors
+                "
+              >
+                <Avatar className="h-9 w-9 md:h-8 md:w-8">
                   <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=fredthegreat" alt="User" />
                   <AvatarFallback>FG</AvatarFallback>
                 </Avatar>
@@ -75,6 +96,7 @@ export function CreatorHeader({ onMenuClick }: CreatorHeaderProps) {
                 </div>
               </button>
             </DropdownMenuTrigger>
+
             <DropdownMenuContent align="end" className="w-56">
               <div className="px-2 py-1.5">
                 <p className="text-sm font-medium">fredthegreat</p>
