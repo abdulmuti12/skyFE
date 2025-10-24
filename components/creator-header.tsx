@@ -91,10 +91,6 @@ export function CreatorHeader({ onMenuClick }: CreatorHeaderProps) {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-
-          <button className="p-2 hover:bg-muted rounded-lg border border-border transition-colors hidden lg:block">
-            <Settings className="w-5 h-5" />
-          </button>
         </div>
       </div>
     </header>
