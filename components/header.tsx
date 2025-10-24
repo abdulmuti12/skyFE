@@ -23,7 +23,7 @@ export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
             {/* Menu Button — hanya tampil di mobile */}
             <button
               onClick={onMenuClick}
-              className="p-2 hover:bg-muted rounded-xl border border-border transition-colors flex-shrink-0 lg:hidden"
+              className="w-9 h-9 md:w-auto md:h-auto p-2 hover:bg-muted rounded-xl border border-border transition-colors flex-shrink-0 lg:hidden flex items-center justify-center"
               aria-label="Toggle menu"
             >
               <Menu className="w-5 h-5 text-foreground" />
@@ -55,7 +55,7 @@ export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
             {/* Search Button (Mobile) */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 hover:bg-muted rounded-xl border border-border transition-colors flex-shrink-0 md:hidden"
+              className="w-9 h-9 md:w-auto md:h-auto hover:bg-muted rounded-xl border border-border transition-colors flex-shrink-0 md:hidden flex items-center justify-center"
               aria-label="Open search"
             >
               <Search className="w-5 h-5 text-muted-foreground" />
@@ -65,7 +65,9 @@ export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
           {/* === Right Section === */}
           <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
             {/* Become a Creator — tampil di semua ukuran */}
-            <button className="inline-flex px-3 md:px-4 py-2 bg-muted text-foreground rounded-full font-medium hover:bg-muted/80 transition-colors text-xs md:text-sm border border-border whitespace-nowrap">
+            <button
+              className="inline-flex items-center justify-center md:px-4 py-2 bg-muted text-foreground rounded-lg font-medium hover:bg-muted/80 transition-colors border border-border text-xs md:text-sm whitespace-nowrap w-[220px] h-[36px] md:w-auto md:h-auto"
+            >
               Become a Creator
             </button>
 
@@ -102,7 +104,7 @@ export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
                 setIsSearchOpen(false)
                 setSearchQuery("")
               }}
-              className="p-2 hover:bg-muted rounded-lg transition-colors"
+              className="w-9 h-9 flex items-center justify-center hover:bg-muted rounded-lg transition-colors"
               aria-label="Close search"
             >
               <X className="w-5 h-5 text-foreground" />
@@ -120,7 +122,7 @@ export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-md hover:bg-muted-foreground/10"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-md hover:bg-muted-foreground/10"
                   aria-label="Clear search"
                 >
                   <X className="w-4 h-4 text-muted-foreground" />
