@@ -32,15 +32,14 @@ export function CreatorHeader({ onMenuClick }: CreatorHeaderProps) {
             <Menu className="w-5 h-5" />
           </button>
 
-          {/* Title */}
-          <h1 className="text-lg md:text-xl font-semibold">Creator Playground</h1>
+          <h1 className="text-sm md:text-xl font-semibold">Creator Playground</h1>
         </div>
 
         {/* Right Section */}
         <div className="flex items-center gap-4">
           <button
             onClick={toggleTheme}
-            className="p-2 hover:bg-muted rounded-lg border border-border transition-colors"
+            className="p-2 hover:bg-muted rounded-lg border border-border transition-colors hidden lg:block"
             aria-label="Toggle theme"
           >
             {theme === "light" ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
@@ -88,19 +87,12 @@ export function CreatorHeader({ onMenuClick }: CreatorHeaderProps) {
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <LogOut className="w-4 h-4 mr-2" />
-                {/* <link href="/auth">
                 Sign Out
-                </link> */}
-                <a href="/auth" >
-                Sign Out
-                </a>
-
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Settings Icon - Mobile */}
-          <button className="p-2 hover:bg-muted rounded-lg border border-border transition-colors lg:hidden">
+          <button className="p-2 hover:bg-muted rounded-lg border border-border transition-colors hidden lg:block">
             <Settings className="w-5 h-5" />
           </button>
         </div>
