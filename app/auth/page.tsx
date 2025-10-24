@@ -58,8 +58,11 @@ export default function AuthPage() {
             </p>
           </div>
 
-          {/* Tombol Login */}
+
+
           <div className="space-y-3">
+          <Link href="/creator">
+
             <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 text-lg rounded-lg transition-colors flex items-center justify-center gap-2">
               <span className="bg-white rounded-full p-1">
                 <svg
@@ -89,6 +92,9 @@ export default function AuthPage() {
               <span>Login as Creator</span>
             </Button>
 
+            </Link>
+
+
             <p className="text-center text-gray-500 text-sm">
               Access your dashboard and manage your film campaigns.
             </p>
@@ -106,6 +112,8 @@ export default function AuthPage() {
           {/* Tombol Wallet */}
           <Button
             variant="outline"
+            
+            
             className="w-full border-gray-600 hover:border-gray-400 text-white hover:bg-gray-900 py-2 text-lg rounded-lg transition-colors bg-transparent"
           >
             <Wallet className="w-5 h-5 mr-2" />
