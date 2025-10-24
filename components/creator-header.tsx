@@ -10,6 +10,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useTheme } from "@/components/theme-provider"
+import Link from "next/link"
+
 
 interface CreatorHeaderProps {
   onMenuClick?: () => void
@@ -108,8 +110,10 @@ export function CreatorHeader({ onMenuClick }: CreatorHeaderProps) {
                 Settings
               </DropdownMenuItem>
               <DropdownMenuItem>
+                <Link   href="/auth" className="flex items-center w-full">
                 <LogOut className="w-4 h-4 mr-2" />
                 Sign Out
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
