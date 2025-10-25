@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 interface FundingCampaign {
   id: string
@@ -142,14 +143,6 @@ export function FundingTable() {
         <table className="w-full">
           <thead>
             <tr className="border-b border-border bg-muted/50">
-              <th className="px-4 py-3 text-left text-sm font-semibold">
-                <input
-                  type="checkbox"
-                  checked={selectedRows.size === mockData.length && mockData.length > 0}
-                  onChange={toggleAllSelection}
-                  className="rounded"
-                />
-              </th>
               <th className="px-4 py-3 text-left text-sm font-semibold">Title</th>
               <th className="px-4 py-3 text-left text-sm font-semibold">Target Funding</th>
               <th className="px-4 py-3 text-left text-sm font-semibold">Current Funding</th>
@@ -162,14 +155,6 @@ export function FundingTable() {
           <tbody>
             {mockData.map((campaign) => (
               <tr key={campaign.id} className="border-b border-border hover:bg-muted/30 transition-colors">
-                <td className="px-4 py-3">
-                  <input
-                    type="checkbox"
-                    checked={selectedRows.has(campaign.id)}
-                    onChange={() => toggleRowSelection(campaign.id)}
-                    className="rounded"
-                  />
-                </td>
                 <td className="px-4 py-3 text-sm">{campaign.title}</td>
                 <td className="px-4 py-3 text-sm">{campaign.targetFunding}</td>
                 <td className="px-4 py-3 text-sm">{campaign.currentFunding}</td>
@@ -198,7 +183,9 @@ export function FundingTable() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
-                      <DropdownMenuItem>See Funding Details</DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href={`/creator/funding/${campaign.id}`}>See Funding Details</Link>
+                      </DropdownMenuItem>
                       <DropdownMenuItem>Withdraw Funds</DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>Share Campaign</DropdownMenuItem>
@@ -245,7 +232,9 @@ export function FundingTable() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
-                  <DropdownMenuItem>See Funding Details</DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href={`/creator/funding/${campaign.id}`}>See Funding Details</Link>
+                  </DropdownMenuItem>
                   <DropdownMenuItem>Withdraw Funds</DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>Share Campaign</DropdownMenuItem>
