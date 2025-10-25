@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { CreatorSidebar } from "@/components/creator-sidebar"
 import { CreatorHeader } from "@/components/creator-header"
@@ -10,22 +10,42 @@ import { Plus } from "lucide-react"
 
 export default function FilmPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  useEffect(() => {
+    if (typeof document === "undefined") return
+
+    const updateDarkMode = () => {
+      const isDark = document.documentElement.classList.contains("dark")
+      setIsDarkMode(isDark)
+    }
+
+    updateDarkMode() // set awal
+    const observer = new MutationObserver(updateDarkMode)
+    observer.observe(document.documentElement, { attributes: true })
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <div className="flex flex-col lg:flex-row">
-        {/* Desktop Sidebar */}
+        {/* Sidebar untuk desktop */}
         <CreatorSidebar />
 
-        {/* Mobile Sidebar */}
-        <CreatorSidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        {/* Sidebar untuk mobile */}
+        <CreatorSidebar
+          isMobile
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+        />
 
-        {/* Main content */}
+        {/* Konten utama */}
         <div className="flex-1 w-full">
           <CreatorHeader onMenuClick={() => setIsSidebarOpen(true)} />
 
           <main className="p-3 md:p-4 lg:p-6">
-            {/* Header with title and button */}
+            {/* Header dengan judul & tombol */}
             <div className="flex items-center justify-between mb-6 gap-4">
               <h1 className="text-2xl md:text-3xl font-bold">Film</h1>
 
@@ -38,8 +58,8 @@ export default function FilmPage() {
               </Link>
             </div>
 
-            {/* Film Table */}
-            <FilmTable />
+            {/* Table film */}
+            <FilmTable isDarkMode={isDarkMode} />
           </main>
         </div>
       </div>
