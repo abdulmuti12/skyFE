@@ -109,6 +109,20 @@ export function FilmTable() {
   const totalPages = Math.ceil(filmsData.length / itemsPerPage)
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set())
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  useState(() => {
+    const updateDarkMode = () => {
+      const isDark = document.documentElement.classList.contains("dark")
+      setIsDarkMode(isDark)
+    }
+
+    updateDarkMode()
+    const observer = new MutationObserver(updateDarkMode)
+    observer.observe(document.documentElement, { attributes: true })
+
+    return () => observer.disconnect()
+  }, [])
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
@@ -156,14 +170,6 @@ export function FilmTable() {
         <Table>
           <TableHeader>
             <TableRow className="border-b border-border hover:bg-transparent">
-              <TableHead className="w-12">
-                <input
-                  type="checkbox"
-                  checked={selectedRows.size === currentFilms.length && currentFilms.length > 0}
-                  onChange={toggleAllSelection}
-                  className="rounded border-border cursor-pointer"
-                />
-              </TableHead>
               <TableHead className="text-foreground font-semibold">Title</TableHead>
               <TableHead className="text-foreground font-semibold">Category</TableHead>
               <TableHead className="text-foreground font-semibold">Status</TableHead>
@@ -175,14 +181,6 @@ export function FilmTable() {
           <TableBody>
             {currentFilms.map((film) => (
               <TableRow key={film.id} className="border-b border-border hover:bg-muted/50">
-                <TableCell>
-                  <input
-                    type="checkbox"
-                    checked={selectedRows.has(film.id)}
-                    onChange={() => toggleRowSelection(film.id)}
-                    className="rounded border-border cursor-pointer"
-                  />
-                </TableCell>
                 <TableCell className="font-medium">{film.title}</TableCell>
                 <TableCell className="text-muted-foreground">{film.category}</TableCell>
                 <TableCell>
@@ -193,8 +191,12 @@ export function FilmTable() {
                 <TableCell>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-muted">
-                        <MoreVertical className="w-4 h-4" />
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-10 w-10 p-0 bg-[#FFC107] hover:bg-[#FFD54F] rounded-full flex items-center justify-center"
+                      >
+                        <MoreVertical className="w-5 h-5" style={{ color: "white", stroke: "white" }} />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
@@ -247,8 +249,12 @@ export function FilmTable() {
               <span className="text-xs text-muted-foreground flex-shrink-0">{film.category}</span>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-muted flex-shrink-0">
-                    <MoreVertical className="w-4 h-4" />
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-10 w-10 p-0 bg-[#FFC107] hover:bg-[#FFD54F] rounded-full flex items-center justify-center !text-white flex-shrink-0"
+                  >
+                    <MoreVertical className="w-5 h-5 !text-white" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
