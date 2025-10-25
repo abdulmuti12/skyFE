@@ -109,20 +109,6 @@ export function FilmTable() {
   const totalPages = Math.ceil(filmsData.length / itemsPerPage)
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set())
-  const [isDarkMode, setIsDarkMode] = useState(false)
-
-  useState(() => {
-    const updateDarkMode = () => {
-      const isDark = document.documentElement.classList.contains("dark")
-      setIsDarkMode(isDark)
-    }
-
-    updateDarkMode()
-    const observer = new MutationObserver(updateDarkMode)
-    observer.observe(document.documentElement, { attributes: true })
-
-    return () => observer.disconnect()
-  }, [])
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
