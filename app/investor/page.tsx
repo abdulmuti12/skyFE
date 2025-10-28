@@ -1,12 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Sidebar } from "@/components/sidebar"
+import { InvestorSidebar } from "@/components/investor-sidebar"
 import { Header } from "@/components/header"
-import { TrendingSection } from "@/components/trending-section"
-import { MovieGrid } from "@/components/movie-grid"
+import { InvestmentTrendingSection } from "@/components/investment-trending-section"
+import { InvestmentGrid } from "@/components/investment-grid"
 
-export default function Home() {
+export default function InvestorDashboard() {
   const [isDark, setIsDark] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -45,11 +45,11 @@ export default function Home() {
           {/* Desktop Sidebar */}
           {isDesktopSidebarOpen && (
             <div className="hidden lg:block">
-              <Sidebar />
+              <InvestorSidebar />
             </div>
           )}
 
-          <Sidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+          <InvestorSidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
           {/* Main content */}
           <div className="flex-1 w-full">
@@ -61,8 +61,8 @@ export default function Home() {
             />
 
             <main className="p-3 md:p-4 lg:p-6 pb-6">
-              <TrendingSection />
-              <MovieGrid />
+              <InvestmentTrendingSection />
+              <InvestmentGrid />
             </main>
           </div>
         </div>

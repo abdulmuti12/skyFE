@@ -8,9 +8,10 @@ interface HeaderProps {
   isDark: boolean
   onToggleTheme: () => void
   onMenuClick?: () => void
+  onDesktopMenuClick?: () => void
 }
 
-export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
+export function Header({ isDark, onToggleTheme, onMenuClick, onDesktopMenuClick }: HeaderProps) {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -31,24 +32,34 @@ export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
 
             {/* Search (Desktop) */}
             <div className="hidden md:flex flex-1 min-w-[200px] max-w-md">
-              <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search..."
-                  className="w-full h-10 pl-10 pr-10 rounded-lg bg-muted text-foreground placeholder-muted-foreground border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery("")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-muted-foreground/10 rounded-md transition-colors"
-                    aria-label="Clear search"
-                  >
-                    <X className="w-4 h-4 text-muted-foreground" />
-                  </button>
-                )}
+              <div className="relative w-full flex items-center gap-2">
+                <button
+                  onClick={onDesktopMenuClick}
+                  className="hidden lg:flex w-10 h-10 items-center justify-center hover:bg-muted rounded-lg border border-border transition-colors flex-shrink-0"
+                  aria-label="Toggle sidebar"
+                >
+                  <Menu className="w-5 h-5 text-foreground" />
+                </button>
+
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search..."
+                    className="w-full h-10 pl-10 pr-10 rounded-lg bg-muted text-foreground placeholder-muted-foreground border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-muted-foreground/10 rounded-md transition-colors"
+                      aria-label="Clear search"
+                    >
+                      <X className="w-4 h-4 text-muted-foreground" />
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -65,9 +76,7 @@ export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
           {/* === Right Section === */}
           <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
             {/* Become a Creator — tampil di semua ukuran */}
-            <button
-              className="inline-flex items-center justify-center md:px-4 py-2 bg-muted text-foreground rounded-lg font-medium hover:bg-muted/80 transition-colors border border-border text-xs md:text-sm whitespace-nowrap w-[220px] h-[36px] md:w-auto md:h-auto"
-            >
+            <button className="inline-flex items-center justify-center md:px-4 py-2 bg-muted text-foreground rounded-lg font-medium hover:bg-muted/80 transition-colors border border-border text-xs md:text-sm whitespace-nowrap w-[235px] h-[36px] md:w-auto md:h-auto">
               Become a Creator
             </button>
 
@@ -77,11 +86,7 @@ export function Header({ isDark, onToggleTheme, onMenuClick }: HeaderProps) {
               className="hidden md:inline-flex p-2 rounded-lg hover:bg-muted transition-colors"
               aria-label="Toggle theme"
             >
-              {isDark ? (
-                <Sun className="w-5 h-5 text-yellow-500" />
-              ) : (
-                <Moon className="w-5 h-5 text-slate-600" />
-              )}
+              {isDark ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-slate-600" />}
             </button>
 
             {/* Sign In */}
