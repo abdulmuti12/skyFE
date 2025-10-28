@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { MoreVertical, CheckCircle2, Clock } from "lucide-react"
+import { MoreVertical, CheckCircle2, Clock, ChevronDown } from "lucide-react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import {
   DropdownMenu,
@@ -109,6 +109,7 @@ export function FilmTable() {
   const totalPages = Math.ceil(filmsData.length / itemsPerPage)
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set())
+  const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
@@ -130,6 +131,16 @@ export function FilmTable() {
     } else {
       setSelectedRows(new Set(currentFilms.map((f) => f.id)))
     }
+  }
+
+  const toggleRowExpansion = (id: string) => {
+    const newExpanded = new Set(expandedRows)
+    if (newExpanded.has(id)) {
+      newExpanded.delete(id)
+    } else {
+      newExpanded.add(id)
+    }
+    setExpandedRows(newExpanded)
   }
 
   const StatusBadge = ({ status }: { status: "Funding" | "Completed" }) => {
@@ -178,11 +189,10 @@ export function FilmTable() {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button
-                        variant="ghost"
                         size="sm"
-                        className="h-10 w-10 p-0 bg-[#FFC107] hover:bg-[#FFD54F] rounded-full flex items-center justify-center"
+                        className="h-10 w-10 p-0 bg-transparent hover:bg-muted/50 border-none shadow-none focus:ring-0 focus:outline-none"
                       >
-                        <MoreVertical className="w-5 h-5" style={{ color: "white", stroke: "white" }} />
+                        <MoreVertical className="w-5 h-5 text-foreground" />
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
@@ -207,55 +217,70 @@ export function FilmTable() {
       <div className="md:hidden">
         <div className="divide-y divide-border">
           <div className="px-4 py-3 bg-muted/30 flex items-center gap-3">
-            <input
-              type="checkbox"
-              checked={selectedRows.size === currentFilms.length && currentFilms.length > 0}
-              onChange={toggleAllSelection}
-              className="rounded border-border cursor-pointer"
-            />
             <span className="text-xs font-semibold text-muted-foreground flex-1">Title</span>
-            <span className="text-xs font-semibold text-muted-foreground">Category</span>
+            <span className="text-xs font-semibold text-muted-foreground mr-12">Category</span>
           </div>
-          {currentFilms.map((film) => (
-            <div
-              key={film.id}
-              className="px-4 py-3 flex items-center justify-between gap-3 hover:bg-muted/50 transition-colors"
-            >
-              <div className="flex items-center gap-3 flex-1 min-w-0">
-                <input
-                  type="checkbox"
-                  checked={selectedRows.has(film.id)}
-                  onChange={() => toggleRowSelection(film.id)}
-                  className="rounded border-border cursor-pointer flex-shrink-0"
-                />
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium truncate">{film.title}</p>
+          {currentFilms.map((film) => {
+            const isExpanded = expandedRows.has(film.id)
+            return (
+              <div key={film.id} className="border-b border-border last:border-b-0">
+                <div
+                  className="px-4 py-3 flex items-center justify-between gap-3 hover:bg-muted/50 transition-colors cursor-pointer"
+                  onClick={() => toggleRowExpansion(film.id)}
+                >
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
+                    <ChevronDown
+                      className={`w-4 h-4 text-muted-foreground flex-shrink-0 transition-transform ${
+                        isExpanded ? "rotate-180" : ""
+                      }`}
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium truncate">{film.title}</p>
+                    </div>
+                  </div>
+                  <span className="text-xs text-muted-foreground flex-shrink-0 mr-2">{film.category}</span>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        size="sm"
+                        className="h-10 w-10 p-0 bg-transparent hover:bg-muted/50 border-none shadow-none focus:ring-0 focus:outline-none"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <MoreVertical className="w-5 h-5 text-white" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48">
+                      <DropdownMenuItem>View Movie Details</DropdownMenuItem>
+                      <DropdownMenuItem>View Funding Details</DropdownMenuItem>
+                      <DropdownMenuItem>Withdraw Funds</DropdownMenuItem>
+                      <DropdownMenuItem>Share Campaign</DropdownMenuItem>
+                      <DropdownMenuItem>Edit Film Info</DropdownMenuItem>
+                      <DropdownMenuItem className="text-destructive focus:text-destructive">
+                        Delete Film
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
+
+                {isExpanded && (
+                  <div className="px-4 pb-4 pt-2 bg-muted/20 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground">Status</span>
+                      <StatusBadge status={film.status} />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground">Release Year</span>
+                      <span className="text-sm font-medium">{film.releaseYear}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground">Running Time</span>
+                      <span className="text-sm font-medium">{film.runningTime}</span>
+                    </div>
+                  </div>
+                )}
               </div>
-              <span className="text-xs text-muted-foreground flex-shrink-0">{film.category}</span>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-10 w-10 p-0 bg-[#FFC107] hover:bg-[#FFD54F] rounded-full flex items-center justify-center !text-white flex-shrink-0"
-                  >
-                    <MoreVertical className="w-5 h-5 !text-white" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48">
-                  <DropdownMenuItem>View Movie Details</DropdownMenuItem>
-                  <DropdownMenuItem>View Funding Details</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Withdraw Funds</DropdownMenuItem>
-                  <DropdownMenuItem>Share Campaign</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Edit Film Info</DropdownMenuItem>
-                  <DropdownMenuItem variant="destructive">Delete Film</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
 

@@ -79,10 +79,11 @@ export function FundingOverview() {
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" stroke={borderColor} />
+            <CartesianGrid strokeDasharray="3 3" stroke={borderColor} vertical={false} />
             <XAxis dataKey="month" stroke={textColor} tick={{ fill: textColor }} />
             <YAxis stroke={textColor} tick={{ fill: textColor }} />
             <Tooltip
+              cursor={false} // ⬅ ini yang menghilangkan highlight grey
               contentStyle={{
                 backgroundColor: cardBg,
                 border: `1px solid ${borderColor}`,
@@ -90,7 +91,7 @@ export function FundingOverview() {
               }}
               labelStyle={{ color: textColor }}
             />
-            <Bar dataKey="value" fill={barColor} stroke={borderColor} strokeWidth={0.5} radius={[8, 8, 0, 0]} />
+            <Bar dataKey="value" fill={barColor} radius={[8, 8, 0, 0]} activeBar={false} />
           </BarChart>
         </ResponsiveContainer>
       </CardContent>

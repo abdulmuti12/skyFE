@@ -178,9 +178,13 @@ export function FundingTable() {
                 <td className="px-4 py-3 text-center">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="sm" className="h-8 w-8 p-0 hover:bg-muted">
-                        <MoreVertical className="w-4 h-4" />
-                      </Button>
+                    <Button
+                      size="sm"
+                      className="h-10 w-10 p-0 bg-transparent hover:bg-muted/50 border-none shadow-none focus:ring-0 focus:outline-none"
+                    >
+                      <MoreVertical className="w-5 h-5 text-foreground" />
+                    </Button>
+
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
                       <DropdownMenuItem asChild>
@@ -198,14 +202,9 @@ export function FundingTable() {
         </table>
       </div>
 
+      {/* Mobile Card View */}
       <div className="md:hidden divide-y divide-border border border-border rounded-lg overflow-hidden">
         <div className="px-4 py-3 bg-muted/30 flex items-center gap-3">
-          <input
-            type="checkbox"
-            checked={selectedRows.size === mockData.length && mockData.length > 0}
-            onChange={toggleAllSelection}
-            className="rounded border-border cursor-pointer flex-shrink-0"
-          />
           <span className="text-xs font-semibold text-muted-foreground flex-1">Title</span>
           <span className="text-xs font-semibold text-muted-foreground">Target Funding</span>
         </div>
@@ -215,12 +214,6 @@ export function FundingTable() {
             className="px-4 py-3 flex items-center justify-between gap-3 hover:bg-muted/50 transition-colors"
           >
             <div className="flex items-center gap-3 flex-1 min-w-0">
-              <input
-                type="checkbox"
-                checked={selectedRows.has(campaign.id)}
-                onChange={() => toggleRowSelection(campaign.id)}
-                className="rounded border-border cursor-pointer flex-shrink-0"
-              />
               <p className="text-sm font-medium truncate">{campaign.title}</p>
             </div>
             <div className="flex items-center gap-3 flex-shrink-0">
