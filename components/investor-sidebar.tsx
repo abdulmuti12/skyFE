@@ -13,7 +13,7 @@ export function InvestorSidebar({ isMobile = false, isOpen = false, onClose }: I
   const menuItems = [
     { icon: Rocket, label: "Sky Launch", href: "#" },
     { icon: Home, label: "Home", href: "/investor" },
-    { icon: Bookmark, label: "Watchlist", href: "#" },
+    { icon: Bookmark, label: "Watchlist", href: "/investor/watchlist" },
     { icon: Grid3x3, label: "Portfolio", href: "#" },
     { icon: User, label: "Profile", href: "#" },
   ]
