@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react"
 import { InvestorSidebar } from "@/components/investor-sidebar"
 import { Header } from "@/components/header-investor"
-import { WatchlistGrid } from "@/components/watchlist-grid"
+import { PortfolioGrid } from "@/components/portfolio-grid"
 
-export default function WatchlistPage() {
+export default function PortfolioPage() {
   const [isDark, setIsDark] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -62,8 +62,8 @@ export default function WatchlistPage() {
           </div>
 
           <main className="flex-1 overflow-y-auto p-3 md:p-4 lg:p-6 pb-6">
-            <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Watchlist</h1>
-            <WatchlistGrid />
+            <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Portfolio</h1>
+            <PortfolioGrid />
           </main>
         </div>
       </div>

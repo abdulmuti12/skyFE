@@ -14,7 +14,7 @@ export function InvestorSidebar({ isMobile = false, isOpen = false, onClose }: I
     { icon: Rocket, label: "Sky Launch", href: "#" },
     { icon: Home, label: "Home", href: "/investor" },
     { icon: Bookmark, label: "Watchlist", href: "/investor/watchlist" },
-    { icon: Grid3x3, label: "Portfolio", href: "#" },
+    { icon: Grid3x3, label: "Portfolio", href: "/investor/portfolio" },
     { icon: User, label: "Profile", href: "#" },
   ]
 
