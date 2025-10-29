@@ -4,114 +4,22 @@ import { Bookmark, TrendingUp } from "lucide-react"
 import { useState } from "react"
 
 export function MovieGrid() {
-  const itemsPerPage = 8 
+  const itemsPerPage = 8 // ✅ tampilkan hanya 8 data per halaman
+  const totalMovies = 80 // total data
+  const totalPages = Math.ceil(totalMovies / itemsPerPage)
   const [currentPage, setCurrentPage] = useState(1)
 
-  const movies = [
-    {
-      id: 1,
-      title: "Cermin Tua",
-      category: "Adventure",
-      creator: "cinemaxdev",
-      growth: "2.3%",
-      views: "5.6K",
-      maxViews: "50K",
-      image: "/01.jpg",
-    },
-    {
-      id: 2,
-      title: "Lukisan Angkor Berdarah",
-      category: "Sci-Fi",
-      creator: "luminastudio",
-      growth: "3.1%",
-      views: "8.4K",
-      maxViews: "50K",
-      image: "/02.jpg",
-    },
-    {
-      id: 3,
-      title: "Topeng Arwah Dari Hue",
-      category: "Drama",
-      creator: "aurorapix",
-      growth: "1.2%",
-      views: "4.2K",
-      maxViews: "50K",
-      image: "/03.jpg",
-    },
-    {
-      id: 4,
-      title: "Kutukan Pulau Hantu",
-      category: "Action",
-      creator: "oceantide",
-      growth: "2.9%",
-      views: "9.1K",
-      maxViews: "50K",
-      image: "/04.jpg",
-    },
-    {
-      id: 5,
-      title: "Crimson Sky",
-      category: "Thriller",
-      creator: "darklens",
-      growth: "1.8%",
-      views: "6.3K",
-      maxViews: "50K",
-      image: "/05.jpg",
-    },
-    {
-      id: 6,
-      title: "Dreamcatcher",
-      category: "Fantasy",
-      creator: "starlightmedia",
-      growth: "4.0%",
-      views: "7.8K",
-      maxViews: "50K",
-      image: "/06.jpg",
-    },
-    {
-      id: 7,
-      title: "Echoes of Time",
-      category: "Mystery",
-      creator: "echoart",
-      growth: "2.1%",
-      views: "3.9K",
-      maxViews: "50K",
-      image: "/07.jpg",
-    },
-    {
-      id: 8,
-      title: "Golden Frame",
-      category: "Documentary",
-      creator: "visioncrew",
-      growth: "1.5%",
-      views: "2.8K",
-      maxViews: "50K",
-      image: "/08.jpg",
-    },
-    {
-      id: 9,
-      title: "Neon City",
-      category: "Cyberpunk",
-      creator: "techmotion",
-      growth: "3.8%",
-      views: "9.9K",
-      maxViews: "50K",
-      image: "/04.jpg",
-    },
-    {
-      id: 10,
-      title: "Frozen Flame",
-      category: "Fantasy",
-      creator: "polarstudio",
-      growth: "2.5%",
-      views: "5.2K",
-      maxViews: "50K",
-      image: "/04.jpg",
-    },
-  ]
-
-  const totalMovies = movies.length
-  const totalPages = Math.ceil(totalMovies / itemsPerPage)
+  // Simulasi data
+  const movies = Array.from({ length: totalMovies }, (_, i) => ({
+    id: i + 1,
+    title: `Beyond the Horizon ${i + 1}`,
+    category: "Adventure",
+    creator: "cinemaxdev",
+    growth: "1.8%",
+    views: `${(Math.random() * 10).toFixed(1)}K`,
+    maxViews: "50K",
+    image: "/latest-movie.png",
+  }))
 
   // Pagination logic
   const startIndex = (currentPage - 1) * itemsPerPage
@@ -184,7 +92,7 @@ export function MovieGrid() {
         ))}
       </div>
 
-      {/* ✅ Pagination */}
+      {/* ✅ Pagination responsif */}
       <div className="flex flex-col sm:flex-row items-center justify-between mt-4 sm:mt-6 lg:mt-8 text-xs sm:text-sm text-muted-foreground gap-3 sm:gap-4">
         <span className="hidden lg:block">0 of {totalMovies} row(s) selected.</span>
 

@@ -12,6 +12,7 @@ import { QrisModal } from "@/components/qris-modal"
 
 export default function TransactionsPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true)
   const [isTopUpModalOpen, setIsTopUpModalOpen] = useState(false)
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false)
   const [isCreditCardModalOpen, setIsCreditCardModalOpen] = useState(false)
@@ -47,14 +48,17 @@ export default function TransactionsPage() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="flex flex-col lg:flex-row">
         {/* Desktop Sidebar */}
-        <CreatorSidebar />
+        <CreatorSidebar isOpen={isDesktopSidebarOpen} />
 
         {/* Mobile Sidebar */}
         <CreatorSidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
         {/* Main content */}
-        <div className="flex-1 w-full">
-          <CreatorHeader onMenuClick={() => setIsSidebarOpen(true)} />
+        <div className={`flex-1 w-full transition-all duration-300 ${isDesktopSidebarOpen ? "lg:ml-0" : "lg:ml-0"}`}>
+          <CreatorHeader
+            onMenuClick={() => setIsSidebarOpen(true)}
+            onDesktopMenuClick={() => setIsDesktopSidebarOpen(!isDesktopSidebarOpen)}
+          />
 
           <main className="p-3 md:p-4 lg:p-6">
             <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">

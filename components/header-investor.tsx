@@ -1,8 +1,16 @@
 "use client"
 
-import { Search, Moon, Sun, Menu, X } from "lucide-react"
+import { Search, Moon, Sun, Menu, X, Settings, LogOut } from "lucide-react"
 import { useState } from "react"
 import Link from "next/link"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 interface HeaderProps {
   isDark: boolean
@@ -75,11 +83,6 @@ export function Header({ isDark, onToggleTheme, onMenuClick, onDesktopMenuClick 
 
           {/* === Right Section === */}
           <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
-            {/* Become a Creator — tampil di semua ukuran */}
-            <button className="inline-flex items-center justify-center md:px-4 py-2 bg-muted text-foreground rounded-lg font-medium hover:bg-muted/80 transition-colors border border-border text-xs md:text-sm whitespace-nowrap w-[250px] h-[36px] md:w-auto md:h-auto">
-              Become a Creator
-            </button>
-
             {/* Theme Toggle — hanya tampil di desktop */}
             <button
               onClick={onToggleTheme}
@@ -89,13 +92,45 @@ export function Header({ isDark, onToggleTheme, onMenuClick, onDesktopMenuClick 
               {isDark ? <Sun className="w-5 h-5 text-yellow-500" /> : <Moon className="w-5 h-5 text-slate-600" />}
             </button>
 
-            {/* Sign In */}
-            <Link
-              href="/auth"
-              className="px-3 md:px-4 py-2 bg-yellow-400 text-black rounded-full font-semibold hover:bg-yellow-500 transition-colors text-xs md:text-sm whitespace-nowrap"
-            >
-              Sign In
-            </Link>
+            {/* User Profile Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className="
+                    flex items-center justify-center gap-3 
+                    w-9 h-9 md:w-auto md:h-auto 
+                    hover:bg-muted rounded-lg transition-colors
+                  "
+                >
+                  <Avatar className="h-9 w-9 md:h-8 md:w-8">
+                    <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=fredthegreat" alt="User" />
+                    <AvatarFallback>FG</AvatarFallback>
+                  </Avatar>
+                  <div className="hidden md:flex flex-col items-start">
+                    <span className="text-sm font-medium">fredthegreat</span>
+                    <span className="text-xs text-muted-foreground">fred@gmail.com</span>
+                  </div>
+                </button>
+              </DropdownMenuTrigger>
+
+              <DropdownMenuContent align="end" className="w-56">
+                <div className="px-2 py-1.5">
+                  <p className="text-sm font-medium">fredthegreat</p>
+                  <p className="text-xs text-muted-foreground">fred@gmail.com</p>
+                </div>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Settings className="w-4 h-4 mr-2" />
+                  Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/auth" className="flex items-center w-full">
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign Out
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </header>

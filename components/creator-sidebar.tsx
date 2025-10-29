@@ -143,7 +143,11 @@ export function CreatorSidebar({ isMobile = false, isOpen = false, onClose }: Cr
   }
 
   return (
-    <aside className="w-56 bg-sidebar text-sidebar-foreground border-r border-sidebar-border h-screen sticky top-0 p-6 flex flex-col hidden lg:flex">
+    <aside
+      className={`hidden lg:flex w-56 bg-sidebar text-sidebar-foreground border-r border-sidebar-border h-screen sticky top-0 p-6 flex-col transition-all duration-300 ${
+        !isOpen ? "lg:hidden" : ""
+      }`}
+    >
       {sidebarContent}
     </aside>
   )

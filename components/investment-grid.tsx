@@ -2,6 +2,7 @@
 
 import { TrendingUp, Users, Clock } from "lucide-react"
 import { useState } from "react"
+import Link from "next/link"
 
 export function InvestmentGrid() {
   const itemsPerPage = 8
@@ -28,7 +29,7 @@ export function InvestmentGrid() {
 
   return (
     <section>
-      <h2 className="text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4 lg:mb-6">Available Investment Projects</h2>
+      <h2 className="text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4 lg:mb-6">Latest Movie</h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
         {currentProjects.map((project) => {
@@ -37,8 +38,9 @@ export function InvestmentGrid() {
           const progressPercentage = (raisedNum / goalNum) * 100
 
           return (
-            <div
+            <Link
               key={project.id}
+              href={`/investor/movie/${project.id}`}
               className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-colors cursor-pointer"
             >
               {/* Gambar */}
@@ -87,7 +89,7 @@ export function InvestmentGrid() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           )
         })}
       </div>

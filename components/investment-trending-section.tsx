@@ -2,6 +2,7 @@
 
 import { ChevronLeft, ChevronRight, TrendingUp, Users } from "lucide-react"
 import { useState } from "react"
+import Link from "next/link"
 
 export function InvestmentTrendingSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -68,7 +69,7 @@ export function InvestmentTrendingSection() {
       {/* Header */}
       <div className="flex items-center justify-between mb-3 md:mb-4 lg:mb-6">
         <h2 className="text-lg md:text-xl lg:text-2xl font-bold flex items-center gap-2">
-          Hot Investment Opportunities <span className="text-xl md:text-2xl">🔥</span>
+          Now Trending <span className="text-xl md:text-2xl">🔥</span>
         </h2>
         {/* Navigation Buttons (Mobile & Tablet) */}
         <div className="flex gap-2 lg:hidden">
@@ -86,7 +87,10 @@ export function InvestmentTrendingSection() {
         <div className="lg:grid lg:grid-cols-3 lg:gap-4">
           {/* Mobile & Tablet View: Single Card */}
           <div className="lg:hidden mb-4">
-            <div className="group relative rounded-lg overflow-hidden bg-muted">
+            <Link
+              href={`/investor/movie/${currentProject.id}`}
+              className="group relative rounded-lg overflow-hidden bg-muted block"
+            >
               <img
                 src={currentProject.image || "/placeholder.svg"}
                 alt={currentProject.title}
@@ -104,7 +108,7 @@ export function InvestmentTrendingSection() {
                   <p className="text-gray-300 text-xs md:text-sm">{currentProject.category}</p>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Info below image */}
             <div className="mt-3 md:mt-4 space-y-2">
@@ -136,7 +140,11 @@ export function InvestmentTrendingSection() {
                 100
 
               return (
-                <div key={`${project.id}-${offset}`} className="group relative rounded-lg overflow-hidden bg-muted">
+                <Link
+                  key={`${project.id}-${offset}`}
+                  href={`/investor/movie/${project.id}`}
+                  className="group relative rounded-lg overflow-hidden bg-muted block"
+                >
                   <img
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
@@ -168,7 +176,7 @@ export function InvestmentTrendingSection() {
                     <Users className="w-4 h-4 text-white" />
                     <span className="text-white text-xs">{project.investors}</span>
                   </div>
-                </div>
+                </Link>
               )
             })}
           </div>

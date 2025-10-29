@@ -60,34 +60,37 @@ export default function AuthPage() {
 
           {/* Tombol Login */}
           <div className="space-y-3">
-            <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 text-lg rounded-lg transition-colors flex items-center justify-center gap-2">
-              <span className="bg-white rounded-full p-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 48 48"
-                  width="24px"
-                  height="24px"
-                >
-                  <path
-                    fill="#4285F4"
-                    d="M24 9.5c3.1 0 5.9 1.1 8.1 3.1l6-6C34.5 3 29.5 1 24 1 14.7 1 6.9 6.8 3.3 14.7l7 5.4C12.1 13.5 17.5 9.5 24 9.5z"
-                  />
-                  <path
-                    fill="#34A853"
-                    d="M46.1 24.5c0-1.5-.1-3-.4-4.5H24v9h12.6c-.5 2.8-2 5.2-4.3 6.8l6.7 5.2c3.9-3.6 6.1-8.9 6.1-16.5z"
-                  />
-                  <path
-                    fill="#FBBC05"
-                    d="M10.3 28.4c-.7-2-.9-4.2-.5-6.4l-7-5.4C1.7 20.7 1 22.8 1 25c0 4.7 1.7 9 4.6 12.4l7-5.4c-1.1-1.7-1.9-3.6-2.3-5.6z"
-                  />
-                  <path
-                    fill="#EA4335"
-                    d="M24 47c5.5 0 10.2-1.8 13.6-5l-6.7-5.2c-1.9 1.3-4.3 2-6.9 2-6.5 0-11.9-4.4-13.8-10.4l-7 5.4C6.9 41.2 14.7 47 24 47z"
-                  />
-                </svg>
-              </span>
-              <span>Login as Investor</span>
-            </Button>
+            <Link href="/investor">
+              <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 text-lg rounded-lg transition-colors flex items-center justify-center gap-2">
+                <span className="bg-white rounded-full p-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 48 48"
+                    width="24px"
+                    height="24px"
+                  >
+                    <path
+                      fill="#4285F4"
+                      d="M24 9.5c3.1 0 5.9 1.1 8.1 3.1l6-6C34.5 3 29.5 1 24 1 14.7 1 6.9 6.8 3.3 14.7l7 5.4C12.1 13.5 17.5 9.5 24 9.5z"
+                    />
+                    <path
+                      fill="#34A853"
+                      d="M46.1 24.5c0-1.5-.1-3-.4-4.5H24v9h12.6c-.5 2.8-2 5.2-4.3 6.8l6.7 5.2c3.9-3.6 6.1-8.9 6.1-16.5z"
+                    />
+                    <path
+                      fill="#FBBC05"
+                      d="M10.3 28.4c-.7-2-.9-4.2-.5-6.4l-7-5.4C1.7 20.7 1 22.8 1 25c0 4.7 1.7 9 4.6 12.4l7-5.4c-1.1-1.7-1.9-3.6-2.3-5.6z"
+                    />
+                    <path
+                      fill="#EA4335"
+                      d="M24 47c5.5 0 10.2-1.8 13.6-5l-6.7-5.2c-1.9 1.3-4.3 2-6.9 2-6.5 0-11.9-4.4-13.8-10.4l-7 5.4C6.9 41.2 14.7 47 24 47z"
+                    />
+                  </svg>
+                </span>
+                <span>Login as Investor</span>
+              </Button>
+            </Link>
+
 
             <p className="text-center text-gray-500 text-sm">
               Access your dashboard and manage your film campaigns.

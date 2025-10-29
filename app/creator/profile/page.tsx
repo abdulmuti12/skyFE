@@ -11,6 +11,7 @@ import { Copy } from "lucide-react"
 
 export default function ProfilePage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true)
 
   const balances = [
     { name: "Solana", amount: "0.0203", value: "$2", icon: "https://cryptologos.cc/logos/solana-sol-logo.png" },
@@ -88,14 +89,20 @@ export default function ProfilePage() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">
-      <CreatorSidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-      <CreatorSidebar />
+      <CreatorSidebar isOpen={isDesktopSidebarOpen} />
 
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <CreatorHeader onMenuClick={() => setIsSidebarOpen(true)} />
+      <CreatorSidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+
+      <div
+        className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${isDesktopSidebarOpen ? "lg:ml-0" : "lg:ml-0"}`}
+      >
+        <CreatorHeader
+          onMenuClick={() => setIsSidebarOpen(true)}
+          onDesktopMenuClick={() => setIsDesktopSidebarOpen(!isDesktopSidebarOpen)}
+        />
 
         <main className="flex-1 overflow-y-auto">
-          <div className="flex gap-6 p-4 md:p-6 max-w-[1600px] mx-auto">
+          <div className="flex items-start gap-6 p-4 md:p-6 max-w-[1600px] mx-auto">
             {/* Main Content */}
             <div className="flex-1 space-y-6">
               <h1 className="text-2xl font-bold">Profile</h1>
@@ -195,11 +202,11 @@ export default function ProfilePage() {
             </div>
 
             {/* Notifications Sidebar - Desktop Only */}
-            <div className="hidden xl:block w-80 space-y-6">
-              <div className="bg-card border border-border rounded-xl p-6">
+            <div className="hidden xl:flex w-80 self-stretch">
+              <div className="bg-card border border-border rounded-xl p-6 flex-1 flex flex-col">
                 <h3 className="text-lg font-semibold mb-4">Notifications</h3>
 
-                <div className="space-y-4">
+                <div className="space-y-4 flex-1 overflow-y-auto">
                   {notifications.map((notification) => (
                     <div key={notification.id} className="flex gap-3">
                       <div className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center flex-shrink-0">

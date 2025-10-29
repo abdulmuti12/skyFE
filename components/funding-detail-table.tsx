@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Download } from "lucide-react"
+import { Download, ChevronDown } from "lucide-react"
 
 interface InvestorRecord {
   id: string
@@ -98,8 +98,19 @@ const mockInvestors: InvestorRecord[] = [
 export function FundingDetailTable() {
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [currentPage, setCurrentPage] = useState(1)
+  const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
 
   const totalPages = Math.ceil(mockInvestors.length / rowsPerPage)
+
+  const toggleRowExpansion = (id: string) => {
+    const newExpanded = new Set(expandedRows)
+    if (newExpanded.has(id)) {
+      newExpanded.delete(id)
+    } else {
+      newExpanded.add(id)
+    }
+    setExpandedRows(newExpanded)
+  }
 
   return (
     <div className="w-full">
@@ -152,21 +163,55 @@ export function FundingDetailTable() {
             </table>
           </div>
 
-          {/* Mobile Table View */}
+          {/* Mobile Table View with Accordion */}
           <div className="md:hidden divide-y divide-border border border-border rounded-lg overflow-hidden">
             <div className="px-4 py-3 bg-muted/30 flex items-center justify-between">
               <span className="text-xs font-semibold text-muted-foreground">Investor Name</span>
               <span className="text-xs font-semibold text-muted-foreground">Amount</span>
             </div>
-            {mockInvestors.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage).map((investor) => (
-              <div
-                key={investor.id}
-                className="px-4 py-3 flex items-center justify-between hover:bg-muted/50 transition-colors"
-              >
-                <p className="text-sm font-medium">{investor.investorName}</p>
-                <span className="text-sm text-muted-foreground">{investor.amount}</span>
-              </div>
-            ))}
+            {mockInvestors.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage).map((investor) => {
+              const isExpanded = expandedRows.has(investor.id)
+              return (
+                <div key={investor.id} className="border-b border-border last:border-b-0">
+                  <div
+                    className="px-4 py-3 flex items-center justify-between gap-3 hover:bg-muted/50 transition-colors cursor-pointer"
+                    onClick={() => toggleRowExpansion(investor.id)}
+                  >
+                    <div className="flex items-center gap-3 flex-1 min-w-0">
+                      <ChevronDown
+                        className={`w-4 h-4 text-muted-foreground flex-shrink-0 transition-transform ${
+                          isExpanded ? "rotate-180" : ""
+                        }`}
+                      />
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-medium truncate">{investor.investorName}</p>
+                      </div>
+                    </div>
+                    <span className="text-sm text-muted-foreground flex-shrink-0">{investor.amount}</span>
+                  </div>
+
+                  {isExpanded && (
+                    <div className="px-4 pb-4 pt-2 bg-muted/20 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">Date</span>
+                        <span className="text-sm font-medium">{investor.date}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">Payment Method</span>
+                        <span className="text-sm font-medium">{investor.paymentMethod}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">Status</span>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                          <span className="text-sm font-medium">{investor.status}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )
+            })}
           </div>
 
           {/* Pagination */}

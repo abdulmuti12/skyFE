@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Download, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react"
+import { Download, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, ChevronDown } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 
@@ -103,6 +103,7 @@ const mockTransactions: Transaction[] = [
 export function TransactionsTable() {
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [currentPage, setCurrentPage] = useState(1)
+  const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
 
   const totalPages = Math.ceil(mockTransactions.length / rowsPerPage)
   const startIndex = (currentPage - 1) * rowsPerPage
@@ -133,6 +134,16 @@ export function TransactionsTable() {
       default:
         return "bg-gray-500"
     }
+  }
+
+  const toggleRowExpansion = (id: string) => {
+    const newExpanded = new Set(expandedRows)
+    if (newExpanded.has(id)) {
+      newExpanded.delete(id)
+    } else {
+      newExpanded.add(id)
+    }
+    setExpandedRows(newExpanded)
   }
 
   return (
@@ -175,17 +186,17 @@ export function TransactionsTable() {
 
       {/* Table Container */}
       <div className="rounded-lg border border-border overflow-hidden">
-        <div className="overflow-x-auto">
+        {/* Desktop Table */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full">
             <thead className="bg-muted/50 border-b border-border">
               <tr>
                 <th className="text-left px-4 py-3 text-sm font-semibold">Transaction ID</th>
                 <th className="text-left px-4 py-3 text-sm font-semibold">Date</th>
-                {/* Desktop only columns */}
-                <th className="hidden md:table-cell text-left px-4 py-3 text-sm font-semibold">Type</th>
-                <th className="hidden md:table-cell text-left px-4 py-3 text-sm font-semibold">Description</th>
-                <th className="hidden md:table-cell text-left px-4 py-3 text-sm font-semibold">Amount</th>
-                <th className="hidden md:table-cell text-left px-4 py-3 text-sm font-semibold">Status</th>
+                <th className="text-left px-4 py-3 text-sm font-semibold">Type</th>
+                <th className="text-left px-4 py-3 text-sm font-semibold">Description</th>
+                <th className="text-left px-4 py-3 text-sm font-semibold">Amount</th>
+                <th className="text-left px-4 py-3 text-sm font-semibold">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
@@ -193,13 +204,10 @@ export function TransactionsTable() {
                 <tr key={index} className="hover:bg-muted/30 transition-colors">
                   <td className="px-4 py-3 text-sm">{transaction.id}</td>
                   <td className="px-4 py-3 text-sm">{transaction.date}</td>
-                  {/* Desktop only columns */}
-                  <td className="hidden md:table-cell px-4 py-3 text-sm">{transaction.type}</td>
-                  <td className="hidden md:table-cell px-4 py-3 text-sm text-muted-foreground">
-                    {transaction.description}
-                  </td>
-                  <td className="hidden md:table-cell px-4 py-3 text-sm">{transaction.amount}</td>
-                  <td className="hidden md:table-cell px-4 py-3 text-sm">
+                  <td className="px-4 py-3 text-sm">{transaction.type}</td>
+                  <td className="px-4 py-3 text-sm text-muted-foreground">{transaction.description}</td>
+                  <td className="px-4 py-3 text-sm">{transaction.amount}</td>
+                  <td className="px-4 py-3 text-sm">
                     <div className="flex items-center gap-2">
                       <div className={`w-2 h-2 rounded-full ${getStatusDot(transaction.status)}`} />
                       <span className={getStatusColor(transaction.status)}>{transaction.status}</span>
@@ -209,6 +217,62 @@ export function TransactionsTable() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        <div className="md:hidden">
+          <div className="divide-y divide-border">
+            <div className="px-4 py-3 bg-muted/30 flex items-center gap-3">
+              <span className="text-xs font-semibold text-muted-foreground flex-1">Transaction ID</span>
+              <span className="text-xs font-semibold text-muted-foreground">Date</span>
+            </div>
+            {currentTransactions.map((transaction) => {
+              const isExpanded = expandedRows.has(transaction.id)
+              return (
+                <div key={transaction.id} className="border-b border-border last:border-b-0">
+                  <div
+                    className="px-4 py-3 flex items-center justify-between gap-3 hover:bg-muted/50 transition-colors cursor-pointer"
+                    onClick={() => toggleRowExpansion(transaction.id)}
+                  >
+                    <div className="flex items-center gap-3 flex-1 min-w-0">
+                      <ChevronDown
+                        className={`w-4 h-4 text-muted-foreground flex-shrink-0 transition-transform ${
+                          isExpanded ? "rotate-180" : ""
+                        }`}
+                      />
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-medium truncate">{transaction.id}</p>
+                      </div>
+                    </div>
+                    <span className="text-xs text-muted-foreground flex-shrink-0">{transaction.date}</span>
+                  </div>
+
+                  {isExpanded && (
+                    <div className="px-4 pb-4 pt-2 bg-muted/20 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">Type</span>
+                        <span className="text-sm font-medium">{transaction.type}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">Description</span>
+                        <span className="text-sm font-medium text-right">{transaction.description}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">Amount</span>
+                        <span className="text-sm font-medium">{transaction.amount}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">Status</span>
+                        <div className="flex items-center gap-2">
+                          <div className={`w-2 h-2 rounded-full ${getStatusDot(transaction.status)}`} />
+                          <span className={getStatusColor(transaction.status)}>{transaction.status}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
 

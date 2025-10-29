@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { InvestorSidebar } from "@/components/investor-sidebar"
-import { Header } from "@/components/header"
+import { Header } from "@/components/header-investor"
 import { InvestmentTrendingSection } from "@/components/investment-trending-section"
 import { InvestmentGrid } from "@/components/investment-grid"
 
@@ -40,19 +40,19 @@ export default function InvestorDashboard() {
 
   return (
     <div className={isDark ? "dark" : ""}>
-      <div className="min-h-screen bg-background text-foreground">
-        <div className="flex flex-col lg:flex-row">
-          {/* Desktop Sidebar */}
+      <div className="h-screen overflow-hidden bg-background text-foreground">
+        <div className="flex h-full">
           {isDesktopSidebarOpen && (
-            <div className="hidden lg:block">
+            <div className="hidden lg:block fixed inset-y-0 left-0 w-64">
               <InvestorSidebar />
             </div>
           )}
 
           <InvestorSidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-          {/* Main content */}
-          <div className="flex-1 w-full">
+          <div
+            className={`flex-1 flex flex-col h-full overflow-hidden transition-all duration-300 ${isDesktopSidebarOpen ? "lg:ml-64" : "lg:ml-0"}`}
+          >
             <Header
               isDark={isDark}
               onToggleTheme={toggleTheme}
@@ -60,7 +60,7 @@ export default function InvestorDashboard() {
               onDesktopMenuClick={() => setIsDesktopSidebarOpen(!isDesktopSidebarOpen)}
             />
 
-            <main className="p-3 md:p-4 lg:p-6 pb-6">
+            <main className="flex-1 overflow-y-auto p-3 md:p-4 lg:p-6 pb-6">
               <InvestmentTrendingSection />
               <InvestmentGrid />
             </main>

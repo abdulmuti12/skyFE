@@ -63,7 +63,7 @@ export function InvestorSidebar({ isMobile = false, isOpen = false, onClose }: I
   }
 
   return (
-    <aside className="w-56 bg-sidebar text-sidebar-foreground border-r border-sidebar-border h-screen sticky top-0 p-6 flex flex-col">
+    <aside className="w-56 bg-sidebar text-sidebar-foreground border-r border-sidebar-border h-screen fixed left-0 top-0 z-30 p-6 flex flex-col">
       <div className="flex items-center gap-2 mb-8">
         <Rocket className="w-6 h-6" />
         <span className="font-bold text-lg">Sky Launch</span>

@@ -39,31 +39,32 @@ export default function WatchlistPage() {
 
   return (
     <div className={isDark ? "dark" : ""}>
-      <div className="min-h-screen bg-background text-foreground">
-        <div className="flex flex-col lg:flex-row">
-          {/* Desktop Sidebar */}
-          {isDesktopSidebarOpen && (
-            <div className="hidden lg:block">
-              <InvestorSidebar />
-            </div>
-          )}
+      <div className="h-screen overflow-hidden bg-background text-foreground">
+        {/* Desktop Sidebar - Fixed */}
+        {isDesktopSidebarOpen && (
+          <div className="hidden lg:block">
+            <InvestorSidebar />
+          </div>
+        )}
 
-          <InvestorSidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        {/* Mobile Sidebar */}
+        <InvestorSidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-          {/* Main content */}
-          <div className="flex-1 w-full">
+        <div className={`h-screen flex flex-col ${isDesktopSidebarOpen ? "lg:pl-64" : ""}`}>
+          {/* Header - Fixed at top */}
+          <div className="flex-shrink-0">
             <Header
               isDark={isDark}
               onToggleTheme={toggleTheme}
               onMenuClick={() => setIsSidebarOpen(true)}
               onDesktopMenuClick={() => setIsDesktopSidebarOpen(!isDesktopSidebarOpen)}
             />
-
-            <main className="p-3 md:p-4 lg:p-6 pb-6">
-              <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Watchlist</h1>
-              <WatchlistGrid />
-            </main>
           </div>
+
+          <main className="flex-1 overflow-y-auto p-3 md:p-4 lg:p-6 pb-6">
+            <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Watchlist</h1>
+            <WatchlistGrid />
+          </main>
         </div>
       </div>
     </div>

@@ -12,12 +12,12 @@ import {
 import { useTheme } from "@/components/theme-provider"
 import Link from "next/link"
 
-
 interface CreatorHeaderProps {
   onMenuClick?: () => void
+  onDesktopMenuClick?: () => void
 }
 
-export function CreatorHeader({ onMenuClick }: CreatorHeaderProps) {
+export function CreatorHeader({ onMenuClick, onDesktopMenuClick }: CreatorHeaderProps) {
   const { theme, toggleTheme } = useTheme()
 
   return (
@@ -34,10 +34,17 @@ export function CreatorHeader({ onMenuClick }: CreatorHeaderProps) {
             <Menu className="w-5 h-5 md:w-6 md:h-6" />
           </button>
 
-          {/* Title (Desktop only) */}
-          <h1 className="hidden md:block text-sm md:text-xl font-semibold">
-            Creator Playground
-          </h1>
+          {/* Title with Burger Button (Desktop only) */}
+          <div className="hidden md:flex items-center gap-3">
+            <button
+              onClick={onDesktopMenuClick}
+              className="hidden lg:flex p-2 hover:bg-muted rounded-lg border border-border transition-colors"
+              aria-label="Toggle sidebar"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+            <h1 className="text-sm md:text-xl font-semibold">Creator Playground</h1>
+          </div>
         </div>
 
         {/* === Mobile Center Title === */}
@@ -110,9 +117,9 @@ export function CreatorHeader({ onMenuClick }: CreatorHeaderProps) {
                 Settings
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link   href="/auth" className="flex items-center w-full">
-                <LogOut className="w-4 h-4 mr-2" />
-                Sign Out
+                <Link href="/auth" className="flex items-center w-full">
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>

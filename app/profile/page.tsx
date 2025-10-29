@@ -257,6 +257,7 @@ Remove Image
             <div className="pt-4">
               <Button
                 onClick={handleSaveChanges}
+                // Tombol Save Changes: Tetap kuning sesuai permintaan, tetapi di-adjust agar presisi
                 className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 text-lg rounded-lg transition-colors px-6"
               >
                 Save Changes
