@@ -4,15 +4,20 @@ import type React from "react"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { CreatorHeader } from "@/components/creator-header"
+import { CreatorSidebar } from "@/components/creator-sidebar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { ArrowLeft, X } from "lucide-react"
+import { X, ChevronRight } from "lucide-react"
+import Link from "next/link"
 
 export default function EditProfilePage() {
   const router = useRouter()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true)
   const [isWalletConnected, setIsWalletConnected] = useState(true)
   const [formData, setFormData] = useState({
     username: "username",
@@ -49,210 +54,232 @@ export default function EditProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-5xl mx-auto p-4 md:p-6 lg:p-8">
-        {/* Back Button */}
-        <button
-          onClick={() => router.back()}
-          className="flex items-center gap-2 text-sm mb-6 hover:text-muted-foreground transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back
-        </button>
+    <div className="flex h-screen overflow-hidden bg-background">
+      <CreatorSidebar isOpen={isDesktopSidebarOpen} />
 
-        {/* Page Title */}
-        <h1 className="text-2xl md:text-3xl font-bold mb-8">Edit Your Profile</h1>
+      <CreatorSidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Avatar Section */}
-          <div className="flex flex-col md:flex-row md:items-start gap-4">
-            <Avatar className="h-20 w-20 md:h-24 md:w-24">
-              <AvatarFallback className="text-2xl bg-muted">CN</AvatarFallback>
-            </Avatar>
+      <div
+        className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${isDesktopSidebarOpen ? "lg:ml-0" : "lg:ml-0"}`}
+      >
+        <CreatorHeader
+          onMenuClick={() => setIsSidebarOpen(true)}
+          onDesktopMenuClick={() => setIsDesktopSidebarOpen(!isDesktopSidebarOpen)}
+        />
 
-            <div className="space-y-3">
-              <div className="flex gap-3">
-                <Button
-                  type="button"
-                  className="bg-white hover:bg-gray-100 text-black border border-gray-200 rounded-full px-6 py-2 font-medium transition-colors"
-                >
-                  Change Image
-                </Button>
-                <Button
-                  type="button"
-                  className="bg-black hover:bg-gray-900 text-white rounded-full px-6 py-2 font-medium transition-colors"
-                >
-                  Remove Image
-                </Button>
-              </div>
-              <p className="text-sm text-muted-foreground">Supported formats: JPG, or PNG. Max size 2MB.</p>
-            </div>
-          </div>
-
-          {/* Form Fields - Two Column Layout on Desktop */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Username */}
-            <div className="space-y-2">
-              <Label htmlFor="username">
-                Username <span className="text-red-500">*</span>
-              </Label>
-              <Input
-                id="username"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                className="bg-background border-border"
-                required
-              />
+        <main className="flex-1 overflow-y-auto">
+          <div className="max-w-6xl p-4 md:p-6 lg:p-8 lg:pl-12 lg:pr-16">
+            <div className="flex items-center gap-2 text-sm mb-6 text-muted-foreground">
+              <Link href="/creator/profile" className="hover:text-foreground transition-colors">
+                Profile
+              </Link>
+              <ChevronRight className="w-4 h-4" />
+              <span className="text-foreground">Edit Your Profile</span>
             </div>
 
-            {/* Display Name */}
-            <div className="space-y-2">
-              <Label htmlFor="displayName">
-                Display Name <span className="text-red-500">*</span>
-              </Label>
-              <Input
-                id="displayName"
-                name="displayName"
-                value={formData.displayName}
-                onChange={handleChange}
-                className="bg-background border-border"
-                required
-              />
-            </div>
-          </div>
+            {/* Page Title */}
+            <h1 className="text-2xl md:text-3xl font-bold mb-8">Edit Your Profile</h1>
 
-          {/* Description and Wallet - Two Column Layout on Desktop */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Description */}
-            <div className="space-y-2">
-              <Label htmlFor="description">
-                Description <span className="text-red-500">*</span>
-              </Label>
-              <Textarea
-                id="description"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                className="bg-background border-border min-h-[120px] resize-none"
-                required
-              />
-            </div>
+            <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Avatar Section */}
+              <div className="flex flex-col md:flex-row md:items-start gap-4">
+                <Avatar className="h-20 w-20 md:h-24 md:w-24">
+                  <AvatarFallback className="text-2xl bg-muted">CN</AvatarFallback>
+                </Avatar>
 
-            {/* Wallet Address */}
-            <div className="space-y-2">
-              <Label>Wallet Address</Label>
-              {isWalletConnected ? (
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-muted border border-border rounded-lg">
-                    <div className="flex items-center gap-2">
-                      <div className="w-5 h-5 bg-orange-500 rounded flex items-center justify-center text-xs">🦊</div>
-                      <span className="font-mono text-sm">0xE3...B7A6</span>
+                  <div className="flex gap-3">
+                    <Button
+                      type="button"
+                      className="bg-white hover:bg-gray-100 text-black border border-gray-200 rounded-full px-6 py-2 font-medium transition-colors"
+                    >
+                      Change Image
+                    </Button>
+                    <Button
+                      type="button"
+                      className="bg-black hover:bg-gray-900 text-white rounded-full px-6 py-2 font-medium transition-colors"
+                    >
+                      Remove Image
+                    </Button>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Supported formats: JPG, or PNG. Max size 2MB.</p>
+                </div>
+              </div>
+
+              {/* Form Fields - Two Column Layout on Desktop */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Username */}
+                <div className="space-y-2">
+                  <Label htmlFor="username">
+                    Username <span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    id="username"
+                    name="username"
+                    value={formData.username}
+                    onChange={handleChange}
+                    className="bg-background border-border"
+                    required
+                  />
+                </div>
+
+                {/* Display Name */}
+                <div className="space-y-2">
+                  <Label htmlFor="displayName">
+                    Display Name <span className="text-red-500">*</span>
+                  </Label>
+                  <Input
+                    id="displayName"
+                    name="displayName"
+                    value={formData.displayName}
+                    onChange={handleChange}
+                    className="bg-background border-border"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Description and Wallet - Two Column Layout on Desktop */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Description */}
+                <div className="space-y-2">
+                  <Label htmlFor="description">
+                    Description <span className="text-red-500">*</span>
+                  </Label>
+                  <Textarea
+                    id="description"
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    className="bg-background border-border min-h-[120px] resize-none"
+                    required
+                  />
+                </div>
+
+                {/* Wallet Address */}
+                <div className="space-y-2">
+                  <Label>Wallet Address</Label>
+                  {isWalletConnected ? (
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between p-3 bg-muted border border-border rounded-lg">
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 bg-orange-500 rounded flex items-center justify-center text-xs">
+                            🦊
+                          </div>
+                          <span className="font-mono text-sm">0xE3...B7A6</span>
+                        </div>
+                        <button type="button" className="p-1 hover:bg-background rounded transition-colors">
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+
+                      <div className="text-center text-sm text-muted-foreground">OR</div>
+
+                      <button
+                        type="button"
+                        className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg py-3 font-medium transition-colors"
+                        onClick={handleDisconnectWallet}
+                      >
+                        Disconnect Wallet
+                      </button>
                     </div>
-                    <button type="button" className="p-1 hover:bg-background rounded transition-colors">
-                      <X className="w-4 h-4" />
+                  ) : (
+                    <button
+                      type="button"
+                      className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg py-3 font-medium transition-colors"
+                      onClick={handleConnectWallet}
+                    >
+                      Connect Wallet
                     </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Social Media Section */}
+              <div className="space-y-4">
+                <h2 className="text-xl font-semibold">Social Media</h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Instagram */}
+                  <div className="space-y-2">
+                    <Label htmlFor="instagram">
+                      Instagram <span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      id="instagram"
+                      name="instagram"
+                      value={formData.instagram}
+                      onChange={handleChange}
+                      className="bg-background border-border"
+                      required
+                    />
                   </div>
 
-                  <div className="text-center text-sm text-muted-foreground">OR</div>
+                  {/* Facebook */}
+                  <div className="space-y-2">
+                    <Label htmlFor="facebook">
+                      Facebook <span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      id="facebook"
+                      name="facebook"
+                      value={formData.facebook}
+                      onChange={handleChange}
+                      className="bg-background border-border"
+                      required
+                    />
+                  </div>
 
-                  <button
-                    type="button"
-                    className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg py-3 font-medium transition-colors"
-                    onClick={handleDisconnectWallet}
-                  >
-                    Disconnect Wallet
-                  </button>
+                  {/* TikTok */}
+                  <div className="space-y-2">
+                    <Label htmlFor="tiktok">
+                      TikTok <span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      id="tiktok"
+                      name="tiktok"
+                      value={formData.tiktok}
+                      onChange={handleChange}
+                      className="bg-background border-border"
+                      required
+                    />
+                  </div>
+
+                  {/* X (Twitter) */}
+                  <div className="space-y-2">
+                    <Label htmlFor="x">
+                      X <span className="text-red-500">*</span>
+                    </Label>
+                    <Input
+                      id="x"
+                      name="x"
+                      value={formData.x}
+                      onChange={handleChange}
+                      className="bg-background border-border"
+                      required
+                    />
+                  </div>
                 </div>
-              ) : (
-                <button
-                  type="button"
-                  className="w-full bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg py-3 font-medium transition-colors"
-                  onClick={handleConnectWallet}
+              </div>
+
+              <div className="flex gap-3">
+                <Button
+                  type="submit"
+                  className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full px-8 py-2 transition-colors"
                 >
-                  Connect Wallet
-                </button>
-              )}
-            </div>
+                  Save Changes
+                </Button>
+                <Button
+                  type="button"
+                  onClick={() => router.push("/creator/profile")}
+                  className="bg-transparent hover:bg-muted text-foreground border border-border font-semibold rounded-full px-8 py-2 transition-colors"
+                >
+                  Cancel
+                </Button>
+              </div>
+            </form>
           </div>
-
-          {/* Social Media Section */}
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold">Social Media</h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Instagram */}
-              <div className="space-y-2">
-                <Label htmlFor="instagram">
-                  Instagram <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  id="instagram"
-                  name="instagram"
-                  value={formData.instagram}
-                  onChange={handleChange}
-                  className="bg-background border-border"
-                  required
-                />
-              </div>
-
-              {/* Facebook */}
-              <div className="space-y-2">
-                <Label htmlFor="facebook">
-                  Facebook <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  id="facebook"
-                  name="facebook"
-                  value={formData.facebook}
-                  onChange={handleChange}
-                  className="bg-background border-border"
-                  required
-                />
-              </div>
-
-              {/* TikTok */}
-              <div className="space-y-2">
-                <Label htmlFor="tiktok">
-                  TikTok <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  id="tiktok"
-                  name="tiktok"
-                  value={formData.tiktok}
-                  onChange={handleChange}
-                  className="bg-background border-border"
-                  required
-                />
-              </div>
-
-              {/* X (Twitter) */}
-              <div className="space-y-2">
-                <Label htmlFor="x">
-                  X <span className="text-red-500">*</span>
-                </Label>
-                <Input
-                  id="x"
-                  name="x"
-                  value={formData.x}
-                  onChange={handleChange}
-                  className="bg-background border-border"
-                  required
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Submit Button */}
-          <div>
-            <Button
-              type="submit"
-              className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full px-8 py-2 transition-colors"
-            >
-              Save Changes
-            </Button>
-          </div>
-        </form>
+        </main>
       </div>
     </div>
   )

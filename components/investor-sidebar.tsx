@@ -19,7 +19,7 @@ export function InvestorSidebar({ isMobile = false, isOpen = false, onClose }: I
     { icon: Bookmark, label: "Watchlist", href: "/investor/watchlist" },
     { icon: Grid3x3, label: "Portfolio", href: "/investor/portfolio" },
     { icon: CreditCard, label: "Transactions", href: "/investor/transactions" },
-    { icon: User, label: "Profile", href: "#" },
+    { icon: User, label: "Profile", href: "/investor/profile" },
   ]
 
   const isActive = (href: string) => {
