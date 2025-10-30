@@ -2,37 +2,24 @@
 
 import { Bookmark, TrendingUp } from "lucide-react"
 import { useState } from "react"
+import moviesData from "@/data/movie.json"
 
 export function MovieGrid() {
-  const itemsPerPage = 8 // ✅ tampilkan hanya 8 data per halaman
-  const totalMovies = 80 // total data
+  const itemsPerPage = 8
+  const movies = moviesData.movies
+  const totalMovies = movies.length
   const totalPages = Math.ceil(totalMovies / itemsPerPage)
   const [currentPage, setCurrentPage] = useState(1)
 
-  // Simulasi data
-  const movies = Array.from({ length: totalMovies }, (_, i) => ({
-    id: i + 1,
-    title: `Beyond the Horizon ${i + 1}`,
-    category: "Adventure",
-    creator: "cinemaxdev",
-    growth: "1.8%",
-    views: `${(Math.random() * 10).toFixed(1)}K`,
-    maxViews: "50K",
-    image: "/latest-movie.png",
-  }))
-
-  // Pagination logic
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
   const currentMovies = movies.slice(startIndex, endIndex)
 
   return (
     <section>
-      <h2 className="text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4 lg:mb-6">
-        Latest Movie
-      </h2>
+      <h2 className="text-lg md:text-xl lg:text-2xl font-bold mb-3 md:mb-4 lg:mb-6">Latest Movie</h2>
 
-      {/* ✅ Grid responsif */}
+      {/* Grid responsif */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
         {currentMovies.map((movie) => (
           <div
@@ -56,12 +43,8 @@ export function MovieGrid() {
 
             {/* Konten */}
             <div className="p-2 sm:p-3 lg:p-4">
-              <h3 className="font-bold text-xs sm:text-sm mb-0.5 sm:mb-1 line-clamp-1">
-                {movie.title}
-              </h3>
-              <p className="text-xs text-muted-foreground mb-1.5 sm:mb-2 lg:mb-3">
-                {movie.category}
-              </p>
+              <h3 className="font-bold text-xs sm:text-sm mb-0.5 sm:mb-1 line-clamp-1">{movie.title}</h3>
+              <p className="text-xs text-muted-foreground mb-1.5 sm:mb-2 lg:mb-3">{movie.category}</p>
 
               {/* Creator */}
               <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-3">
@@ -74,7 +57,7 @@ export function MovieGrid() {
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-muted-foreground">{movie.views}</span>
                   <span className="text-green-500 flex items-center gap-0.5">
-                    <TrendingUp className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                    <TrendingUp className="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4" />
                     {movie.growth}
                   </span>
                 </div>
@@ -92,7 +75,7 @@ export function MovieGrid() {
         ))}
       </div>
 
-      {/* ✅ Pagination responsif */}
+      {/* Pagination responsif */}
       <div className="flex flex-col sm:flex-row items-center justify-between mt-4 sm:mt-6 lg:mt-8 text-xs sm:text-sm text-muted-foreground gap-3 sm:gap-4">
         <span className="hidden lg:block">0 of {totalMovies} row(s) selected.</span>
 

@@ -1,0 +1,804 @@
+{
+  "movies": [
+    {
+      "id": 1,
+     "title": "Cermin Tua di Tanjung Perak",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "growth": "1.8%",
+      "views": "8.5K",
+      "maxViews": "50K",
+      "image": "/01.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Lukisan Angkor Berdarah",
+      "category": "Sci-Fi",
+      "creator": "filmstudio",
+      "growth": "2.3%",
+      "views": "9.2K",
+      "maxViews": "50K",
+      "image": "/02.jpg"
+    },
+    {
+      "id": 3,
+     "title": "Topeng Arwah Dari Hue",
+      "category": "Drama",
+      "creator": "artfilms",
+      "growth": "1.5%",
+      "views": "7.1K",
+      "maxViews": "50K",
+      "image": "/03.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Kutukan Pulau Hantu",
+      "category": "Thriller",
+      "creator": "darkcinema",
+      "growth": "3.1%",
+      "views": "6.8K",
+      "maxViews": "50K",
+       "image": "/04.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Roh Sungai Mekong",
+      "category": "Adventure",
+      "creator": "epicstories",
+      "growth": "2.7%",
+      "views": "8.9K",
+      "maxViews": "50K",
+       "image": "/05.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Banyangan Di Keris Maja Pahit",
+      "category": "Fantasy",
+      "creator": "magicfilms",
+      "growth": "1.9%",
+      "views": "7.4K",
+      "maxViews": "50K",
+       "image": "/06.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Beyond the Horizon",
+      "category": "Romance",
+      "creator": "heartbeat",
+      "growth": "2.1%",
+      "views": "8.2K",
+      "maxViews": "50K",
+      "image": "/07.jpg"
+    },
+    {
+      "id": 8,
+      "title": "Beyond the Horizon",
+      "category": "Sci-Fi",
+      "creator": "futuretech",
+      "growth": "2.8%",
+      "views": "9.5K",
+      "maxViews": "50K",
+      "image": "/08.jpg"
+    },
+    {
+      "id": 9,
+      "title": "Midnight Run",
+      "category": "Action",
+      "creator": "actionpacked",
+      "growth": "3.2%",
+      "views": "9.8K",
+      "maxViews": "50K",
+      "image": "/09.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Whispers of the Past",
+      "category": "Mystery",
+      "creator": "mysterystudio",
+      "growth": "1.6%",
+      "views": "6.3K",
+      "maxViews": "50K",
+      "image": "/10.png"
+    },
+    {
+      "id": 11,
+      "title": "Golden Hour",
+      "category": "Drama",
+      "creator": "dramatics",
+      "growth": "2.4%",
+      "views": "7.9K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 12,
+      "title": "Cosmic Journey",
+      "category": "Adventure",
+      "creator": "spacedreams",
+      "growth": "2.9%",
+      "views": "8.7K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 13,
+      "title": "Shadows of Doubt",
+      "category": "Thriller",
+      "creator": "suspenseful",
+      "growth": "2.2%",
+      "views": "7.6K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 14,
+      "title": "Eternal Flame",
+      "category": "Romance",
+      "creator": "lovesstories",
+      "growth": "1.7%",
+      "views": "6.9K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 15,
+      "title": "Digital Dreams",
+      "category": "Sci-Fi",
+      "creator": "cyberpunk",
+      "growth": "3.0%",
+      "views": "9.1K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 16,
+      "title": "Forgotten Realm",
+      "category": "Fantasy",
+      "creator": "fantasyworld",
+      "growth": "2.5%",
+      "views": "8.3K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 17,
+      "title": "Urban Legend",
+      "category": "Horror",
+      "creator": "scarystories",
+      "growth": "2.6%",
+      "views": "7.2K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 18,
+      "title": "Horizon's End",
+      "category": "Adventure",
+      "creator": "adventurers",
+      "growth": "1.9%",
+      "views": "8.0K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 19,
+      "title": "Parallel Worlds",
+      "category": "Sci-Fi",
+      "creator": "multiverse",
+      "growth": "2.7%",
+      "views": "8.6K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 20,
+      "title": "Crimson Sky",
+      "category": "Action",
+      "creator": "actionheroes",
+      "growth": "3.3%",
+      "views": "9.9K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 21,
+      "title": "Moonlight Sonata",
+      "category": "Romance",
+      "creator": "romanticsouls",
+      "growth": "1.8%",
+      "views": "7.1K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 22,
+      "title": "Void Walker",
+      "category": "Fantasy",
+      "creator": "darkfantasy",
+      "growth": "2.8%",
+      "views": "8.4K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 23,
+      "title": "Neon Nights",
+      "category": "Thriller",
+      "creator": "nightmares",
+      "growth": "2.4%",
+      "views": "7.8K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 24,
+      "title": "Starlight Express",
+      "category": "Adventure",
+      "creator": "stargazers",
+      "growth": "2.6%",
+      "views": "8.5K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 25,
+      "title": "Echoes of Tomorrow",
+      "category": "Sci-Fi",
+      "creator": "futurevisio",
+      "growth": "2.9%",
+      "views": "9.0K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 26,
+      "title": "Broken Promises",
+      "category": "Drama",
+      "creator": "emotionalstories",
+      "growth": "2.1%",
+      "views": "7.3K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 27,
+      "title": "Savage Lands",
+      "category": "Action",
+      "creator": "wildwest",
+      "growth": "3.1%",
+      "views": "9.7K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 28,
+      "title": "Mystic Forest",
+      "category": "Fantasy",
+      "creator": "enchanted",
+      "growth": "2.3%",
+      "views": "8.1K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 29,
+      "title": "Crimson Tide",
+      "category": "Thriller",
+      "creator": "suspense",
+      "growth": "2.5%",
+      "views": "7.9K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 30,
+      "title": "Infinite Loop",
+      "category": "Sci-Fi",
+      "creator": "scifigenius",
+      "growth": "2.7%",
+      "views": "8.8K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 31,
+      "title": "Love in Paris",
+      "category": "Romance",
+      "creator": "romanticfilms",
+      "growth": "1.9%",
+      "views": "7.0K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 32,
+      "title": "Dark Matter",
+      "category": "Sci-Fi",
+      "creator": "cosmicstories",
+      "growth": "2.8%",
+      "views": "9.2K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 33,
+      "title": "Jungle Quest",
+      "category": "Adventure",
+      "creator": "explorers",
+      "growth": "2.4%",
+      "views": "8.2K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 34,
+      "title": "Silent Killer",
+      "category": "Thriller",
+      "creator": "darkthrillers",
+      "growth": "2.6%",
+      "views": "7.7K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 35,
+      "title": "Starfall",
+      "category": "Fantasy",
+      "creator": "magicalworlds",
+      "growth": "2.2%",
+      "views": "8.0K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 36,
+      "title": "Velocity",
+      "category": "Action",
+      "creator": "speedfreaks",
+      "growth": "3.2%",
+      "views": "9.8K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 37,
+      "title": "Whispered Secrets",
+      "category": "Mystery",
+      "creator": "mysterysolver",
+      "growth": "2.0%",
+      "views": "6.8K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 38,
+      "title": "Quantum Realm",
+      "category": "Sci-Fi",
+      "creator": "quantumphysics",
+      "growth": "2.9%",
+      "views": "9.1K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 39,
+      "title": "Heartbeat",
+      "category": "Romance",
+      "creator": "lovebirds",
+      "growth": "1.7%",
+      "views": "6.9K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 40,
+      "title": "Inferno",
+      "category": "Action",
+      "creator": "explosiveaction",
+      "growth": "3.0%",
+      "views": "9.6K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 41,
+      "title": "Enchanted Valley",
+      "category": "Fantasy",
+      "creator": "fairytales",
+      "growth": "2.3%",
+      "views": "8.3K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 42,
+      "title": "Midnight Mystery",
+      "category": "Thriller",
+      "creator": "nightmysteries",
+      "growth": "2.5%",
+      "views": "7.8K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 43,
+      "title": "Cosmic Collision",
+      "category": "Sci-Fi",
+      "creator": "spaceevent",
+      "growth": "2.7%",
+      "views": "8.9K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 44,
+      "title": "Desert Storm",
+      "category": "Adventure",
+      "creator": "desertexplorers",
+      "growth": "2.2%",
+      "views": "8.1K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 45,
+      "title": "Shadows Dance",
+      "category": "Drama",
+      "creator": "dramaticarts",
+      "growth": "2.1%",
+      "views": "7.4K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 46,
+      "title": "Neon City",
+      "category": "Sci-Fi",
+      "creator": "cybercity",
+      "growth": "2.8%",
+      "views": "9.3K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 47,
+      "title": "Eternal Quest",
+      "category": "Fantasy",
+      "creator": "questmaster",
+      "growth": "2.4%",
+      "views": "8.2K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 48,
+      "title": "Pulse",
+      "category": "Thriller",
+      "creator": "heartpounding",
+      "growth": "2.6%",
+      "views": "7.9K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 49,
+      "title": "Voyage Beyond",
+      "category": "Adventure",
+      "creator": "voyagers",
+      "growth": "2.5%",
+      "views": "8.4K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 50,
+      "title": "Temporal Shift",
+      "category": "Sci-Fi",
+      "creator": "timetravel",
+      "growth": "2.9%",
+      "views": "9.0K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 51,
+      "title": "Passion's Fire",
+      "category": "Romance",
+      "creator": "passionatehearts",
+      "growth": "1.8%",
+      "views": "7.1K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 52,
+      "title": "Rogue Agent",
+      "category": "Action",
+      "creator": "spyaction",
+      "growth": "3.1%",
+      "views": "9.7K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 53,
+      "title": "Mystic Prophecy",
+      "category": "Fantasy",
+      "creator": "prophecykeeper",
+      "growth": "2.3%",
+      "views": "8.0K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 54,
+      "title": "Deadly Game",
+      "category": "Thriller",
+      "creator": "gamethrillers",
+      "growth": "2.5%",
+      "views": "7.8K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 55,
+      "title": "Stellar Journey",
+      "category": "Sci-Fi",
+      "creator": "starexplorer",
+      "growth": "2.7%",
+      "views": "8.7K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 56,
+      "title": "Mountain Peak",
+      "category": "Adventure",
+      "creator": "mountaineers",
+      "growth": "2.2%",
+      "views": "8.0K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 57,
+      "title": "Broken Hearts",
+      "category": "Drama",
+      "creator": "emotionaldramas",
+      "growth": "2.0%",
+      "views": "7.2K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 58,
+      "title": "Cyber Nexus",
+      "category": "Sci-Fi",
+      "creator": "cybernetics",
+      "growth": "2.8%",
+      "views": "9.2K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 59,
+      "title": "Dragon's Lair",
+      "category": "Fantasy",
+      "creator": "dragonslayer",
+      "growth": "2.4%",
+      "views": "8.3K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 60,
+      "title": "Adrenaline Rush",
+      "category": "Action",
+      "creator": "adrenaline",
+      "growth": "3.2%",
+      "views": "9.8K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 61,
+      "title": "Hidden Truth",
+      "category": "Mystery",
+      "creator": "truthseeker",
+      "growth": "2.1%",
+      "views": "6.9K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 62,
+      "title": "Quantum Entanglement",
+      "category": "Sci-Fi",
+      "creator": "quantumlab",
+      "growth": "2.9%",
+      "views": "9.1K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 63,
+      "title": "Tender Moments",
+      "category": "Romance",
+      "creator": "romanticmoments",
+      "growth": "1.7%",
+      "views": "6.8K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 64,
+      "title": "Explosive Force",
+      "category": "Action",
+      "creator": "explosiveforce",
+      "growth": "3.0%",
+      "views": "9.5K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 65,
+      "title": "Enchanted Kingdom",
+      "category": "Fantasy",
+      "creator": "kingdomkeeper",
+      "growth": "2.3%",
+      "views": "8.2K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 66,
+      "title": "Midnight Thriller",
+      "category": "Thriller",
+      "creator": "midnightscares",
+      "growth": "2.5%",
+      "views": "7.9K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 67,
+      "title": "Cosmic Adventure",
+      "category": "Sci-Fi",
+      "creator": "cosmicadventure",
+      "growth": "2.7%",
+      "views": "8.8K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 68,
+      "title": "Ocean Expedition",
+      "category": "Adventure",
+      "creator": "oceanexplorers",
+      "growth": "2.2%",
+      "views": "8.1K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 69,
+      "title": "Emotional Journey",
+      "category": "Drama",
+      "creator": "emotionaljourney",
+      "growth": "2.1%",
+      "views": "7.3K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 70,
+      "title": "Digital Revolution",
+      "category": "Sci-Fi",
+      "creator": "digitalrevolution",
+      "growth": "2.8%",
+      "views": "9.3K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 71,
+      "title": "Magical Realm",
+      "category": "Fantasy",
+      "creator": "magicalrealm",
+      "growth": "2.4%",
+      "views": "8.2K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 72,
+      "title": "Suspenseful Night",
+      "category": "Thriller",
+      "creator": "suspensefulnight",
+      "growth": "2.6%",
+      "views": "7.9K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 73,
+      "title": "Interstellar Journey",
+      "category": "Sci-Fi",
+      "creator": "interstellar",
+      "growth": "2.9%",
+      "views": "9.0K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 74,
+      "title": "Wilderness Adventure",
+      "category": "Adventure",
+      "creator": "wildernessadventure",
+      "growth": "2.5%",
+      "views": "8.4K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 75,
+      "title": "Love's Promise",
+      "category": "Romance",
+      "creator": "lovespromise",
+      "growth": "1.8%",
+      "views": "7.0K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 76,
+      "title": "Combat Zone",
+      "category": "Action",
+      "creator": "combatzone",
+      "growth": "3.1%",
+      "views": "9.7K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 77,
+      "title": "Enchanted Forest",
+      "category": "Fantasy",
+      "creator": "enchantedforest",
+      "growth": "2.3%",
+      "views": "8.1K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 78,
+      "title": "Dark Secrets",
+      "category": "Thriller",
+      "creator": "darksecrets",
+      "growth": "2.5%",
+      "views": "7.8K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 79,
+      "title": "Space Odyssey",
+      "category": "Sci-Fi",
+      "creator": "spaceodyssey",
+      "growth": "2.7%",
+      "views": "8.9K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 80,
+      "title": "Final Adventure",
+      "category": "Adventure",
+      "creator": "finaladventure",
+      "growth": "2.2%",
+      "views": "8.0K",
+      "maxViews": "50K",
+      "image": "/latest-movie.png"
+    }
+  ]
+}
