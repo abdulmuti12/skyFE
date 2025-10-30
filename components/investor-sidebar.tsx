@@ -1,6 +1,6 @@
 "use client"
 
-import { Home, Bookmark, Grid3x3, User, Rocket, X } from "lucide-react"
+import { Home, Bookmark, Grid3x3, User, Rocket, X, CreditCard } from "lucide-react"
 import Link from "next/link"
 
 interface InvestorSidebarProps {
@@ -14,7 +14,8 @@ export function InvestorSidebar({ isMobile = false, isOpen = false, onClose }: I
     { icon: Rocket, label: "Sky Launch", href: "#" },
     { icon: Home, label: "Home", href: "/investor" },
     { icon: Bookmark, label: "Watchlist", href: "/investor/watchlist" },
-    { icon: Grid3x3, label: "Portfolio", href: "/investor/portfolio" },
+    { icon: Grid3x3, label: "Portfolio", href: "investor/portfolio" },
+    { icon: CreditCard, label: "Transactions", href: "/investor/transactions" },
     { icon: User, label: "Profile", href: "#" },
   ]
 

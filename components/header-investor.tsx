@@ -124,7 +124,7 @@ export function Header({ isDark, onToggleTheme, onMenuClick, onDesktopMenuClick 
                   Settings
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link href="/auth" className="flex items-center w-full">
+                  <Link href="/authInvestor" className="flex items-center w-full">
                     <LogOut className="w-4 h-4 mr-2" />
                     Sign Out
                   </Link>

@@ -3,25 +3,14 @@
 import { TrendingUp, Users, Clock } from "lucide-react"
 import { useState } from "react"
 import Link from "next/link"
+import investmentData from "@/data/investment-items.json"
 
 export function InvestmentGrid() {
   const itemsPerPage = 8
-  const totalProjects = 80
+  const projects = investmentData.projects
+  const totalProjects = projects.length
   const totalPages = Math.ceil(totalProjects / itemsPerPage)
   const [currentPage, setCurrentPage] = useState(1)
-
-  // Simulasi data proyek investasi
-  const projects = Array.from({ length: totalProjects }, (_, i) => ({
-    id: i + 1,
-    title: `Film Project ${i + 1}`,
-    category: ["Adventure", "Sci-Fi", "Fantasy", "Horror", "Drama"][i % 5],
-    creator: "cinemaxdev",
-    raised: `${(Math.random() * 40 + 10).toFixed(1)}K`,
-    goal: "50K",
-    investors: Math.floor(Math.random() * 150 + 20),
-    daysLeft: Math.floor(Math.random() * 30 + 1),
-    image: "/latest-movie.png",
-  }))
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
@@ -43,7 +32,6 @@ export function InvestmentGrid() {
               href={`/investor/movie/${project.id}`}
               className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-colors cursor-pointer"
             >
-              {/* Gambar */}
               <div className="relative overflow-hidden bg-muted h-28 sm:h-32 lg:h-40">
                 <img
                   src={project.image || "/placeholder.svg"}
@@ -56,18 +44,15 @@ export function InvestmentGrid() {
                 </div>
               </div>
 
-              {/* Konten */}
               <div className="p-2 sm:p-3 lg:p-4">
                 <h3 className="font-bold text-xs sm:text-sm mb-0.5 sm:mb-1 line-clamp-1">{project.title}</h3>
                 <p className="text-xs text-muted-foreground mb-1.5 sm:mb-2 lg:mb-3">{project.category}</p>
 
-                {/* Creator */}
                 <div className="flex items-center gap-2 mb-1.5 sm:mb-2 lg:mb-3">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex-shrink-0" />
                   <span className="text-xs text-muted-foreground truncate">{project.creator}</span>
                 </div>
 
-                {/* Statistik */}
                 <div className="space-y-1 sm:space-y-1.5 lg:space-y-2">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-muted-foreground">Raised</span>
@@ -83,7 +68,6 @@ export function InvestmentGrid() {
                     </span>
                   </div>
 
-                  {/* Progress bar */}
                   <div className="w-full bg-muted rounded-full h-1 sm:h-1.5 lg:h-2 overflow-hidden">
                     <div className="h-full bg-yellow-500" style={{ width: `${Math.min(progressPercentage, 100)}%` }} />
                   </div>
@@ -94,7 +78,6 @@ export function InvestmentGrid() {
         })}
       </div>
 
-      {/* Pagination */}
       <div className="flex flex-col sm:flex-row items-center justify-between mt-4 sm:mt-6 lg:mt-8 text-xs sm:text-sm text-muted-foreground gap-3 sm:gap-4">
         <span className="hidden lg:block">0 of {totalProjects} row(s) selected.</span>
 

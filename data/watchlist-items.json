@@ -1,0 +1,114 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "title": "Beyond the Horizon",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "currentPrice": "5.2K",
+      "targetPrice": "50K",
+      "growth": "1.8%",
+      "image": "/investment-card.jpg",
+      "currency": "USRY"
+    },
+    {
+      "id": 2,
+      "title": "Beyond the Horizon",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "currentPrice": "5.2K",
+      "targetPrice": "50K",
+      "growth": "2.1%",
+      "image": "/investment-card.jpg",
+      "currency": "USRY"
+    },
+    {
+      "id": 3,
+      "title": "Beyond the Horizon",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "currentPrice": "5.2K",
+      "targetPrice": "50K",
+      "growth": "1.5%",
+      "image": "/investment-card.jpg",
+      "currency": "USRY"
+    },
+    {
+      "id": 4,
+      "title": "Beyond the Horizon",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "currentPrice": "5.2K",
+      "targetPrice": "50K",
+      "growth": "3.2%",
+      "image": "/investment-card.jpg",
+      "currency": "USRY"
+    },
+    {
+      "id": 5,
+      "title": "Beyond the Horizon",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "currentPrice": "5.2K",
+      "targetPrice": "50K",
+      "growth": "1.8%",
+      "image": "/investment-card.jpg",
+      "currency": "USRY"
+    },
+    {
+      "id": 6,
+      "title": "Beyond the Horizon",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "currentPrice": "5.2K",
+      "targetPrice": "50K",
+      "growth": "2.5%",
+      "image": "/investment-card.jpg",
+      "currency": "USRY"
+    },
+    {
+      "id": 7,
+      "title": "Beyond the Horizon",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "currentPrice": "5.2K",
+      "targetPrice": "50K",
+      "growth": "1.9%",
+      "image": "/investment-card.jpg",
+      "currency": "USRY"
+    },
+    {
+      "id": 8,
+      "title": "Beyond the Horizon",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "currentPrice": "5.2K",
+      "targetPrice": "50K",
+      "growth": "2.3%",
+      "image": "/investment-card.jpg",
+      "currency": "USRY"
+    },
+    {
+      "id": 9,
+      "title": "Beyond the Horizon",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "currentPrice": "5.2K",
+      "targetPrice": "50K",
+      "growth": "1.6%",
+      "image": "/investment-card.jpg",
+      "currency": "USRY"
+    },
+    {
+      "id": 10,
+      "title": "Beyond the Horizon",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "currentPrice": "5.2K",
+      "targetPrice": "50K",
+      "growth": "2.8%",
+      "image": "/investment-card.jpg",
+      "currency": "USRY"
+    }
+  ]
+}

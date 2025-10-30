@@ -1,0 +1,44 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Beyond the Horizon",
+      "category": "Adventure Film",
+      "creator": "cinemaxdev",
+      "raised": "$45.2K",
+      "goal": "$50K",
+      "investors": 127,
+      "image": "/01.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Skyward Odyssey",
+      "category": "Sci-Fi Film",
+      "creator": "nova_studio",
+      "raised": "$38.7K",
+      "goal": "$50K",
+      "investors": 94,
+      "image": "/02.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Mystic Valley",
+      "category": "Fantasy Film",
+      "creator": "dreamworks",
+      "raised": "$42.9K",
+      "goal": "$50K",
+      "investors": 108,
+      "image": "/03.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Urban Legends",
+      "category": "Horror Film",
+      "creator": "darkframe",
+      "raised": "$35.5K",
+      "goal": "$50K",
+      "investors": 82,
+      "image": "/04.jpg"
+    }
+  ]
+}

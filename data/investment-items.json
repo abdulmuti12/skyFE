@@ -1,0 +1,224 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Film Project 1",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "raised": "25.5K",
+      "goal": "50K",
+      "investors": 145,
+      "daysLeft": 15,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 2,
+      "title": "Film Project 2",
+      "category": "Sci-Fi",
+      "creator": "cinemaxdev",
+      "raised": "38.2K",
+      "goal": "50K",
+      "investors": 89,
+      "daysLeft": 8,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 3,
+      "title": "Film Project 3",
+      "category": "Fantasy",
+      "creator": "cinemaxdev",
+      "raised": "12.7K",
+      "goal": "50K",
+      "investors": 67,
+      "daysLeft": 22,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 4,
+      "title": "Film Project 4",
+      "category": "Horror",
+      "creator": "cinemaxdev",
+      "raised": "45.3K",
+      "goal": "50K",
+      "investors": 156,
+      "daysLeft": 3,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 5,
+      "title": "Film Project 5",
+      "category": "Drama",
+      "creator": "cinemaxdev",
+      "raised": "31.8K",
+      "goal": "50K",
+      "investors": 112,
+      "daysLeft": 18,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 6,
+      "title": "Film Project 6",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "raised": "19.4K",
+      "goal": "50K",
+      "investors": 78,
+      "daysLeft": 25,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 7,
+      "title": "Film Project 7",
+      "category": "Sci-Fi",
+      "creator": "cinemaxdev",
+      "raised": "42.1K",
+      "goal": "50K",
+      "investors": 134,
+      "daysLeft": 10,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 8,
+      "title": "Film Project 8",
+      "category": "Fantasy",
+      "creator": "cinemaxdev",
+      "raised": "28.6K",
+      "goal": "50K",
+      "investors": 95,
+      "daysLeft": 20,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 9,
+      "title": "Film Project 9",
+      "category": "Horror",
+      "creator": "cinemaxdev",
+      "raised": "35.9K",
+      "goal": "50K",
+      "investors": 128,
+      "daysLeft": 12,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 10,
+      "title": "Film Project 10",
+      "category": "Drama",
+      "creator": "cinemaxdev",
+      "raised": "48.7K",
+      "goal": "50K",
+      "investors": 167,
+      "daysLeft": 5,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 11,
+      "title": "Film Project 11",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "raised": "22.3K",
+      "goal": "50K",
+      "investors": 82,
+      "daysLeft": 28,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 12,
+      "title": "Film Project 12",
+      "category": "Sci-Fi",
+      "creator": "cinemaxdev",
+      "raised": "41.5K",
+      "goal": "50K",
+      "investors": 141,
+      "daysLeft": 7,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 13,
+      "title": "Film Project 13",
+      "category": "Fantasy",
+      "creator": "cinemaxdev",
+      "raised": "16.8K",
+      "goal": "50K",
+      "investors": 71,
+      "daysLeft": 24,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 14,
+      "title": "Film Project 14",
+      "category": "Horror",
+      "creator": "cinemaxdev",
+      "raised": "39.2K",
+      "goal": "50K",
+      "investors": 119,
+      "daysLeft": 14,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 15,
+      "title": "Film Project 15",
+      "category": "Drama",
+      "creator": "cinemaxdev",
+      "raised": "29.7K",
+      "goal": "50K",
+      "investors": 104,
+      "daysLeft": 19,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 16,
+      "title": "Film Project 16",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "raised": "44.1K",
+      "goal": "50K",
+      "investors": 152,
+      "daysLeft": 9,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 17,
+      "title": "Film Project 17",
+      "category": "Sci-Fi",
+      "creator": "cinemaxdev",
+      "raised": "26.4K",
+      "goal": "50K",
+      "investors": 91,
+      "daysLeft": 21,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 18,
+      "title": "Film Project 18",
+      "category": "Fantasy",
+      "creator": "cinemaxdev",
+      "raised": "37.8K",
+      "goal": "50K",
+      "investors": 126,
+      "daysLeft": 11,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 19,
+      "title": "Film Project 19",
+      "category": "Horror",
+      "creator": "cinemaxdev",
+      "raised": "21.5K",
+      "goal": "50K",
+      "investors": 79,
+      "daysLeft": 26,
+      "image": "/latest-movie.png"
+    },
+    {
+      "id": 20,
+      "title": "Film Project 20",
+      "category": "Drama",
+      "creator": "cinemaxdev",
+      "raised": "46.9K",
+      "goal": "50K",
+      "investors": 161,
+      "daysLeft": 4,
+      "image": "/latest-movie.png"
+    }
+  ]
+}

@@ -2,26 +2,16 @@
 
 import { Bookmark, TrendingUp } from "lucide-react"
 import { useState } from "react"
+import watchlistData from "@/data/watchlist-items.json"
 
 export function WatchlistGrid() {
   const itemsPerPage = 8
-  const totalItems = 100
+  const totalItems = watchlistData.items.length
   const totalPages = Math.ceil(totalItems / itemsPerPage)
   const [currentPage, setCurrentPage] = useState(1)
   const [watchlist, setWatchlist] = useState<Set<number>>(new Set())
 
-  // Simulasi data watchlist
-  const items = Array.from({ length: totalItems }, (_, i) => ({
-    id: i + 1,
-    title: "Beyond the Horizon",
-    category: "Adventure",
-    creator: "cinemaxdev",
-    currentPrice: "5.2K",
-    targetPrice: "50K",
-    growth: "1.8%",
-    image: "/investment-card.jpg",
-    currency: "USRY",
-  }))
+  const items = watchlistData.items
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
