@@ -2,33 +2,22 @@
 
 import { useState } from "react"
 import { TrendingUp } from "lucide-react"
+import portfolioData from "@/data/portfolio-items.json"
 
 export function PortfolioGrid() {
   const itemsPerPage = 8
-  const totalItems = 100
+  const totalItems = portfolioData.items.length
   const totalPages = Math.ceil(totalItems / itemsPerPage)
   const [currentPage, setCurrentPage] = useState(1)
 
-  // Simulasi data portfolio
-  const items = Array.from({ length: totalItems }, (_, i) => ({
-    id: i + 1,
-    title: "Beyond the Horizon",
-    category: "Adventure",
-    creator: "cinemaxdev",
-    investedAmount: "1,250",
-    investmentValue: "$823.40",
-    growth: "+18%",
-    image: "/investment-card.jpg",
-    currency: "USKY",
-  }))
+  const items = portfolioData.items
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
   const currentItems = items.slice(startIndex, endIndex)
 
-  // Calculate totals
-  const totalInvested = "12,540.23 USKY"
-  const totalInvestmentValue = "$523,987.40"
+  const totalInvested = portfolioData.summary.totalInvested
+  const totalInvestmentValue = portfolioData.summary.totalInvestmentValue
 
   return (
     <section>

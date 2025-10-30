@@ -1,0 +1,96 @@
+{
+  "summary": {
+    "totalInvested": "12,540.23 USKY",
+    "totalInvestmentValue": "$523,987.40"
+  },
+  "items": [
+    {
+      "id": 1,
+      "title": "Cermin Tua di Tanjung Perak",
+      "category": "Horror",
+      "creator": "cinemaxdev",
+      "investedAmount": "1,250",
+      "investmentValue": "$823.40",
+      "growth": "+12%",
+      "image": "/01.jpg",
+      "currency": "USKY"
+    },
+    {
+      "id": 2,
+      "title": "Lukisan Angkor Berdarah",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "investedAmount": "1,250",
+      "investmentValue": "$823.40",
+      "growth": "+18%",
+      "image": "/02.jpg",
+      "currency": "USKY"
+    },
+    {
+      "id": 3,
+      "title": "Topeng Arwah Dari Hue",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "investedAmount": "1,250",
+      "investmentValue": "$823.40",
+      "growth": "+18%",
+      "image": "/03.jpg",
+      "currency": "USKY"
+    },
+    {
+      "id": 4,
+      "title": "Kutukan Pulau Hantu",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "investedAmount": "1,250",
+      "investmentValue": "$823.40",
+      "growth": "+18%",
+      "image": "/04.jpg",
+      "currency": "USKY"
+    },
+    {
+      "id": 5,
+      "title": "Roh Sungai Mekong",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "investedAmount": "1,250",
+      "investmentValue": "$823.40",
+      "growth": "+18%",
+      "image": "/05.jpg",
+      "currency": "USKY"
+    },
+    {
+      "id": 6,
+      "title": "Banyangan Di Keris Maja Pahit",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "investedAmount": "1,250",
+      "investmentValue": "$823.40",
+      "growth": "+18%",
+      "image": "/06.jpg",
+      "currency": "USKY"
+    },
+    {
+      "id": 7,
+      "title": "Beyond the Horizon",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "investedAmount": "1,250",
+      "investmentValue": "$823.40",
+      "growth": "+18%",
+      "image": "/07.jpg",
+      "currency": "USKY"
+    },
+    {
+      "id": 8,
+      "title": "Beyond the Horizon",
+      "category": "Adventure",
+      "creator": "cinemaxdev",
+      "investedAmount": "1,250",
+      "investmentValue": "$823.40",
+      "growth": "+18%",
+      "image": "/08.jpg",
+      "currency": "USKY"
+    }
+  ]
+}
