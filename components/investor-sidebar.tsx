@@ -2,6 +2,7 @@
 
 import { Home, Bookmark, Grid3x3, User, Rocket, X, CreditCard } from "lucide-react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 interface InvestorSidebarProps {
   isMobile?: boolean
@@ -10,14 +11,24 @@ interface InvestorSidebarProps {
 }
 
 export function InvestorSidebar({ isMobile = false, isOpen = false, onClose }: InvestorSidebarProps) {
+  const pathname = usePathname()
+
   const menuItems = [
     { icon: Rocket, label: "Sky Launch", href: "#" },
     { icon: Home, label: "Home", href: "/investor" },
     { icon: Bookmark, label: "Watchlist", href: "/investor/watchlist" },
-    { icon: Grid3x3, label: "Portfolio", href: "investor/portfolio" },
+    { icon: Grid3x3, label: "Portfolio", href: "/investor/portfolio" },
     { icon: CreditCard, label: "Transactions", href: "/investor/transactions" },
     { icon: User, label: "Profile", href: "#" },
   ]
+
+  const isActive = (href: string) => {
+    if (href === "#") return false
+    if (href === "/investor") {
+      return pathname === "/investor"
+    }
+    return pathname.startsWith(href)
+  }
 
   if (isMobile) {
     return (
@@ -50,7 +61,11 @@ export function InvestorSidebar({ isMobile = false, isOpen = false, onClose }: I
               <Link
                 key={item.label}
                 href={item.href}
-                className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
+                className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-colors ${
+                  isActive(item.href)
+                    ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                    : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                }`}
                 onClick={onClose}
               >
                 <item.icon size={20} />
@@ -75,7 +90,11 @@ export function InvestorSidebar({ isMobile = false, isOpen = false, onClose }: I
           <Link
             key={item.label}
             href={item.href}
-            className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
+            className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-colors ${
+              isActive(item.href)
+                ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+            }`}
           >
             <item.icon size={20} />
             <span>{item.label}</span>
