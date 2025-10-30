@@ -9,7 +9,7 @@ export function FundingDetailCard() {
       <div className="flex flex-col md:flex-row gap-4 md:gap-6">
         {/* Movie Poster */}
         <div className="w-full md:w-56 h-48 md:h-36 bg-muted rounded-lg overflow-hidden flex-shrink-0">
-          <img src="/movie-poster-beyond-the-horizon.jpg" alt="Beyond the Horizon" className="w-full h-full object-cover" />
+          <img src="/01.jpg" alt="Beyond the Horizon" className="w-full h-full object-cover" />
         </div>
 
         {/* Movie Info */}
