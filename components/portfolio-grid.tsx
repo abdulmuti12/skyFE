@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link" // Added Link import for navigation
 import { TrendingUp } from "lucide-react"
 import portfolioData from "@/data/portfolio-items.json"
 
@@ -95,9 +96,11 @@ export function PortfolioGrid() {
               </div>
 
               {/* View Details Button */}
-              <button className="w-full bg-muted hover:bg-muted/80 text-foreground text-xs md:text-sm font-medium py-2 rounded transition-colors">
-                View Details
-              </button>
+              <Link href={`/investor/portfolio/${item.id}`} className="block w-full">
+                <button className="w-full bg-muted hover:bg-muted/80 text-foreground text-xs md:text-sm font-medium py-2 rounded transition-colors">
+                  View Details
+                </button>
+              </Link>
             </div>
           </div>
         ))}
