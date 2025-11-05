@@ -30,6 +30,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
   const [isDark, setIsDark] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true)
+  const [commentInput, setCommentInput] = useState("")
 
   useEffect(() => {
     setMounted(true)
@@ -120,12 +121,19 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
+  const handleAddComment = () => {
+    if (commentInput.trim()) {
+      console.log("[v0] Adding comment:", commentInput)
+      setCommentInput("")
+    }
+  }
+
   if (!mounted) return null
 
   return (
     <div className={isDark ? "dark" : ""}>
       <div className="min-h-screen bg-background text-foreground">
-        <div className="flex flex-col lg:flex-row overflow-x-hidden max-w-screen h-screen">
+        <div className="flex flex-col lg:flex-row overflow-x-hidden max-w-screen">
           {isDesktopSidebarOpen && (
             <div className="hidden lg:block">
               <InvestorSidebar />
@@ -134,8 +142,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
 
           <InvestorSidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-          <div className={`flex-1 flex flex-col overflow-hidden min-w-0 ${isDesktopSidebarOpen ? "lg:pl-64" : ""}`}>
-            {/* Header stays fixed at top */}
+          <div className={`flex-1 flex flex-col min-w-0 ${isDesktopSidebarOpen ? "lg:pl-64" : ""}`}>
             <div className="flex-shrink-0">
               <Header
                 isDark={isDark}
@@ -145,12 +152,9 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
               />
             </div>
 
-            {/* Content area is scrollable */}
-            <div className="flex flex-col lg:flex-row flex-1 overflow-hidden min-w-0">
-              {/* Main Content */}
-              <div className="flex-1 overflow-y-auto overflow-x-hidden min-w-0">
+            <div className="flex flex-col lg:flex-row flex-1 min-w-0">
+              <div className="flex-1 overflow-y-auto lg:overflow-visible overflow-x-hidden min-w-0">
                 <div className="p-4 lg:p-6 max-w-full">
-                  {/* Breadcrumb */}
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                     <Link href="/investor" className="hover:text-foreground flex items-center gap-1">
                       <ChevronLeft className="w-4 h-4" />
@@ -161,7 +165,6 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                   </div>
 
                   <div className="flex flex-col lg:flex-row gap-6 mb-6">
-                    {/* Movie Poster */}
                     <div className="relative w-full lg:w-64 h-48 lg:h-80 bg-muted rounded-lg overflow-hidden flex-shrink-0">
                       <img
                         src={movie.image || "/placeholder.svg"}
@@ -170,7 +173,6 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                       />
                     </div>
 
-                    {/* Movie Info */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-2 mb-2">
                         <h1 className="text-xl lg:text-2xl font-bold">{movie.title}</h1>
@@ -203,7 +205,6 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                     </div>
                   </div>
 
-                  {/* Market Cap */}
                   <div className="mb-4">
                     <div className="text-sm text-muted-foreground mb-1">
                       Market Cap <span className="text-green-500">▲ {movie.marketCapChange}% 24hr</span>
@@ -215,7 +216,6 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                     <div className="w-full h-64 lg:h-96 bg-muted/20 rounded-lg" />
                   </div>
 
-                  {/* Mobile Tabs */}
                   <div className="lg:hidden mb-4">
                     <div className="flex gap-2 border-b border-border overflow-x-auto">
                       <button
@@ -257,7 +257,6 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                     </div>
                   </div>
 
-                  {/* Mobile Tab Content */}
                   <div className="lg:hidden max-w-full">
                     {activeTab === "chip-in" && (
                       <div className="space-y-4">
@@ -408,10 +407,6 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                         <div>
                           <h3 className="font-bold mb-2">Directors</h3>
                           <p className="text-sm text-muted-foreground">{movie.directors}</p>
-                          <div className="flex justify-between text-sm mt-2">
-                            <span>{movie.raised.toLocaleString()}</span>
-                            <span>{movie.goal.toLocaleString()}</span>
-                          </div>
                         </div>
                         <div>
                           <h3 className="font-bold mb-2">Key Cast</h3>
@@ -467,16 +462,14 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                               >
                                 CN
                               </button>
-                              <button
-                                onClick={() => setCommentTab("placeholder")}
-                                className={`pb-2 text-sm ${
-                                  commentTab === "placeholder"
-                                    ? "border-b-2 border-primary font-semibold"
-                                    : "text-muted-foreground"
-                                }`}
-                              >
-                                Placeholder
-                              </button>
+                              <div className="pb-2">
+                                <Input
+                                  value={commentInput}
+                                  onChange={(e) => setCommentInput(e.target.value)}
+                                  placeholder="Write a comment..."
+                                  className="h-8 w-32"
+                                />
+                              </div>
                             </div>
                             <button className="flex items-center gap-1 text-sm">
                               <span>Newest</span>
@@ -511,13 +504,16 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                           <div className="flex gap-2 pt-4 border-t border-border">
                             <Button
                               variant="outline"
-                              className="flex-1 flex items-center gap-2 bg-transparent"
+                              className="flex-1 flex items-center gap-2 bg-background text-foreground border-border"
                               onClick={handleScrollToTop}
                             >
                               <ArrowUp className="w-4 h-4" />
                               Scroll to Top
                             </Button>
-                            <Button className="flex-1 flex items-center gap-2">
+                            <Button
+                              className="flex-1 flex items-center gap-2 bg-background text-foreground border border-border hover:bg-muted"
+                              onClick={handleAddComment}
+                            >
                               <Plus className="w-4 h-4" />
                               Add Comment
                             </Button>
@@ -527,7 +523,6 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                     )}
                   </div>
 
-                  {/* Desktop Content */}
                   <div className="hidden lg:block space-y-6">
                     <div>
                       <h3 className="font-bold mb-2">Directors</h3>
@@ -591,16 +586,14 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                             >
                               CN
                             </button>
-                            <button
-                              onClick={() => setCommentTab("placeholder")}
-                              className={`pb-2 text-sm ${
-                                commentTab === "placeholder"
-                                  ? "border-b-2 border-primary font-semibold"
-                                  : "text-muted-foreground"
-                              }`}
-                            >
-                              Placeholder
-                            </button>
+                            <div className="pb-2">
+                              <Input
+                                value={commentInput}
+                                onChange={(e) => setCommentInput(e.target.value)}
+                                placeholder="Write a comment..."
+                                className="h-8 w-48"
+                              />
+                            </div>
                           </div>
                           <button className="flex items-center gap-1 text-sm">
                             <span>Newest</span>
@@ -635,13 +628,16 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                         <div className="flex gap-2 pt-4 border-t border-border">
                           <Button
                             variant="outline"
-                            className="flex-1 flex items-center gap-2 bg-transparent"
+                            className="flex-1 flex items-center gap-2 bg-background text-foreground border-border"
                             onClick={handleScrollToTop}
                           >
                             <ArrowUp className="w-4 h-4" />
                             Scroll to Top
                           </Button>
-                          <Button className="flex-1 flex items-center gap-2">
+                          <Button
+                            className="flex-1 flex items-center gap-2 bg-background text-foreground border border-border hover:bg-muted"
+                            onClick={handleAddComment}
+                          >
                             <Plus className="w-4 h-4" />
                             Add Comment
                           </Button>
@@ -652,8 +648,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                 </div>
               </div>
 
-              {/* Right Sidebar - also scrollable independently */}
-              <div className="hidden lg:block w-80 flex-shrink-0 border-l border-border p-6 overflow-y-auto overflow-x-hidden">
+              <div className="hidden lg:block w-96 flex-shrink-0 border-l border-border p-6 overflow-x-hidden">
                 <div className="mb-6">
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="font-bold">{movie.title}</h3>
