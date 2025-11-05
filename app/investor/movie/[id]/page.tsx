@@ -22,6 +22,22 @@ import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 
+const CelebrationEmoji = ({ emoji, delay }: { emoji: string; delay: number }) => {
+  return (
+    <div
+      className="absolute text-2xl animate-float pointer-events-none"
+      style={{
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        animationDelay: `${delay}ms`,
+        animationDuration: `${2000 + Math.random() * 1000}ms`,
+      }}
+    >
+      {emoji}
+    </div>
+  )
+}
+
 export default function MovieDetailPage({ params }: { params: { id: string } }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState("chip-in")
@@ -31,6 +47,8 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
   const [mounted, setMounted] = useState(false)
   const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true)
   const [commentInput, setCommentInput] = useState("")
+  const [isFundingComplete, setIsFundingComplete] = useState(false)
+  const [showCelebration, setShowCelebration] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -111,6 +129,9 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
 
   const handleChipIn = () => {
     console.log("[v0] Chip in amount:", chipInAmount)
+    setIsFundingComplete(true)
+    setShowCelebration(true)
+    setTimeout(() => setShowCelebration(false), 3000)
   }
 
   const setPresetAmount = (amount: string) => {
@@ -130,8 +151,26 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
 
   if (!mounted) return null
 
+  const celebrationEmojis = ["🥳", "🎉", "🎊", "🎉", "🥳", "🎊", "🎉", "🥳"]
+
   return (
     <div className={isDark ? "dark" : ""}>
+      <style jsx global>{`
+        @keyframes float {
+          0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-100vh) rotate(360deg);
+            opacity: 0;
+          }
+        }
+        .animate-float {
+          animation: float 2s ease-out forwards;
+        }
+      `}</style>
+
       <div className="min-h-screen bg-background text-foreground">
         <div className="flex flex-col lg:flex-row overflow-x-hidden max-w-screen">
           {isDesktopSidebarOpen && (
@@ -260,7 +299,14 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                   <div className="lg:hidden max-w-full">
                     {activeTab === "chip-in" && (
                       <div className="space-y-4">
-                        <div className="bg-card border border-border rounded-lg p-4">
+                        <div className="bg-card border border-border rounded-lg p-4 relative overflow-hidden">
+                          {showCelebration && (
+                            <>
+                              {celebrationEmojis.map((emoji, index) => (
+                                <CelebrationEmoji key={index} emoji={emoji} delay={index * 100} />
+                              ))}
+                            </>
+                          )}
                           <div className="flex items-center justify-between mb-2">
                             <h3 className="font-bold">{movie.title}</h3>
                             <span className="text-green-500 text-sm flex items-center gap-1">
@@ -272,12 +318,32 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                             <span>{movie.raised.toLocaleString()}</span>
                             <span>{movie.goal.toLocaleString()}</span>
                           </div>
-                          <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
-                            <div className="h-full bg-yellow-500" style={{ width: `${progressPercentage}%` }} />
+                          <div className="w-full bg-muted rounded-full h-2 overflow-hidden mb-3">
+                            <div
+                              className="h-full bg-yellow-500"
+                              style={{ width: `${isFundingComplete ? 100 : progressPercentage}%` }}
+                            />
                           </div>
+                          {isFundingComplete && (
+                            <div className="flex items-start gap-2 p-3 bg-muted/50 rounded-lg">
+                              <div className="w-5 h-5 rounded-full border-2 border-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <div className="w-2 h-2 rounded-full bg-foreground" />
+                              </div>
+                              <p className="text-sm text-muted-foreground">
+                                This film has reached its funding goal. Stay tuned for the next milestone!
+                              </p>
+                            </div>
+                          )}
                         </div>
 
-                        <div className="bg-card border border-border rounded-lg p-4">
+                        <div className="bg-card border border-border rounded-lg p-4 relative overflow-hidden">
+                          {showCelebration && (
+                            <>
+                              {celebrationEmojis.map((emoji, index) => (
+                                <CelebrationEmoji key={`funding-${index}`} emoji={emoji} delay={index * 150} />
+                              ))}
+                            </>
+                          )}
                           <h3 className="font-bold mb-4">Funding The Film</h3>
                           <div className="space-y-4">
                             <div className="flex justify-between text-sm">
@@ -291,6 +357,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                                 onChange={(e) => setChipInAmount(e.target.value)}
                                 placeholder="0.00"
                                 className="pr-16"
+                                disabled={isFundingComplete}
                               />
                               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
                                 USKY
@@ -302,6 +369,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                                 size="sm"
                                 onClick={() => setPresetAmount("0")}
                                 className="flex-shrink-0"
+                                disabled={isFundingComplete}
                               >
                                 Reset
                               </Button>
@@ -310,6 +378,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                                 size="sm"
                                 onClick={() => setPresetAmount("0.1")}
                                 className="flex-shrink-0"
+                                disabled={isFundingComplete}
                               >
                                 0.1 USKY
                               </Button>
@@ -318,6 +387,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                                 size="sm"
                                 onClick={() => setPresetAmount("0.5")}
                                 className="flex-shrink-0"
+                                disabled={isFundingComplete}
                               >
                                 0.5 USKY
                               </Button>
@@ -326,6 +396,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                                 size="sm"
                                 onClick={() => setPresetAmount("1")}
                                 className="flex-shrink-0"
+                                disabled={isFundingComplete}
                               >
                                 1 USKY
                               </Button>
@@ -334,15 +405,21 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                                 size="sm"
                                 onClick={() => setPresetAmount(movie.balance.toString())}
                                 className="flex-shrink-0"
+                                disabled={isFundingComplete}
                               >
                                 Max
                               </Button>
                             </div>
                             <Button
-                              className="w-full bg-yellow-500 hover:bg-yellow-600 text-black"
+                              className={`w-full ${
+                                isFundingComplete
+                                  ? "bg-muted text-muted-foreground cursor-not-allowed"
+                                  : "bg-yellow-500 hover:bg-yellow-600 text-black"
+                              }`}
                               onClick={handleChipIn}
+                              disabled={isFundingComplete}
                             >
-                              Chip In
+                              {isFundingComplete ? "Funding Completed 🎉" : "Chip In"}
                             </Button>
                           </div>
                         </div>
@@ -649,7 +726,14 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
               </div>
 
               <div className="hidden lg:block w-96 flex-shrink-0 border-l border-border p-6 overflow-x-hidden">
-                <div className="mb-6">
+                <div className="mb-6 relative overflow-hidden">
+                  {showCelebration && (
+                    <>
+                      {celebrationEmojis.map((emoji, index) => (
+                        <CelebrationEmoji key={`desktop-top-${index}`} emoji={emoji} delay={index * 100} />
+                      ))}
+                    </>
+                  )}
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="font-bold">{movie.title}</h3>
                     <Bookmark className="w-5 h-5 cursor-pointer hover:fill-current" />
@@ -664,12 +748,32 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                     <span>{movie.raised.toLocaleString()}</span>
                     <span>{movie.goal.toLocaleString()}</span>
                   </div>
-                  <div className="w-full bg-muted rounded-full h-2 overflow-hidden mb-6">
-                    <div className="h-full bg-yellow-500" style={{ width: `${progressPercentage}%` }} />
+                  <div className="w-full bg-muted rounded-full h-2 overflow-hidden mb-3">
+                    <div
+                      className="h-full bg-yellow-500"
+                      style={{ width: `${isFundingComplete ? 100 : progressPercentage}%` }}
+                    />
                   </div>
+                  {isFundingComplete && (
+                    <div className="flex items-start gap-2 p-3 bg-muted/50 rounded-lg">
+                      <div className="w-5 h-5 rounded-full border-2 border-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-2 h-2 rounded-full bg-foreground" />
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        This film has reached its funding goal. Stay tuned for the next milestone!
+                      </p>
+                    </div>
+                  )}
                 </div>
 
-                <div className="mb-6">
+                <div className="mb-6 relative overflow-hidden">
+                  {showCelebration && (
+                    <>
+                      {celebrationEmojis.map((emoji, index) => (
+                        <CelebrationEmoji key={`desktop-funding-${index}`} emoji={emoji} delay={index * 150} />
+                      ))}
+                    </>
+                  )}
                   <h3 className="font-bold mb-4">Funding The Film</h3>
                   <div className="space-y-4">
                     <div className="flex justify-between text-sm">
@@ -683,30 +787,64 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                         onChange={(e) => setChipInAmount(e.target.value)}
                         placeholder="0.00"
                         className="pr-16"
+                        disabled={isFundingComplete}
                       />
                       <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
                         USKY
                       </span>
                     </div>
                     <div className="flex gap-2">
-                      <Button variant="outline" size="sm" onClick={() => setPresetAmount("0")}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setPresetAmount("0")}
+                        disabled={isFundingComplete}
+                      >
                         Reset
                       </Button>
-                      <Button variant="outline" size="sm" onClick={() => setPresetAmount("0.1")}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setPresetAmount("0.1")}
+                        disabled={isFundingComplete}
+                      >
                         0.1 USKY
                       </Button>
-                      <Button variant="outline" size="sm" onClick={() => setPresetAmount("0.5")}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setPresetAmount("0.5")}
+                        disabled={isFundingComplete}
+                      >
                         0.5 USKY
                       </Button>
-                      <Button variant="outline" size="sm" onClick={() => setPresetAmount("1")}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setPresetAmount("1")}
+                        disabled={isFundingComplete}
+                      >
                         1 USKY
                       </Button>
-                      <Button variant="outline" size="sm" onClick={() => setPresetAmount(movie.balance.toString())}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setPresetAmount(movie.balance.toString())}
+                        disabled={isFundingComplete}
+                      >
                         Max
                       </Button>
                     </div>
-                    <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-black" onClick={handleChipIn}>
-                      Chip In
+                    <Button
+                      className={`w-full ${
+                        isFundingComplete
+                          ? "bg-muted text-muted-foreground cursor-not-allowed"
+                          : "bg-yellow-500 hover:bg-yellow-600 text-black"
+                      }`}
+                      onClick={handleChipIn}
+                      disabled={isFundingComplete}
+                    >
+                      {isFundingComplete ? "Funding Completed 🎉" : "Chip In"}
                     </Button>
                   </div>
                 </div>
