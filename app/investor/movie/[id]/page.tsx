@@ -681,8 +681,8 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                               <Input
                                 value={commentInput}
                                 onChange={(e) => setCommentInput(e.target.value)}
-                                placeholder="Write a comment..."
-                                className="h-8 w-48"
+                                placeholder="Write a comment.."
+                                className="h-8 w-88"
                               />
                             </div>
                           </div>
