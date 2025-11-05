@@ -204,12 +204,15 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                   </div>
 
                   <div className="flex flex-col lg:flex-row gap-6 mb-6">
-                    <div className="relative w-full lg:w-64 h-48 lg:h-80 bg-muted rounded-lg overflow-hidden flex-shrink-0">
-                      <img
-                        src={movie.image || "/placeholder.svg"}
-                        alt={movie.title}
+                    <div className="relative w-full lg:w-64 h-48 lg:h-80 bg-black rounded-lg overflow-hidden flex-shrink-0">
+                      <video
+                        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                        poster={movie.image || "/placeholder.svg"}
+                        controls
                         className="w-full h-full object-cover"
-                      />
+                      >
+                        Your browser does not support the video tag.
+                      </video>
                     </div>
 
                     <div className="flex-1 min-w-0">
@@ -251,8 +254,8 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                     <div className="text-2xl font-bold text-purple-400">{movie.marketCap}</div>
                   </div>
 
-                  <div className="mb-6 max-w-full overflow-hidden">
-                    <div className="w-full h-64 lg:h-96 bg-muted/20 rounded-lg" />
+                  <div className="mb-6 rounded-lg bg-muted/30 border border-border h-64 lg:h-96 flex items-center justify-center">
+                    <p className="text-muted-foreground">Media content area</p>
                   </div>
 
                   <div className="lg:hidden mb-4">
@@ -766,14 +769,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                   )}
                 </div>
 
-                <div className="mb-6 relative overflow-hidden">
-                  {showCelebration && (
-                    <>
-                      {celebrationEmojis.map((emoji, index) => (
-                        <CelebrationEmoji key={`desktop-funding-${index}`} emoji={emoji} delay={index * 150} />
-                      ))}
-                    </>
-                  )}
+                <div className="mb-6">
                   <h3 className="font-bold mb-4">Funding The Film</h3>
                   <div className="space-y-4">
                     <div className="flex justify-between text-sm">
@@ -857,7 +853,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                         <div className="flex items-center gap-3">
                           <Avatar className="w-10 h-10">
                             <AvatarImage src={holder.avatar || "/placeholder.svg"} />
-                            <AvatarFallback>#{holder.rank}</AvatarFallback>
+                            <AvatarFallback>{holder.name[0]}</AvatarFallback>
                           </Avatar>
                           <div>
                             <div className="text-xs text-muted-foreground">#{holder.rank}</div>
