@@ -2,16 +2,36 @@
 
 import { Bookmark, TrendingUp } from "lucide-react"
 import { useState } from "react"
-import watchlistData from "@/data/watchlist-items.json"
 
 export function WatchlistGrid() {
   const itemsPerPage = 8
-  const totalItems = watchlistData.items.length
+  const totalItems = 0 // Removed data import and cleared watchlist to show empty state
   const totalPages = Math.ceil(totalItems / itemsPerPage)
   const [currentPage, setCurrentPage] = useState(1)
   const [watchlist, setWatchlist] = useState<Set<number>>(new Set())
 
-  const items = watchlistData.items
+  const items: Array<any> = [] // Removed data import and cleared watchlist to show empty state
+
+  if (items.length === 0) {
+    return (
+      <section className="flex items-center justify-center min-h-[60vh] md:min-h-[70vh]">
+        <div className="text-center px-4 max-w-md">
+          {/* Heading */}
+          <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">No Films in Your Watchlist</h2>
+
+          {/* Description */}
+          <p className="text-sm md:text-base text-muted-foreground mb-6 md:mb-8 leading-relaxed">
+            Start tracking films that catch your eye — add titles you want to follow and never miss an update.
+          </p>
+
+          {/* Call-to-action Button */}
+          <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-2 md:py-2.5 px-6 md:px-8 rounded-lg transition-colors">
+            Start Exploring
+          </button>
+        </div>
+      </section>
+    )
+  }
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage

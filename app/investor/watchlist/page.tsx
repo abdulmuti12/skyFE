@@ -63,7 +63,9 @@ export default function WatchlistPage() {
 
           <main className="flex-1 overflow-y-auto p-3 md:p-4 lg:p-6 pb-6">
             <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Watchlist</h1>
-            <WatchlistGrid />
+            <div className="h-[calc(100vh-200px)] flex flex-col items-center justify-center">
+              <WatchlistGrid />
+            </div>
           </main>
         </div>
       </div>
