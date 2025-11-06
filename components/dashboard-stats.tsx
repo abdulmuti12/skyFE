@@ -15,26 +15,26 @@ interface StatCard {
 const stats: StatCard[] = [
   {
     title: "Total Funding Received",
-    value: "45,231.89 USKY",
-    change: "+201% increase from last month",
+    value: "-",
+    change: "- increase from last month",
     icon: <span className="text-xl">$</span>,
   },
   {
     title: "Active Projects",
-    value: "2",
-    change: "+180.1% increase from last month",
+    value: "-",
+    change: "- increase from last month",
     icon: <span className="text-xl">📁</span>,
   },
   {
     title: "Total Investors",
-    value: "+12,234",
-    change: "+19% increase from last month",
+    value: "-",
+    change: "- increase from last month",
     icon: <span className="text-xl">👥</span>,
   },
   {
     title: "Monthly Growth Rate",
-    value: "+573",
-    change: "+2.01% increase from last month",
+    value: "-",
+    change: "- increase from last month",
     icon: <TrendingUp className="w-5 h-5" />,
   },
 ]
