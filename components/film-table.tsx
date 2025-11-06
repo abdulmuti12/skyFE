@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { MoreVertical, CheckCircle2, Clock, ChevronDown } from "lucide-react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import {
@@ -11,98 +12,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
+import { Empty, EmptyHeader, EmptyTitle, EmptyDescription, EmptyContent } from "@/components/ui/empty"
 
-interface Film {
-  id: string
-  title: string
-  category: string
-  status: "Funding" | "Completed"
-  releaseYear: number
-  runningTime: string
-}
-
-const filmsData: Film[] = [
-  {
-    id: "1",
-    title: "Echoes of Tomorrow",
-    category: "Horror",
-    status: "Funding",
-    releaseYear: 1964,
-    runningTime: "180 min",
-  },
-  {
-    id: "2",
-    title: "Dreambound",
-    category: "Fantasy",
-    status: "Completed",
-    releaseYear: 2003,
-    runningTime: "200 min",
-  },
-  {
-    id: "3",
-    title: "Beyond the Horizon",
-    category: "Fantasy",
-    status: "Completed",
-    releaseYear: 2020,
-    runningTime: "120 min",
-  },
-  {
-    id: "4",
-    title: "Neon Mirage",
-    category: "Adventure",
-    status: "Funding",
-    releaseYear: 2016,
-    runningTime: "180 min",
-  },
-  {
-    id: "5",
-    title: "Parallel Hearts",
-    category: "Drama",
-    status: "Funding",
-    releaseYear: 2020,
-    runningTime: "240 min",
-  },
-  {
-    id: "6",
-    title: "Silent Verse",
-    category: "Drama",
-    status: "Completed",
-    releaseYear: 2011,
-    runningTime: "60 min",
-  },
-  {
-    id: "7",
-    title: "Mirage Runner",
-    category: "Sci-Fi",
-    status: "Funding",
-    releaseYear: 2019,
-    runningTime: "180 min",
-  },
-  {
-    id: "8",
-    title: "Moonlit Sonata",
-    category: "Horror",
-    status: "Completed",
-    releaseYear: 2019,
-    runningTime: "120 min",
-  },
-  {
-    id: "9",
-    title: "Stardust Prophecy",
-    category: "Romance",
-    status: "Completed",
-    releaseYear: 2008,
-    runningTime: "200 min",
-  },
-  {
-    id: "10",
-    title: "Crimson Shadows",
-    category: "Romance",
-    status: "Funding",
-    releaseYear: 2020,
-    runningTime: "200 min",
-  },
-]
+const filmsData: any[] = []
 
 export function FilmTable() {
   const itemsPerPage = 10
@@ -160,6 +72,28 @@ export function FilmTable() {
     )
   }
 
+  if (filmsData.length === 0) {
+    return (
+      <div className="bg-card border border-border rounded-lg overflow-hidden min-h-96 md:min-h-[500px] flex items-center justify-center p-4 md:p-6">
+        <Empty className="border-0 p-4 md:p-8">
+          <EmptyHeader>
+            <EmptyTitle className="text-2xl md:text-3xl font-bold">No Films Added Yet</EmptyTitle>
+          </EmptyHeader>
+          <EmptyContent>
+            <EmptyDescription className="text-sm md:text-base text-muted-foreground">
+              Start your first film project and begin your funding journey today.
+            </EmptyDescription>
+            <Link href="/creator/film/create">
+              <Button className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full px-6 py-2 gap-2 transition-colors mt-2 md:mt-4">
+                <span>+ Create Film</span>
+              </Button>
+            </Link>
+          </EmptyContent>
+        </Empty>
+      </div>
+    )
+  }
+
   return (
     <div className="bg-card border border-border rounded-lg overflow-hidden">
       {/* Desktop Table */}
@@ -176,7 +110,7 @@ export function FilmTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {currentFilms.map((film) => (
+            {currentFilms.map((film: any) => (
               <TableRow key={film.id} className="border-b border-border hover:bg-muted/50">
                 <TableCell className="font-medium">{film.title}</TableCell>
                 <TableCell className="text-muted-foreground">{film.category}</TableCell>
@@ -220,7 +154,7 @@ export function FilmTable() {
             <span className="text-xs font-semibold text-muted-foreground flex-1">Title</span>
             <span className="text-xs font-semibold text-muted-foreground mr-12">Category</span>
           </div>
-          {currentFilms.map((film) => {
+          {currentFilms.map((film: any) => {
             const isExpanded = expandedRows.has(film.id)
             return (
               <div key={film.id} className="border-b border-border last:border-b-0">
