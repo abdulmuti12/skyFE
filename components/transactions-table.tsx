@@ -17,90 +17,13 @@ interface Transaction {
   status: TransactionStatus
 }
 
-const mockTransactions: Transaction[] = [
-  {
-    id: "0xF9C2D7A4B1E8C5F...",
-    date: "2020-05-01 06:05:46",
-    type: "Top Up",
-    description: "Top up via QRIS",
-    amount: 540,
-    status: "Pending",
-  },
-  {
-    id: "0xA8D1E4F3B7C5A9E...",
-    date: "2020-05-04 09:18:16",
-    type: "Top Up",
-    description: "Top up via Credit/Debit Card",
-    amount: 423,
-    status: "Failed",
-  },
-  {
-    id: "0xA4B9C7D1EBF3A2...",
-    date: "2020-05-03 08:14:01",
-    type: "Top Up",
-    description: "Top up via Credit/Debit Card",
-    amount: 952,
-    status: "Completed",
-  },
-  {
-    id: "0xB5E1F9A3C4D7E2A...",
-    date: "2020-05-02 07:10:15",
-    type: "Funding",
-    description: "Funding received from @firstname to @layc...",
-    amount: 453,
-    status: "Completed",
-  },
-  {
-    id: "0xE2B8A5F3D6C1E7B...",
-    date: "2020-05-04 09:18:16",
-    type: "Funding",
-    description: "Funding received from @firstname to @layc...",
-    amount: 563,
-    status: "Failed",
-  },
-  {
-    id: "0xD1F8C9B3E2A5D7B...",
-    date: "2020-05-05 10:21:13",
-    type: "Top Up",
-    description: "Top up via Credit/Debit Card",
-    amount: 429,
-    status: "Failed",
-  },
-  {
-    id: "0xD4F1B7C8A2E5D9B...",
-    date: "2020-05-06 11:24:08",
-    type: "Funding",
-    description: "Funding received from @firstname to @layc...",
-    amount: 426,
-    status: "Completed",
-  },
-  {
-    id: "0xC1A7B4E9D5F0C6...",
-    date: "2020-05-03 08:14:01",
-    type: "Funding",
-    description: "Funding received from @firstname to @layc...",
-    amount: 740,
-    status: "Failed",
-  },
-  {
-    id: "0xC7A9B1E8D3F2A5...",
-    date: "2020-05-05 10:21:13",
-    type: "Top Up",
-    description: "Top up via QRIS",
-    amount: 195,
-    status: "Completed",
-  },
-  {
-    id: "0xB9E3C6A5D1F8E2...",
-    date: "2020-05-01 06:05:46",
-    type: "Funding",
-    description: "Funding received from @firstname to @layc...",
-    amount: 536,
-    status: "Completed",
-  },
-]
+const mockTransactions: Transaction[] = []
 
-export function TransactionsTable() {
+interface TransactionsTableProps {
+  onTopUpClick?: () => void
+}
+
+export function TransactionsTable({ onTopUpClick }: TransactionsTableProps) {
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [currentPage, setCurrentPage] = useState(1)
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
@@ -144,6 +67,65 @@ export function TransactionsTable() {
       newExpanded.add(id)
     }
     setExpandedRows(newExpanded)
+  }
+
+  // Empty State Rendering when no transactions exist
+  if (mockTransactions.length === 0) {
+    return (
+      <div className="space-y-4">
+        {/* Filters and Download Button */}
+        <div className="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Select defaultValue="all-dates">
+              <SelectTrigger className="w-full sm:w-[180px] bg-zinc-100 dark:bg-zinc-900 border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-white">
+                <SelectValue placeholder="Date Range" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all-dates">Date Range</SelectItem>
+                <SelectItem value="today">Today</SelectItem>
+                <SelectItem value="week">This Week</SelectItem>
+                <SelectItem value="month">This Month</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select defaultValue="all-types">
+              <SelectTrigger className="w-full sm:w-[180px] bg-zinc-100 dark:bg-zinc-900 border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-white">
+                <SelectValue placeholder="Transaction Type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all-types">Transaction Type</SelectItem>
+                <SelectItem value="top-up">Top Up</SelectItem>
+                <SelectItem value="funding">Funding</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <Button
+            variant="outline"
+            className="w-full md:w-auto bg-zinc-800 hover:bg-zinc-700 border-zinc-700 text-white rounded-lg px-4 py-2"
+          >
+            <Download className="w-4 h-4 mr-2" />
+            Download Report
+          </Button>
+        </div>
+
+        {/* Empty State Container */}
+        <div className="rounded-lg border border-border overflow-hidden">
+          <div className="w-full flex flex-col items-center justify-center py-12 md:py-24 px-4">
+            <h2 className="text-xl md:text-2xl font-semibold mb-2 text-center">No Transactions Yet</h2>
+            <p className="text-sm md:text-base text-muted-foreground text-center max-w-md mb-6">
+              Your transaction history will appear here once you start funding or top up your USKY balance.
+            </p>
+            <Button
+              onClick={onTopUpClick}
+              className="px-6 py-2 text-sm bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors whitespace-nowrap"
+            >
+              Top Up USKY
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -299,7 +281,6 @@ export function TransactionsTable() {
           <div className="flex gap-1">
             <Button
               variant="outline"
-              size="icon"
               className="h-8 w-8 bg-transparent"
               onClick={() => setCurrentPage(1)}
               disabled={currentPage === 1}
@@ -308,7 +289,6 @@ export function TransactionsTable() {
             </Button>
             <Button
               variant="outline"
-              size="icon"
               className="h-8 w-8 bg-transparent"
               onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
               disabled={currentPage === 1}
@@ -317,7 +297,6 @@ export function TransactionsTable() {
             </Button>
             <Button
               variant="outline"
-              size="icon"
               className="h-8 w-8 bg-transparent"
               onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
               disabled={currentPage === totalPages}
@@ -326,7 +305,6 @@ export function TransactionsTable() {
             </Button>
             <Button
               variant="outline"
-              size="icon"
               className="h-8 w-8 bg-transparent"
               onClick={() => setCurrentPage(totalPages)}
               disabled={currentPage === totalPages}

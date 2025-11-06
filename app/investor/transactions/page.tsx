@@ -109,7 +109,7 @@ export default function TransactionsPage() {
             </div>
 
             {/* Transactions Table */}
-            <TransactionsTable />
+            <TransactionsTable onTopUpClick={() => setIsTopUpModalOpen(true)} />
           </main>
         </div>
       </div>
