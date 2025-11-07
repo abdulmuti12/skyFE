@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { InvestorSidebar } from "@/components/investor-sidebar"
 import { Header } from "@/components/header-investor"
-import { TransactionsTable } from "@/components/transactions-table"
+import { TransactionsTable } from "@/components/transactions-table-investor"
 import { Button } from "@/components/ui/button"
 import { TopUpModal } from "@/components/top-up-modal"
 import { PaymentMethodModal } from "@/components/payment-method-modal"
