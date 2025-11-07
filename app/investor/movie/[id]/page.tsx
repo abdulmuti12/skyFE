@@ -20,7 +20,6 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
 
 const CelebrationEmoji = ({ emoji, delay }: { emoji: string; delay: number }) => {
   return (
@@ -116,6 +115,20 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
     { name: "alexbuckmaster", amount: "764", time: "6h", avatar: "/placeholder.svg" },
   ]
 
+  const topHoldersTotal = 12234000 + 1233000 + 764000 + 554000 + 543000
+  const topHoldersWithPercentage = topHolders.map((holder) => {
+    const numAmount = Number.parseInt(holder.amount.replace(/,/g, ""))
+    const percentage = ((numAmount / topHoldersTotal) * 100).toFixed(2)
+    return { ...holder, percentage }
+  })
+
+  const latestInvestorsTotal = 223 + 543 + 1233 + 554 + 764 + 764
+  const latestInvestorsWithPercentage = latestInvestors.map((investor) => {
+    const numAmount = Number.parseInt(investor.amount)
+    const percentage = ((numAmount / latestInvestorsTotal) * 100).toFixed(2)
+    return { ...investor, percentage }
+  })
+
   const comments = [
     { id: 1, user: "fredthegreat", time: "2m", text: "Beyond the Horizon", likes: 0, avatar: "/placeholder.svg" },
     { id: 2, user: "fredthegreat", time: "2m", text: "Beyond the Horizon", likes: 1, avatar: "/placeholder.svg" },
@@ -204,12 +217,15 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                   </div>
 
                   <div className="flex flex-col lg:flex-row gap-6 mb-6">
-                    <div className="relative w-full lg:w-64 h-48 lg:h-80 bg-muted rounded-lg overflow-hidden flex-shrink-0">
-                      <img
-                        src={movie.image || "/placeholder.svg"}
-                        alt={movie.title}
+                    <div className="relative w-full lg:w-1/2 h-48 lg:h-64 bg-black rounded-lg overflow-hidden flex-shrink-0">
+                      <video
+                        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                        poster={movie.image || "/placeholder.svg"}
+                        controls
                         className="w-full h-full object-cover"
-                      />
+                      >
+                        Your browser does not support the video tag.
+                      </video>
                     </div>
 
                     <div className="flex-1 min-w-0">
@@ -251,8 +267,8 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                     <div className="text-2xl font-bold text-purple-400">{movie.marketCap}</div>
                   </div>
 
-                  <div className="mb-6 max-w-full overflow-hidden">
-                    <div className="w-full h-64 lg:h-96 bg-muted/20 rounded-lg" />
+                  <div className="mb-6 rounded-lg bg-muted/30 border border-border h-64 lg:h-96 flex items-center justify-center">
+                    <p className="text-muted-foreground">Media content area</p>
                   </div>
 
                   <div className="lg:hidden mb-4">
@@ -431,7 +447,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                         <div className="bg-card border border-border rounded-lg p-4">
                           <h3 className="font-bold mb-4">Top Holders</h3>
                           <div className="space-y-3">
-                            {topHolders.map((holder) => (
+                            {topHoldersWithPercentage.map((holder) => (
                               <div key={holder.rank} className="flex items-center justify-between gap-2">
                                 <div className="flex items-center gap-3 min-w-0 flex-1">
                                   <Avatar className="w-10 h-10 flex-shrink-0">
@@ -444,8 +460,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                                   </div>
                                 </div>
                                 <div className="flex items-center gap-2 flex-shrink-0">
-                                  <span className="font-semibold text-sm">{holder.amount}</span>
-                                  <Badge className="bg-blue-500 hover:bg-blue-600">USKY</Badge>
+                                  <span className="font-semibold text-sm">{holder.percentage}%</span>
                                 </div>
                               </div>
                             ))}
@@ -456,7 +471,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                           <h3 className="font-bold mb-2">Latest Investors</h3>
                           <p className="text-sm text-muted-foreground mb-4">You made 265 sales this month.</p>
                           <div className="space-y-3">
-                            {latestInvestors.map((investor, idx) => (
+                            {latestInvestorsWithPercentage.map((investor, idx) => (
                               <div key={idx} className="flex items-center justify-between gap-2">
                                 <div className="flex items-center gap-3 min-w-0 flex-1">
                                   <Avatar className="w-10 h-10 flex-shrink-0">
@@ -469,8 +484,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                                   </div>
                                 </div>
                                 <div className="flex items-center gap-2 flex-shrink-0">
-                                  <span className="font-semibold text-sm">{investor.amount}</span>
-                                  <Badge className="bg-blue-500 hover:bg-blue-600">USKY</Badge>
+                                  <span className="font-semibold text-sm">{investor.percentage}%</span>
                                 </div>
                               </div>
                             ))}
@@ -544,7 +558,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                                   value={commentInput}
                                   onChange={(e) => setCommentInput(e.target.value)}
                                   placeholder="Write a comment..."
-                                  className="h-8 w-32"
+                                  className="h-8 w-52"
                                 />
                               </div>
                             </div>
@@ -667,8 +681,8 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                               <Input
                                 value={commentInput}
                                 onChange={(e) => setCommentInput(e.target.value)}
-                                placeholder="Write a comment..."
-                                className="h-8 w-48"
+                                placeholder="Write a comment.."
+                                className="h-8 w-88"
                               />
                             </div>
                           </div>
@@ -766,14 +780,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                   )}
                 </div>
 
-                <div className="mb-6 relative overflow-hidden">
-                  {showCelebration && (
-                    <>
-                      {celebrationEmojis.map((emoji, index) => (
-                        <CelebrationEmoji key={`desktop-funding-${index}`} emoji={emoji} delay={index * 150} />
-                      ))}
-                    </>
-                  )}
+                <div className="mb-6">
                   <h3 className="font-bold mb-4">Funding The Film</h3>
                   <div className="space-y-4">
                     <div className="flex justify-between text-sm">
@@ -852,12 +859,12 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                 <div className="mb-6">
                   <h3 className="font-bold mb-4">Top Holders</h3>
                   <div className="space-y-3">
-                    {topHolders.map((holder) => (
+                    {topHoldersWithPercentage.map((holder) => (
                       <div key={holder.rank} className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <Avatar className="w-10 h-10">
                             <AvatarImage src={holder.avatar || "/placeholder.svg"} />
-                            <AvatarFallback>#{holder.rank}</AvatarFallback>
+                            <AvatarFallback>{holder.name[0]}</AvatarFallback>
                           </Avatar>
                           <div>
                             <div className="text-xs text-muted-foreground">#{holder.rank}</div>
@@ -865,8 +872,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-sm">{holder.amount}</span>
-                          <Badge className="bg-blue-500 hover:bg-blue-600 text-xs">USKY</Badge>
+                          <span className="font-semibold text-sm">{holder.percentage}%</span>
                         </div>
                       </div>
                     ))}
@@ -877,7 +883,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                   <h3 className="font-bold mb-2">Latest Investors</h3>
                   <p className="text-sm text-muted-foreground mb-4">You made 265 sales this month.</p>
                   <div className="space-y-3">
-                    {latestInvestors.map((investor, idx) => (
+                    {latestInvestorsWithPercentage.map((investor, idx) => (
                       <div key={idx} className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <Avatar className="w-10 h-10">
@@ -890,8 +896,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-sm">{investor.amount}</span>
-                          <Badge className="bg-blue-500 hover:bg-blue-600 text-xs">USKY</Badge>
+                          <span className="font-semibold text-sm">{investor.percentage}%</span>
                         </div>
                       </div>
                     ))}
