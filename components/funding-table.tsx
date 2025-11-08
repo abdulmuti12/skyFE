@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { MoreVertical, ChevronDown } from "lucide-react"
+import { MoreVertical, ChevronDown, Plus } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import fundingData from "@/data/creator_funding.json"
 
 interface FundingCampaign {
   id: string
@@ -22,102 +23,29 @@ interface FundingCampaign {
   status: "Funding" | "Completed"
 }
 
-const mockData: FundingCampaign[] = [
-  {
-    id: "1",
-    title: "Echoes of Tomorrow",
-    targetFunding: "45,000 USKY",
-    currentFunding: "36,250 USKY",
-    progress: 69,
-    investors: 540,
-    status: "Funding",
-  },
-  {
-    id: "2",
-    title: "Dreambound",
-    targetFunding: "50,000 USKY",
-    currentFunding: "39,880 USKY",
-    progress: 85,
-    investors: 423,
-    status: "Completed",
-  },
-  {
-    id: "3",
-    title: "Beyond the Horizon",
-    targetFunding: "50,000 USKY",
-    currentFunding: "47,300 USKY",
-    progress: 103,
-    investors: 922,
-    status: "Completed",
-  },
-  {
-    id: "4",
-    title: "Neon Mirage",
-    targetFunding: "35,000 USKY",
-    currentFunding: "36,250 USKY",
-    progress: 75,
-    investors: 453,
-    status: "Funding",
-  },
-  {
-    id: "5",
-    title: "Parallel Hearts",
-    targetFunding: "45,000 USKY",
-    currentFunding: "47,300 USKY",
-    progress: 73,
-    investors: 583,
-    status: "Funding",
-  },
-  {
-    id: "6",
-    title: "Silent Verse",
-    targetFunding: "45,000 USKY",
-    currentFunding: "41,250 USKY",
-    progress: 72,
-    investors: 429,
-    status: "Completed",
-  },
-  {
-    id: "7",
-    title: "Mirage Runner",
-    targetFunding: "45,000 USKY",
-    currentFunding: "36,250 USKY",
-    progress: 105,
-    investors: 426,
-    status: "Funding",
-  },
-  {
-    id: "8",
-    title: "Moonlit Sonata",
-    targetFunding: "55,000 USKY",
-    currentFunding: "58,900 USKY",
-    progress: 98,
-    investors: 740,
-    status: "Completed",
-  },
-  {
-    id: "9",
-    title: "Stardust Prophecy",
-    targetFunding: "55,000 USKY",
-    currentFunding: "24,300 USKY",
-    progress: 83,
-    investors: 196,
-    status: "Completed",
-  },
-  {
-    id: "10",
-    title: "Crimson Shadows",
-    targetFunding: "45,000 USKY",
-    currentFunding: "33,750 USKY",
-    progress: 102,
-    investors: 536,
-    status: "Funding",
-  },
-]
-
 export function FundingTable() {
+  const mockData: FundingCampaign[] = fundingData
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set())
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
+
+  const hasNoData = mockData.length === 0
+
+  if (hasNoData) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 md:py-24">
+        <h2 className="text-xl md:text-2xl font-bold text-center mb-3">No Films Added Yet</h2>
+        <p className="text-sm md:text-base text-muted-foreground text-center mb-6 max-w-md">
+          Start your first film project and begin your funding journey today.
+        </p>
+        <Link href="/creator/film/new">
+          <button className="flex items-center gap-2 px-6 py-2.5 bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors">
+            <Plus className="w-4 h-4" />
+            Create Film
+          </button>
+        </Link>
+      </div>
+    )
+  }
 
   const toggleRowSelection = (id: string) => {
     const newSelected = new Set(selectedRows)
@@ -290,7 +218,9 @@ export function FundingTable() {
 
       {/* Pagination */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 text-sm text-muted-foreground">
-        <div>0 of 100 row(s) selected.</div>
+        <div>
+          {selectedRows.size} of {mockData.length} row(s) selected.
+        </div>
         <div className="flex items-center gap-2">
           <span>Rows per page</span>
           <select className="bg-muted border border-border rounded px-2 py-1 text-foreground">

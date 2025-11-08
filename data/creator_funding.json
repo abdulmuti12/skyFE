@@ -1,0 +1,92 @@
+[
+  {
+    "id": "1",
+    "title": "Echoes of Tomorrow",
+    "targetFunding": "45,000 USKY",
+    "currentFunding": "36,250 USKY",
+    "progress": 69,
+    "investors": 540,
+    "status": "Funding"
+  },
+  {
+    "id": "2",
+    "title": "Dreambound",
+    "targetFunding": "50,000 USKY",
+    "currentFunding": "39,880 USKY",
+    "progress": 85,
+    "investors": 423,
+    "status": "Completed"
+  },
+  {
+    "id": "3",
+    "title": "Beyond the Horizon",
+    "targetFunding": "50,000 USKY",
+    "currentFunding": "47,300 USKY",
+    "progress": 103,
+    "investors": 922,
+    "status": "Completed"
+  },
+  {
+    "id": "4",
+    "title": "Neon Mirage",
+    "targetFunding": "35,000 USKY",
+    "currentFunding": "36,250 USKY",
+    "progress": 75,
+    "investors": 453,
+    "status": "Funding"
+  },
+  {
+    "id": "5",
+    "title": "Parallel Hearts",
+    "targetFunding": "45,000 USKY",
+    "currentFunding": "47,300 USKY",
+    "progress": 73,
+    "investors": 583,
+    "status": "Funding"
+  },
+  {
+    "id": "6",
+    "title": "Silent Verse",
+    "targetFunding": "45,000 USKY",
+    "currentFunding": "41,250 USKY",
+    "progress": 72,
+    "investors": 429,
+    "status": "Completed"
+  },
+  {
+    "id": "7",
+    "title": "Mirage Runner",
+    "targetFunding": "45,000 USKY",
+    "currentFunding": "36,250 USKY",
+    "progress": 105,
+    "investors": 426,
+    "status": "Funding"
+  },
+  {
+    "id": "8",
+    "title": "Moonlit Sonata",
+    "targetFunding": "55,000 USKY",
+    "currentFunding": "58,900 USKY",
+    "progress": 98,
+    "investors": 740,
+    "status": "Completed"
+  },
+  {
+    "id": "9",
+    "title": "Stardust Prophecy",
+    "targetFunding": "55,000 USKY",
+    "currentFunding": "24,300 USKY",
+    "progress": 83,
+    "investors": 196,
+    "status": "Completed"
+  },
+  {
+    "id": "10",
+    "title": "Crimson Shadows",
+    "targetFunding": "45,000 USKY",
+    "currentFunding": "33,750 USKY",
+    "progress": 102,
+    "investors": 536,
+    "status": "Funding"
+  }
+]

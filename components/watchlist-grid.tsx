@@ -25,7 +25,7 @@ export function WatchlistGrid() {
           </p>
           <div className="flex justify-center">
             <Link href="/investor">
-              <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6">
+              <Button className="bg-[#FFE500] hover:bg-[#FFE500]/80 text-black font-semibold px-6 py-2 md:px-8 md:py-3 text-sm md:text-base">
                 Start Exploring
               </Button>
             </Link>
