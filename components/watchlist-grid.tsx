@@ -2,6 +2,8 @@
 
 import { Bookmark, TrendingUp } from "lucide-react"
 import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import watchlistData from "@/data/watchlist-items.json"
 
 export function WatchlistGrid() {
@@ -10,6 +12,28 @@ export function WatchlistGrid() {
   const totalPages = Math.ceil(totalItems / itemsPerPage)
   const [currentPage, setCurrentPage] = useState(1)
   const [watchlist, setWatchlist] = useState<Set<number>>(new Set())
+
+  const hasNoItems = !watchlistData.items || watchlistData.items.length === 0
+
+  if (hasNoItems) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-center max-w-md px-4">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">No Films in Your Watchlist</h2>
+          <p className="text-muted-foreground mb-6 text-sm md:text-base leading-relaxed">
+            Start tracking films that catch your eye — add titles you want to follow and never miss an update.
+          </p>
+          <div className="flex justify-center">
+            <Link href="/investor">
+              <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6">
+                Start Exploring
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   const items = watchlistData.items
 
