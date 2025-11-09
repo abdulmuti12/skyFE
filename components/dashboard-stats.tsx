@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { Card, CardContent } from "@/components/ui/card"
-import { TrendingUp } from "lucide-react"
+import { TrendingUp, DollarSign, FolderOpen, Users } from "lucide-react"
 import statsData from "@/data/dashboard-stats.json"
 
 interface StatCard {
@@ -13,17 +13,46 @@ interface StatCard {
   icon: React.ReactNode
 }
 
-const stats: StatCard[] = statsData.map((stat) => {
+const defaultStats = [
+  {
+    title: "Total Funding Received",
+    value: "-",
+    change: "- increase from last month",
+    icon: "dollar",
+  },
+  {
+    title: "Active Projects",
+    value: "-",
+    change: "- increase from last month",
+    icon: "folder",
+  },
+  {
+    title: "Total Investors",
+    value: "-",
+    change: "- increase from last month",
+    icon: "users",
+  },
+  {
+    title: "Monthly Growth Rate",
+    value: "-",
+    change: "- increase from last month",
+    icon: "trending",
+  },
+]
+
+const dataToUse = statsData.length > 0 ? statsData : defaultStats
+
+const stats: StatCard[] = dataToUse.map((stat) => {
   let icon: React.ReactNode
   switch (stat.icon) {
     case "dollar":
-      icon = <span className="text-xl">$</span>
+      icon = <DollarSign className="w-5 h-5" />
       break
     case "folder":
-      icon = <span className="text-xl">📁</span>
+      icon = <FolderOpen className="w-5 h-5" />
       break
     case "users":
-      icon = <span className="text-xl">👥</span>
+      icon = <Users className="w-5 h-5" />
       break
     case "trending":
       icon = <TrendingUp className="w-5 h-5" />
