@@ -4,76 +4,35 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
+import dataByTimeframe from "@/data/funding-overview.json"
 
-const dataByTimeframe = {
-  "1H": [
-    { label: "00:00", value: 3200 },
-    { label: "00:05", value: 3400 },
-    { label: "00:10", value: 3100 },
-    { label: "00:15", value: 3600 },
-    { label: "00:20", value: 3300 },
-    { label: "00:25", value: 3800 },
-    { label: "00:30", value: 3500 },
-    { label: "00:35", value: 3900 },
-    { label: "00:40", value: 3700 },
-    { label: "00:45", value: 4100 },
-    { label: "00:50", value: 3800 },
-    { label: "00:55", value: 4200 },
-  ],
-  "4H": [
-    { label: "00:00", value: 2800 },
-    { label: "04:00", value: 3200 },
-    { label: "08:00", value: 4100 },
-    { label: "12:00", value: 3600 },
-    { label: "16:00", value: 4400 },
-    { label: "20:00", value: 3900 },
-  ],
-  "1D": [
-    { label: "00:00", value: 2400 },
-    { label: "02:00", value: 2800 },
-    { label: "04:00", value: 3200 },
-    { label: "06:00", value: 3600 },
-    { label: "08:00", value: 4100 },
-    { label: "10:00", value: 3800 },
-    { label: "12:00", value: 4300 },
-    { label: "14:00", value: 3900 },
-    { label: "16:00", value: 4500 },
-    { label: "18:00", value: 4200 },
-    { label: "20:00", value: 3700 },
-    { label: "22:00", value: 3400 },
-  ],
-  "1M": [
-    { label: "Week 1", value: 3200 },
-    { label: "Week 2", value: 4100 },
-    { label: "Week 3", value: 3600 },
-    { label: "Week 4", value: 4800 },
-  ],
+const emptyData = {
   "6M": [
-    { label: "Jan", value: 2800 },
-    { label: "Feb", value: 4200 },
-    { label: "Mar", value: 3500 },
-    { label: "Apr", value: 4600 },
-    { label: "May", value: 3900 },
-    { label: "Jun", value: 5100 },
+    { label: "Jan", value: 0 },
+    { label: "Feb", value: 0 },
+    { label: "Mar", value: 0 },
+    { label: "Apr", value: 0 },
+    { label: "May", value: 0 },
+    { label: "Jun", value: 0 },
   ],
   "1Y": [
-    { label: "Jan", value: 2400 },
-    { label: "Feb", value: 5200 },
-    { label: "Mar", value: 3000 },
-    { label: "Apr", value: 4100 },
-    { label: "May", value: 2400 },
-    { label: "Jun", value: 3200 },
-    { label: "Jul", value: 2500 },
-    { label: "Aug", value: 5300 },
-    { label: "Sep", value: 3000 },
-    { label: "Oct", value: 4000 },
-    { label: "Nov", value: 2400 },
-    { label: "Dec", value: 3200 },
+    { label: "Jan", value: 0 },
+    { label: "Feb", value: 0 },
+    { label: "Mar", value: 0 },
+    { label: "Apr", value: 0 },
+    { label: "May", value: 0 },
+    { label: "Jun", value: 0 },
+    { label: "Jul", value: 0 },
+    { label: "Aug", value: 0 },
+    { label: "Sep", value: 0 },
+    { label: "Oct", value: 0 },
+    { label: "Nov", value: 0 },
+    { label: "Dec", value: 0 },
   ],
 }
 
 export function FundingOverview() {
-  const [timeframe, setTimeframe] = useState<"1H" | "4H" | "1D" | "1M" | "6M" | "1Y">("1Y")
+  const [timeframe, setTimeframe] = useState<"6M" | "1Y">("6M")
   const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
@@ -94,28 +53,39 @@ export function FundingOverview() {
   const cardBg = isDark ? "#1f2937" : "#ffffff"
   const barColor = isDark ? "#d1d5db" : "#e5e7eb"
 
-  const chartData = dataByTimeframe[timeframe]
+  const hasData = dataByTimeframe && Object.keys(dataByTimeframe).length > 0
+  const dataSource = hasData ? dataByTimeframe : emptyData
+  const chartData = dataSource[timeframe]
 
   return (
     <Card className="bg-card border-border">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
         <CardTitle className="text-xl font-semibold">Funding Overview</CardTitle>
         <div className="flex gap-0 bg-black/40 rounded-lg p-1 border border-border">
-          {(["1H", "4H", "1D", "1M", "6M", "1Y"] as const).map((period) => (
-            <Button
-              key={period}
-              variant="ghost"
-              size="sm"
-              onClick={() => setTimeframe(period)}
-              className={`h-9 px-4 text-sm font-medium rounded-md transition-colors ${
-                timeframe === period
-                  ? "bg-gray-700 text-white hover:bg-gray-600"
-                  : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
-              }`}
-            >
-              {period}
-            </Button>
-          ))}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setTimeframe("6M")}
+            className={`h-9 px-4 text-sm font-medium rounded-md transition-colors ${
+              timeframe === "6M"
+                ? "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
+            }`}
+          >
+            Last 6 Months
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setTimeframe("1Y")}
+            className={`h-9 px-4 text-sm font-medium rounded-md transition-colors ${
+              timeframe === "1Y"
+                ? "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
+            }`}
+          >
+            This Year
+          </Button>
         </div>
       </CardHeader>
       <CardContent>

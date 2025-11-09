@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Download, ChevronDown } from "lucide-react"
+import investorsData from "@/data/funding_detail_nill.json"
 
 interface InvestorRecord {
   id: string
@@ -12,93 +13,12 @@ interface InvestorRecord {
   status: "Completed"
 }
 
-const mockInvestors: InvestorRecord[] = [
-  {
-    id: "1",
-    investorName: "Echoes of Tomorrow",
-    amount: "28,900 USKY",
-    date: "2020-05-01 06:05:46",
-    paymentMethod: "USKY",
-    status: "Completed",
-  },
-  {
-    id: "2",
-    investorName: "Dreambound",
-    amount: "58,900 USKY",
-    date: "2020-05-04 09:18:16",
-    paymentMethod: "USKY",
-    status: "Completed",
-  },
-  {
-    id: "3",
-    investorName: "Beyond the Horizon",
-    amount: "51,420 USKY",
-    date: "2020-05-03 08:14:01",
-    paymentMethod: "USKY",
-    status: "Completed",
-  },
-  {
-    id: "4",
-    investorName: "Neon Mirage",
-    amount: "41,250 USKY",
-    date: "2020-05-06 11:24:08",
-    paymentMethod: "USKY",
-    status: "Completed",
-  },
-  {
-    id: "5",
-    investorName: "Parallel Hearts",
-    amount: "24,300 USKY",
-    date: "2020-05-05 10:21:13",
-    paymentMethod: "USKY",
-    status: "Completed",
-  },
-  {
-    id: "6",
-    investorName: "Silent Verse",
-    amount: "58,900 USKY",
-    date: "2020-05-05 10:21:13",
-    paymentMethod: "USKY",
-    status: "Completed",
-  },
-  {
-    id: "7",
-    investorName: "Mirage Runner",
-    amount: "36,250 USKY",
-    date: "2020-05-02 07:10:15",
-    paymentMethod: "USKY",
-    status: "Completed",
-  },
-  {
-    id: "8",
-    investorName: "Moonlit Sonata",
-    amount: "39,680 USKY",
-    date: "2020-05-04 09:18:16",
-    paymentMethod: "USKY",
-    status: "Completed",
-  },
-  {
-    id: "9",
-    investorName: "Stardust Prophecy",
-    amount: "63,200 USKY",
-    date: "2020-05-06 11:24:08",
-    paymentMethod: "USKY",
-    status: "Completed",
-  },
-  {
-    id: "10",
-    investorName: "Crimson Shadows",
-    amount: "51,420 USKY",
-    date: "2020-05-04 09:18:16",
-    paymentMethod: "USKY",
-    status: "Completed",
-  },
-]
-
 export function FundingDetailTable() {
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [currentPage, setCurrentPage] = useState(1)
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
+
+  const mockInvestors: InvestorRecord[] = investorsData
 
   const totalPages = Math.ceil(mockInvestors.length / rowsPerPage)
 
@@ -112,21 +32,25 @@ export function FundingDetailTable() {
     setExpandedRows(newExpanded)
   }
 
+  const hasNoFunding = mockInvestors.length === 0
+
   return (
     <div className="w-full">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-bold">Funding Detail</h2>
-        <button className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition-colors">
-          <Download className="w-4 h-4" />
-          Export Data
-        </button>
+        {!hasNoFunding && (
+          <button className="flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 text-white rounded-lg transition-colors">
+            <Download className="w-4 h-4" />
+            Export Data
+          </button>
+        )}
       </div>
 
-      {mockInvestors.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-24 px-4">
-          <h3 className="text-xl font-semibold mb-2">No Funding Yet</h3>
-          <p className="text-sm text-muted-foreground text-center max-w-md">
+      {hasNoFunding ? (
+        <div className="flex flex-col items-center justify-center py-16 md:py-24 px-4">
+          <h3 className="text-xl md:text-2xl font-bold mb-2">No Funding Yet</h3>
+          <p className="text-sm md:text-base text-muted-foreground text-center max-w-md">
             You haven't received any funding yet — once investors start contributing, all transactions will appear here.
           </p>
         </div>

@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty"
 import { Plus } from "lucide-react"
+import investorsData from "@/data/latest-investors.json"
 
 interface Investor {
   id: string
@@ -14,56 +15,7 @@ interface Investor {
   avatar: string
 }
 
-const investors: Investor[] = [
-  {
-    id: "1",
-    name: "Fred The Great",
-    username: "fredthegreat",
-    project: "Beyond the Horizon",
-    amount: 4791.8,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=fredthegreat",
-  },
-  {
-    id: "2",
-    name: "John Dukes",
-    username: "johndukes",
-    project: "Eclipse Rising",
-    amount: 9336.08,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=johndukes",
-  },
-  {
-    id: "3",
-    name: "Judith Rodriguez",
-    username: "judithrodriguez",
-    project: "Neon Mirage",
-    amount: 8338.52,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=judithrodriguez",
-  },
-  {
-    id: "4",
-    name: "Rodger Struck",
-    username: "rodgerstruck",
-    project: "Silent Echoes",
-    amount: 741.28,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=rodgerstruck",
-  },
-  {
-    id: "5",
-    name: "Alex Buck Master",
-    username: "alexbuckmaster",
-    project: "After the Storm",
-    amount: 1629.88,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=alexbuckmaster",
-  },
-  {
-    id: "6",
-    name: "Alex Buck Master",
-    username: "alexbuckmaster",
-    project: "Silent Echoes",
-    amount: 1629.88,
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=alexbuckmaster2",
-  },
-]
+const investors: Investor[] = investorsData
 
 export function LatestInvestors() {
   const investorCount = investors.length
@@ -83,7 +35,7 @@ export function LatestInvestors() {
             </EmptyDescription>
           </EmptyHeader>
           <EmptyContent>
-            <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-full px-8 py-6 text-base gap-2">
+            <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-full px-8 py-6 md:py-3 text-base gap-2">
               <Plus className="w-5 h-5" />
               Create Film
             </Button>
