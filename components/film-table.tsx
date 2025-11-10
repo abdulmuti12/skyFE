@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
-import filmsData from "@/data/film-table.json"
+import filmsData from "@/data/film-table-nill.json"
 import Link from "next/link"
 
 interface Film {

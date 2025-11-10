@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link" // Added Link import for navigation
 import { TrendingUp } from "lucide-react"
-import portfolioData from "@/data/portfolio-items.json"
+import portfolioData from "@/data/portfolio-items-null.json"
 import { Button } from "@/components/ui/button"
 
 export function PortfolioGrid() {

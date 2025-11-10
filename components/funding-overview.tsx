@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
-import dataByTimeframe from "@/data/funding-overview.json"
+import dataByTimeframe from "@/data/funding-overview_nill.json"
 
 const emptyData = {
   "6M": [

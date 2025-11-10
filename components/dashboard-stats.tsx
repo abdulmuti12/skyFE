@@ -4,7 +4,7 @@ import type React from "react"
 
 import { Card, CardContent } from "@/components/ui/card"
 import { TrendingUp, DollarSign, FolderOpen, Users } from "lucide-react"
-import statsData from "@/data/dashboard-stats.json"
+import statsData from "@/data/dashboard-stats-nill.json"
 
 interface StatCard {
   title: string

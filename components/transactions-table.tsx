@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Download, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, ChevronDown, Plus } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
-import transactionsData from "@/data/transactions_data.json"
+import transactionsData from "@/data/transactions_data_nill.json"
 
 type TransactionType = "Top Up" | "Funding"
 type TransactionStatus = "Completed" | "Pending" | "Failed"

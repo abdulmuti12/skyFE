@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import fundingData from "@/data/creator_funding.json"
+import fundingData from "@/data/creator_funding_nill.json"
 
 interface FundingCampaign {
   id: string
@@ -224,7 +224,7 @@ export function FundingTable() {
         <div className="flex items-center gap-2">
           <span>Rows per page</span>
           <select className="bg-muted border border-border rounded px-2 py-1 text-foreground">
-            <option>10</option>
+            <option>10</option>funding-detail-table
             <option>20</option>
             <option>50</option>
           </select>

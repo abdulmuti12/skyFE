@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty"
 import { Plus } from "lucide-react"
-import investorsData from "@/data/latest-investors.json"
+import investorsData from "@/data/latest-investors-nill.json"
 
 interface Investor {
   id: string

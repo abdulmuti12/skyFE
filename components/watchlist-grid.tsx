@@ -4,7 +4,7 @@ import { Bookmark, TrendingUp } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import watchlistData from "@/data/watchlist-items.json"
+import watchlistData from "@/data/watchlist-items-nill.json"
 
 export function WatchlistGrid() {
   const itemsPerPage = 8

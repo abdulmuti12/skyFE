@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Download, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, ChevronDown, Plus } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
-import transactionsData from "@/data/transactions_data.json"
+import transactionsData from "@/data/transactions_data_nill.json"
 
 type TransactionType = "Top Up" | "Funding"
 type TransactionStatus = "Completed" | "Pending" | "Failed"
@@ -114,8 +114,7 @@ export function TransactionsTable() {
           <p className="text-gray-400 text-center mb-8 max-w-md text-sm md:text-base">
             Your transaction history will appear here once you start funding or top up your USKY balance.
           </p>
-          <Button                 onClick={() => setIsTopUpModalOpen(true)}
- className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full px-6 py-2.5 flex items-center gap-2">
+          <Button  className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full px-6 py-2.5 flex items-center gap-2">
             <Plus className="w-4 h-4" />
             Top Up USKY
           </Button>
