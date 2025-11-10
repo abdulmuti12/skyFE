@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { MoreVertical, CheckCircle2, Clock, ChevronDown } from "lucide-react"
+import { MoreVertical, CheckCircle2, Clock, ChevronDown, Plus } from "lucide-react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import {
   DropdownMenu,
@@ -11,6 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
+import filmsData from "@/data/film-table.json"
+import Link from "next/link"
 
 interface Film {
   id: string
@@ -21,95 +23,29 @@ interface Film {
   runningTime: string
 }
 
-const filmsData: Film[] = [
-  {
-    id: "1",
-    title: "Echoes of Tomorrow",
-    category: "Horror",
-    status: "Funding",
-    releaseYear: 1964,
-    runningTime: "180 min",
-  },
-  {
-    id: "2",
-    title: "Dreambound",
-    category: "Fantasy",
-    status: "Completed",
-    releaseYear: 2003,
-    runningTime: "200 min",
-  },
-  {
-    id: "3",
-    title: "Beyond the Horizon",
-    category: "Fantasy",
-    status: "Completed",
-    releaseYear: 2020,
-    runningTime: "120 min",
-  },
-  {
-    id: "4",
-    title: "Neon Mirage",
-    category: "Adventure",
-    status: "Funding",
-    releaseYear: 2016,
-    runningTime: "180 min",
-  },
-  {
-    id: "5",
-    title: "Parallel Hearts",
-    category: "Drama",
-    status: "Funding",
-    releaseYear: 2020,
-    runningTime: "240 min",
-  },
-  {
-    id: "6",
-    title: "Silent Verse",
-    category: "Drama",
-    status: "Completed",
-    releaseYear: 2011,
-    runningTime: "60 min",
-  },
-  {
-    id: "7",
-    title: "Mirage Runner",
-    category: "Sci-Fi",
-    status: "Funding",
-    releaseYear: 2019,
-    runningTime: "180 min",
-  },
-  {
-    id: "8",
-    title: "Moonlit Sonata",
-    category: "Horror",
-    status: "Completed",
-    releaseYear: 2019,
-    runningTime: "120 min",
-  },
-  {
-    id: "9",
-    title: "Stardust Prophecy",
-    category: "Romance",
-    status: "Completed",
-    releaseYear: 2008,
-    runningTime: "200 min",
-  },
-  {
-    id: "10",
-    title: "Crimson Shadows",
-    category: "Romance",
-    status: "Funding",
-    releaseYear: 2020,
-    runningTime: "200 min",
-  },
-]
-
 export function FilmTable() {
   const itemsPerPage = 10
   const totalPages = Math.ceil(filmsData.length / itemsPerPage)
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set())
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
+
+  if (filmsData.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold mb-3">No Films Added Yet</h2>
+        <p className="text-muted-foreground mb-6 max-w-md">
+          Start your first film project and begin your funding journey today.
+        </p>
+        <Link href="/creator/film/create">
+          <Button className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full px-6 py-3 gap-2 transition-colors">
+            <Plus className="w-5 h-5" />
+            Create Film
+          </Button>
+        </Link>
+      </div>
+    )
+  }
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
