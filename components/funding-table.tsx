@@ -37,7 +37,7 @@ export function FundingTable() {
         <p className="text-sm md:text-base text-muted-foreground text-center mb-6 max-w-md">
           Start your first film project and begin your funding journey today.
         </p>
-        <Link href="/creator/film/new">
+        <Link href="/creator/film/create">
           <button className="flex items-center gap-2 px-6 py-2.5 bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors">
             <Plus className="w-4 h-4" />
             Create Film
@@ -134,7 +134,6 @@ export function FundingTable() {
                       <DropdownMenuItem asChild>
                         <Link href={`/creator/funding/${campaign.id}`}>See Funding Details</Link>
                       </DropdownMenuItem>
-                      <DropdownMenuItem>Withdraw Funds</DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>Share Campaign</DropdownMenuItem>
                     </DropdownMenuContent>
@@ -183,7 +182,6 @@ export function FundingTable() {
                       <DropdownMenuItem asChild>
                         <Link href={`/creator/funding/${campaign.id}`}>See Funding Details</Link>
                       </DropdownMenuItem>
-                      <DropdownMenuItem>Withdraw Funds</DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>Share Campaign</DropdownMenuItem>
                     </DropdownMenuContent>

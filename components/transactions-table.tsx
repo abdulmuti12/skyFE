@@ -18,9 +18,13 @@ interface Transaction {
   status: TransactionStatus
 }
 
+interface TransactionsTableProps {
+  onTopUpClick?: () => void
+}
+
 const mockTransactions: Transaction[] = transactionsData as Transaction[]
 
-export function TransactionsTable() {
+export function TransactionsTable({ onTopUpClick }: TransactionsTableProps) {
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [currentPage, setCurrentPage] = useState(1)
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
@@ -114,7 +118,10 @@ export function TransactionsTable() {
           <p className="text-gray-400 text-center mb-8 max-w-md text-sm md:text-base">
             Your transaction history will appear here once you start funding or top up your USKY balance.
           </p>
-          <Button className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full px-6 py-2.5 flex items-center gap-2">
+          <Button
+            onClick={onTopUpClick}
+            className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full px-6 py-2.5 flex items-center gap-2"
+          >
             <Plus className="w-4 h-4" />
             Top Up USKY
           </Button>
