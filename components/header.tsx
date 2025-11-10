@@ -76,7 +76,7 @@ export function Header({ isDark, onToggleTheme, onMenuClick, onDesktopMenuClick 
           {/* === Right Section === */}
           <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
             {/* Become a Creator — tampil di semua ukuran */}
-            <button className="inline-flex items-center justify-center md:px-4 py-2 bg-muted text-foreground rounded-lg font-medium hover:bg-muted/80 transition-colors border border-border text-xs md:text-sm whitespace-nowrap w-[243px] h-[36px] md:w-auto md:h-auto">
+            <button className="inline-flex items-center justify-center md:px-4 py-2 bg-muted text-foreground rounded-lg font-medium hover:bg-muted/80 transition-colors border border-border text-xs md:text-sm whitespace-nowrap w-[230px] h-[36px] md:w-auto md:h-auto">
               Become a Creator
             </button>
 
