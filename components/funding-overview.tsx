@@ -7,6 +7,22 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import dataByTimeframe from "@/data/funding-overview.json"
 
 const emptyData = {
+  "1H": Array.from({ length: 12 }, (_, i) => ({
+    label: `00:${String(i * 5).padStart(2, "0")}`,
+    value: 0,
+  })),
+  "4H": Array.from({ length: 6 }, (_, i) => ({
+    label: `${String(i * 4).padStart(2, "0")}:00`,
+    value: 0,
+  })),
+  "1D": Array.from({ length: 12 }, (_, i) => ({
+    label: `${String(i * 2).padStart(2, "0")}:00`,
+    value: 0,
+  })),
+  "1M": Array.from({ length: 4 }, (_, i) => ({
+    label: `Week ${i + 1}`,
+    value: 0,
+  })),
   "6M": [
     { label: "Jan", value: 0 },
     { label: "Feb", value: 0 },
@@ -32,7 +48,7 @@ const emptyData = {
 }
 
 export function FundingOverview() {
-  const [timeframe, setTimeframe] = useState<"6M" | "1Y">("6M")
+  const [timeframe, setTimeframe] = useState<"1H" | "4H" | "1D" | "1M" | "6M" | "1Y">("1Y")
   const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
@@ -65,26 +81,74 @@ export function FundingOverview() {
           <Button
             variant="ghost"
             size="sm"
+            onClick={() => setTimeframe("1H")}
+            className={`h-9 px-3 text-sm font-medium rounded-md transition-colors ${
+              timeframe === "1H"
+                ? "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
+            }`}
+          >
+            1H
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setTimeframe("4H")}
+            className={`h-9 px-3 text-sm font-medium rounded-md transition-colors ${
+              timeframe === "4H"
+                ? "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
+            }`}
+          >
+            4H
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setTimeframe("1D")}
+            className={`h-9 px-3 text-sm font-medium rounded-md transition-colors ${
+              timeframe === "1D"
+                ? "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
+            }`}
+          >
+            1D
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setTimeframe("1M")}
+            className={`h-9 px-3 text-sm font-medium rounded-md transition-colors ${
+              timeframe === "1M"
+                ? "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
+            }`}
+          >
+            1M
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => setTimeframe("6M")}
-            className={`h-9 px-4 text-sm font-medium rounded-md transition-colors ${
+            className={`h-9 px-3 text-sm font-medium rounded-md transition-colors ${
               timeframe === "6M"
                 ? "bg-gray-700 text-white hover:bg-gray-600"
                 : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
             }`}
           >
-            Last 6 Months
+            6M
           </Button>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setTimeframe("1Y")}
-            className={`h-9 px-4 text-sm font-medium rounded-md transition-colors ${
+            className={`h-9 px-3 text-sm font-medium rounded-md transition-colors ${
               timeframe === "1Y"
                 ? "bg-gray-700 text-white hover:bg-gray-600"
                 : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
             }`}
           >
-            This Year
+            1Y
           </Button>
         </div>
       </CardHeader>
