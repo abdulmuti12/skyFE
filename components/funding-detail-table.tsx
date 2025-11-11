@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Download, ChevronDown } from "lucide-react"
-import investorsData from "@/data/funding_detail_nill.json"
+import investorsData from "@/data/funding_detail.json"
 
 interface InvestorRecord {
   id: string
