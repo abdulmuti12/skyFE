@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import fundingData from "@/data/creator_funding.json"
+import { ShareCampaignModal } from "@/components/share-campaign-modal"
 
 interface FundingCampaign {
   id: string
@@ -27,6 +28,8 @@ export function FundingTable() {
   const mockData: FundingCampaign[] = fundingData
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set())
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false)
+  const [selectedCampaign, setSelectedCampaign] = useState<FundingCampaign | null>(null)
 
   const hasNoData = mockData.length === 0
 
@@ -73,6 +76,11 @@ export function FundingTable() {
       newExpanded.add(id)
     }
     setExpandedRows(newExpanded)
+  }
+
+  const handleShareClick = (campaign: FundingCampaign) => {
+    setSelectedCampaign(campaign)
+    setIsShareModalOpen(true)
   }
 
   const StatusBadge = ({ status }: { status: "Funding" | "Completed" }) => {
@@ -135,7 +143,7 @@ export function FundingTable() {
                         <Link href={`/creator/funding/${campaign.id}`}>See Funding Details</Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem>Share Campaign</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleShareClick(campaign)}>Share Campaign</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </td>
@@ -183,7 +191,7 @@ export function FundingTable() {
                         <Link href={`/creator/funding/${campaign.id}`}>See Funding Details</Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem>Share Campaign</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleShareClick(campaign)}>Share Campaign</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
@@ -239,6 +247,14 @@ export function FundingTable() {
           </div>
         </div>
       </div>
+
+      {/* Share Campaign Modal */}
+      <ShareCampaignModal
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        campaignTitle={selectedCampaign?.title}
+        campaignUrl={selectedCampaign ? `/creator/funding/${selectedCampaign.id}` : undefined}
+      />
     </div>
   )
 }
