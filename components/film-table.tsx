@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { MoreVertical, CheckCircle2, Clock, ChevronDown, Plus } from "lucide-react"
+import { MoreVertical, CheckCircle2, Clock, ChevronDown, Plus } from 'lucide-react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import {
   DropdownMenu,
@@ -132,7 +132,9 @@ export function FilmTable() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
-                      <DropdownMenuItem>View Movie Details</DropdownMenuItem>
+                      <Link href={`/creator/film/${film.id}`}>
+                        <DropdownMenuItem>View Movie Details</DropdownMenuItem>
+                      </Link>
                       <DropdownMenuItem>View Funding Details</DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>Withdraw Funds</DropdownMenuItem>
@@ -186,7 +188,9 @@ export function FilmTable() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
-                      <DropdownMenuItem>View Movie Details</DropdownMenuItem>
+                      <Link href={`/creator/film/${film.id}`}>
+                        <DropdownMenuItem>View Movie Details</DropdownMenuItem>
+                      </Link>
                       <DropdownMenuItem>View Funding Details</DropdownMenuItem>
                       <DropdownMenuItem>Withdraw Funds</DropdownMenuItem>
                       <DropdownMenuItem>Share Campaign</DropdownMenuItem>

@@ -1,9 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { InvestorSidebar } from "@/components/investor-sidebar"
-import { Header } from "@/components/header-investor"
-import { TransactionsTable } from "@/components/transactions-table-investor"
+import { useState } from "react"
+import { CreatorSidebar } from "@/components/creator-sidebar"
+import { CreatorHeader } from "@/components/creator-header"
+import { TransactionsTable } from "@/components/transactions-table"
 import { Button } from "@/components/ui/button"
 import { TopUpModal } from "@/components/top-up-modal"
 import { PaymentMethodModal } from "@/components/payment-method-modal"
@@ -11,30 +11,7 @@ import { CreditCardModal } from "@/components/credit-card-modal"
 import { QrisModal } from "@/components/qris-modal"
 import transactionsData from "@/data/transactions_data.json"
 
-/*************  ✨ Windsurf Command ⭐  *************/
-/**
- * TransactionsPage
- *
- * A page for creators to view their transactions.
- *
- * This page renders a table of transactions, and also allows creators to top up their account.
- *
- * The page also includes a sidebar for navigation.
- *
- * @param {boolean} isDark - Whether the page is in dark mode.
- * @param {boolean} mounted - Whether the page has finished mounting.
- * @param {boolean} isSidebarOpen - Whether the sidebar is open.
- * @param {boolean} isDesktopSidebarOpen - Whether the desktop sidebar is open.
- * @param {boolean} isTopUpModalOpen - Whether the top up modal is open.
- * @param {boolean} isPaymentModalOpen - Whether the payment method modal is open.
- * @param {boolean} isCreditCardModalOpen - Whether the credit card modal is open.
- * @param {boolean} isQrisModalOpen - Whether the QRIS modal is open.
- * @param {string} selectedAmount - The amount selected for topping up.
- * @return {JSX.Element} The rendered page.
- */
-/*******  29a6a200-bd08-4881-9b30-ce3d0b9ec295  *******/export default function TransactionsPage() {
-  const [isDark, setIsDark] = useState(false)
-  const [mounted, setMounted] = useState(false)
+export default function TransactionsPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true)
   const [isTopUpModalOpen, setIsTopUpModalOpen] = useState(false)
@@ -43,29 +20,7 @@ import transactionsData from "@/data/transactions_data.json"
   const [isQrisModalOpen, setIsQrisModalOpen] = useState(false)
   const [selectedAmount, setSelectedAmount] = useState("")
 
-  useEffect(() => {
-    setMounted(true)
-    const savedTheme = localStorage.getItem("theme")
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-    const shouldBeDark = savedTheme ? savedTheme === "dark" : prefersDark
-    setIsDark(shouldBeDark)
-    updateTheme(shouldBeDark)
-  }, [])
-
-  const updateTheme = (dark: boolean) => {
-    if (dark) {
-      document.documentElement.classList.add("dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-    }
-    localStorage.setItem("theme", dark ? "dark" : "light")
-  }
-
-  const toggleTheme = () => {
-    const newTheme = !isDark
-    setIsDark(newTheme)
-    updateTheme(newTheme)
-  }
+  const hasTransactions = transactionsData.length > 0
 
   const handleTopUpContinue = (amount: string) => {
     setSelectedAmount(amount)
@@ -92,35 +47,23 @@ import transactionsData from "@/data/transactions_data.json"
     setIsPaymentModalOpen(true)
   }
 
-  const hasTransactions = transactionsData && transactionsData.length > 0
-
-  if (!mounted) return null
-
   return (
-    <div className={isDark ? "dark" : ""}>
-      <div className="h-screen overflow-hidden bg-background text-foreground">
-        {/* Desktop Sidebar - Fixed */}
-        {isDesktopSidebarOpen && (
-          <div className="hidden lg:block">
-            <InvestorSidebar />
-          </div>
-        )}
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="flex flex-col lg:flex-row">
+        {/* Desktop Sidebar */}
+        <CreatorSidebar isOpen={isDesktopSidebarOpen} />
 
         {/* Mobile Sidebar */}
-        <InvestorSidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        <CreatorSidebar isMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <div className={`h-screen flex flex-col ${isDesktopSidebarOpen ? "lg:pl-64" : ""}`}>
-          {/* Header - Fixed at top */}
-          <div className="flex-shrink-0">
-            <Header
-              isDark={isDark}
-              onToggleTheme={toggleTheme}
-              onMenuClick={() => setIsSidebarOpen(true)}
-              onDesktopMenuClick={() => setIsDesktopSidebarOpen(!isDesktopSidebarOpen)}
-            />
-          </div>
+        {/* Main content */}
+        <div className={`flex-1 w-full transition-all duration-300 ${isDesktopSidebarOpen ? "lg:ml-0" : "lg:ml-0"}`}>
+          <CreatorHeader
+            onMenuClick={() => setIsSidebarOpen(true)}
+            onDesktopMenuClick={() => setIsDesktopSidebarOpen(!isDesktopSidebarOpen)}
+          />
 
-          <main className="flex-1 overflow-y-auto p-3 md:p-4 lg:p-6 pb-6">
+          <main className="p-3 md:p-4 lg:p-6">
             <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <h1 className="text-2xl md:text-3xl font-bold">Transactions</h1>
 
