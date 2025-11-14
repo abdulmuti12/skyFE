@@ -177,7 +177,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                     Film
                   </Link>
                   <span>›</span>
-                  <span className="text-foreground">{movie.title}</span>
+                  <span className="text-foreground">Film Detail</span>
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-6 mb-6">
