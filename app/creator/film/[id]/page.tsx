@@ -174,7 +174,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                   <Link href="/investor" className="hover:text-foreground flex items-center gap-1">
                     <ChevronLeft className="w-4 h-4" />
-                    Home
+                    Film
                   </Link>
                   <span>›</span>
                   <span className="text-foreground">{movie.title}</span>
