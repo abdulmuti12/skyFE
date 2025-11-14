@@ -18,21 +18,9 @@ interface Transaction {
   status: TransactionStatus
 }
 
-<<<<<<< HEAD
-const mockTransactions: Transaction[] = []
-
-interface TransactionsTableProps {
-  onTopUpClick?: () => void
-}
-=======
-interface TransactionsTableProps {
-  onTopUpClick?: () => void
-}
-
 const mockTransactions: Transaction[] = transactionsData as Transaction[]
->>>>>>> main
 
-export function TransactionsTable({ onTopUpClick }: TransactionsTableProps) {
+export function TransactionsTable() {
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [currentPage, setCurrentPage] = useState(1)
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
@@ -78,68 +66,7 @@ export function TransactionsTable({ onTopUpClick }: TransactionsTableProps) {
     setExpandedRows(newExpanded)
   }
 
-<<<<<<< HEAD
-  // Empty State Rendering when no transactions exist
-  if (mockTransactions.length === 0) {
-    return (
-      <div className="space-y-4">
-        {/* Filters and Download Button */}
-        <div className="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Select defaultValue="all-dates">
-              <SelectTrigger className="w-full sm:w-[180px] bg-zinc-100 dark:bg-zinc-900 border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-white">
-                <SelectValue placeholder="Date Range" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all-dates">Date Range</SelectItem>
-                <SelectItem value="today">Today</SelectItem>
-                <SelectItem value="week">This Week</SelectItem>
-                <SelectItem value="month">This Month</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select defaultValue="all-types">
-              <SelectTrigger className="w-full sm:w-[180px] bg-zinc-100 dark:bg-zinc-900 border-zinc-300 dark:border-zinc-800 text-zinc-900 dark:text-white">
-                <SelectValue placeholder="Transaction Type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all-types">Transaction Type</SelectItem>
-                <SelectItem value="top-up">Top Up</SelectItem>
-                <SelectItem value="funding">Funding</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <Button
-            variant="outline"
-            className="w-full md:w-auto bg-zinc-800 hover:bg-zinc-700 border-zinc-700 text-white rounded-lg px-4 py-2"
-          >
-            <Download className="w-4 h-4 mr-2" />
-            Download Report
-          </Button>
-        </div>
-
-        {/* Empty State Container */}
-        <div className="rounded-lg border border-border overflow-hidden">
-          <div className="w-full flex flex-col items-center justify-center py-12 md:py-24 px-4">
-            <h2 className="text-xl md:text-2xl font-semibold mb-2 text-center">No Transactions Yet</h2>
-            <p className="text-sm md:text-base text-muted-foreground text-center max-w-md mb-6">
-              Your transaction history will appear here once you start funding or top up your USKY balance.
-            </p>
-            <Button
-              onClick={onTopUpClick}
-              className="px-6 py-2 text-sm bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors whitespace-nowrap"
-            >
-              Top Up USKY
-            </Button>
-          </div>
-        </div>
-      </div>
-    )
-  }
-=======
   const hasNoTransactions = mockTransactions.length === 0
->>>>>>> main
 
   return (
     <div className="space-y-4">
@@ -187,10 +114,8 @@ export function TransactionsTable({ onTopUpClick }: TransactionsTableProps) {
           <p className="text-gray-400 text-center mb-8 max-w-md text-sm md:text-base">
             Your transaction history will appear here once you start funding or top up your USKY balance.
           </p>
-          <Button
-            onClick={onTopUpClick}
-            className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full px-6 py-2.5 flex items-center gap-2"
-          >
+          <Button                 onClick={() => setIsTopUpModalOpen(true)}
+ className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full px-6 py-2.5 flex items-center gap-2">
             <Plus className="w-4 h-4" />
             Top Up USKY
           </Button>
@@ -301,45 +226,6 @@ export function TransactionsTable({ onTopUpClick }: TransactionsTableProps) {
               </Select>
             </div>
 
-<<<<<<< HEAD
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-muted-foreground hidden md:inline">
-            Page {currentPage} of {totalPages}
-          </span>
-          <div className="flex gap-1">
-            <Button
-              variant="outline"
-              className="h-8 w-8 bg-transparent"
-              onClick={() => setCurrentPage(1)}
-              disabled={currentPage === 1}
-            >
-              <ChevronsLeft className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              className="h-8 w-8 bg-transparent"
-              onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
-              disabled={currentPage === 1}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              className="h-8 w-8 bg-transparent"
-              onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
-              disabled={currentPage === totalPages}
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              className="h-8 w-8 bg-transparent"
-              onClick={() => setCurrentPage(totalPages)}
-              disabled={currentPage === totalPages}
-            >
-              <ChevronsRight className="h-4 w-4" />
-            </Button>
-=======
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground hidden md:inline">
                 Page {currentPage} of {totalPages}
@@ -383,7 +269,6 @@ export function TransactionsTable({ onTopUpClick }: TransactionsTableProps) {
                 </Button>
               </div>
             </div>
->>>>>>> main
           </div>
         </>
       )}

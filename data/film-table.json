@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1",
+    "title": "Echoes of Tomorrow",
+    "category": "Horror",
+    "status": "Funding",
+    "releaseYear": 1964,
+    "runningTime": "180 min"
+  },
+  {
+    "id": "2",
+    "title": "Dreambound",
+    "category": "Fantasy",
+    "status": "Completed",
+    "releaseYear": 2003,
+    "runningTime": "200 min"
+  },
+  {
+    "id": "3",
+    "title": "Beyond the Horizon",
+    "category": "Fantasy",
+    "status": "Completed",
+    "releaseYear": 2020,
+    "runningTime": "120 min"
+  },
+  {
+    "id": "4",
+    "title": "Neon Mirage",
+    "category": "Adventure",
+    "status": "Funding",
+    "releaseYear": 2016,
+    "runningTime": "180 min"
+  },
+  {
+    "id": "5",
+    "title": "Parallel Hearts",
+    "category": "Drama",
+    "status": "Funding",
+    "releaseYear": 2020,
+    "runningTime": "240 min"
+  },
+  {
+    "id": "6",
+    "title": "Silent Verse",
+    "category": "Drama",
+    "status": "Completed",
+    "releaseYear": 2011,
+    "runningTime": "60 min"
+  },
+  {
+    "id": "7",
+    "title": "Mirage Runner",
+    "category": "Sci-Fi",
+    "status": "Funding",
+    "releaseYear": 2019,
+    "runningTime": "180 min"
+  },
+  {
+    "id": "8",
+    "title": "Moonlit Sonata",
+    "category": "Horror",
+    "status": "Completed",
+    "releaseYear": 2019,
+    "runningTime": "120 min"
+  },
+  {
+    "id": "9",
+    "title": "Stardust Prophecy",
+    "category": "Romance",
+    "status": "Completed",
+    "releaseYear": 2008,
+    "runningTime": "200 min"
+  },
+  {
+    "id": "10",
+    "title": "Crimson Shadows",
+    "category": "Romance",
+    "status": "Funding",
+    "releaseYear": 2020,
+    "runningTime": "200 min"
+  }
+]

@@ -1,8 +1,12 @@
 "use client"
 
 import { useState } from "react"
+<<<<<<< HEAD
 import Link from "next/link"
 import { MoreVertical, CheckCircle2, Clock, ChevronDown } from "lucide-react"
+=======
+import { MoreVertical, CheckCircle2, Clock, ChevronDown, Plus } from 'lucide-react'
+>>>>>>> main
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import {
   DropdownMenu,
@@ -12,9 +16,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
+<<<<<<< HEAD
 import { Empty, EmptyHeader, EmptyTitle, EmptyDescription, EmptyContent } from "@/components/ui/empty"
 
 const filmsData: any[] = []
+=======
+import filmsData from "@/data/film-table.json"
+import Link from "next/link"
+
+interface Film {
+  id: string
+  title: string
+  category: string
+  status: "Funding" | "Completed"
+  releaseYear: number
+  runningTime: string
+}
+>>>>>>> main
 
 export function FilmTable() {
   const itemsPerPage = 10
@@ -22,6 +40,23 @@ export function FilmTable() {
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set())
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set())
+
+  if (filmsData.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold mb-3">No Films Added Yet</h2>
+        <p className="text-muted-foreground mb-6 max-w-md">
+          Start your first film project and begin your funding journey today.
+        </p>
+        <Link href="/creator/film/create">
+          <Button className="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold rounded-full px-6 py-3 gap-2 transition-colors">
+            <Plus className="w-5 h-5" />
+            Create Film
+          </Button>
+        </Link>
+      </div>
+    )
+  }
 
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
@@ -130,7 +165,9 @@ export function FilmTable() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
-                      <DropdownMenuItem>View Movie Details</DropdownMenuItem>
+                      <Link href={`/creator/film/${film.id}`}>
+                        <DropdownMenuItem>View Movie Details</DropdownMenuItem>
+                      </Link>
                       <DropdownMenuItem>View Funding Details</DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>Withdraw Funds</DropdownMenuItem>
@@ -184,7 +221,9 @@ export function FilmTable() {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-48">
-                      <DropdownMenuItem>View Movie Details</DropdownMenuItem>
+                      <Link href={`/creator/film/${film.id}`}>
+                        <DropdownMenuItem>View Movie Details</DropdownMenuItem>
+                      </Link>
                       <DropdownMenuItem>View Funding Details</DropdownMenuItem>
                       <DropdownMenuItem>Withdraw Funds</DropdownMenuItem>
                       <DropdownMenuItem>Share Campaign</DropdownMenuItem>

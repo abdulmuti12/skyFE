@@ -9,6 +9,7 @@ import { TopUpModal } from "@/components/top-up-modal"
 import { PaymentMethodModal } from "@/components/payment-method-modal"
 import { CreditCardModal } from "@/components/credit-card-modal"
 import { QrisModal } from "@/components/qris-modal"
+import transactionsData from "@/data/transactions_data.json"
 
 export default function TransactionsPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -18,6 +19,8 @@ export default function TransactionsPage() {
   const [isCreditCardModalOpen, setIsCreditCardModalOpen] = useState(false)
   const [isQrisModalOpen, setIsQrisModalOpen] = useState(false)
   const [selectedAmount, setSelectedAmount] = useState("")
+
+  const hasTransactions = transactionsData.length > 0
 
   const handleTopUpContinue = (amount: string) => {
     setSelectedAmount(amount)
@@ -64,12 +67,14 @@ export default function TransactionsPage() {
             <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <h1 className="text-2xl md:text-3xl font-bold">Transactions</h1>
 
-              <Button
-                onClick={() => setIsTopUpModalOpen(true)}
-                className="w-full md:w-auto px-6 py-2 text-sm bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors whitespace-nowrap"
-              >
-                Top Up USKY
-              </Button>
+              {hasTransactions && (
+                <Button
+                  onClick={() => setIsTopUpModalOpen(true)}
+                  className="w-full md:w-auto px-6 py-2 text-sm bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors whitespace-nowrap"
+                >
+                  Top Up USKY
+                </Button>
+              )}
             </div>
 
             {/* Transactions Table */}

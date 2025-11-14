@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Total Funding Received",
+    "value": "45,231.89 USKY",
+    "change": "+201% increase from last month",
+    "icon": "dollar"
+  },
+  {
+    "title": "Active Projects",
+    "value": "2",
+    "change": "+180.1% increase from last month",
+    "icon": "folder"
+  },
+  {
+    "title": "Total Investors",
+    "value": "+12,234",
+    "change": "+19% increase from last month",
+    "icon": "users"
+  },
+  {
+    "title": "Monthly Growth Rate",
+    "value": "+573",
+    "change": "+2.01% increase from last month",
+    "icon": "trending"
+  }
+]

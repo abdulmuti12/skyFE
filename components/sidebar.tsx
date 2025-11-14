@@ -14,8 +14,8 @@ export function Sidebar({ isMobile = false, isOpen = false, onClose }: SidebarPr
     { icon: Rocket, label: "Sky Launch", href: "#" },
     { icon: Home, label: "Home", href: "/" },
     { icon: Bookmark, label: "Watchlist", href: "/watchlist" },
-    { icon: Grid3x3, label: "Portfolio", href: "#" },
-    { icon: User, label: "Profile", href: "#" },
+    { icon: Grid3x3, label: "Portfolio", href: "/portfolio" },
+    { icon: User, label: "Profile", href: "/profile-default" },
   ]
 
   if (isMobile) {

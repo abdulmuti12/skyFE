@@ -185,7 +185,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
       `}</style>
 
       <div className="min-h-screen bg-background text-foreground">
-        <div className="flex flex-col lg:flex-row overflow-x-hidden max-w-screen">
+        <div className="flex flex-col lg:flex-row overflow-hidden">
           {isDesktopSidebarOpen && (
             <div className="hidden lg:block">
               <InvestorSidebar />
@@ -205,7 +205,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
             </div>
 
             <div className="flex flex-col lg:flex-row flex-1 min-w-0">
-              <div className="flex-1 overflow-y-auto lg:overflow-visible overflow-x-hidden min-w-0">
+              <div className="flex-1 min-w-0">
                 <div className="p-4 lg:p-6 max-w-full">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                     <Link href="/investor" className="hover:text-foreground flex items-center gap-1">
@@ -384,7 +384,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                                 variant="outline"
                                 size="sm"
                                 onClick={() => setPresetAmount("0")}
-                                className="flex-shrink-0"
+                                className="flex-1 flex items-center gap-2 md:bg-black md:text-white md:border-gray-700 md:hover:bg-gray-900 md:text-xs bg-transparent"
                                 disabled={isFundingComplete}
                               >
                                 Reset
@@ -393,7 +393,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                                 variant="outline"
                                 size="sm"
                                 onClick={() => setPresetAmount("0.1")}
-                                className="flex-shrink-0"
+                                 className="flex-1 flex items-center gap-2 md:bg-black md:text-white md:border-gray-700 md:hover:bg-gray-900 md:text-xs bg-transparent"
                                 disabled={isFundingComplete}
                               >
                                 0.1 USKY
@@ -402,7 +402,8 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                                 variant="outline"
                                 size="sm"
                                 onClick={() => setPresetAmount("0.5")}
-                                className="flex-shrink-0"
+                                className="flex-1 flex items-center gap-2 md:bg-black md:text-white md:border-gray-700 md:hover:bg-gray-900 md:text-xs bg-transparent"
+
                                 disabled={isFundingComplete}
                               >
                                 0.5 USKY
@@ -410,17 +411,17 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                               <Button
                                 variant="outline"
                                 size="sm"
+                                className="flex-1 flex items-center gap-2 md:bg-black md:text-white md:border-gray-700 md:hover:bg-gray-900 md:text-xs bg-transparent"
                                 onClick={() => setPresetAmount("1")}
-                                className="flex-shrink-0"
                                 disabled={isFundingComplete}
                               >
                                 1 USKY
                               </Button>
                               <Button
                                 variant="outline"
+                                className="flex-1 flex items-center gap-2 md:bg-black md:text-white md:border-gray-700 md:hover:bg-gray-900 md:text-xs bg-transparent"
                                 size="sm"
                                 onClick={() => setPresetAmount(movie.balance.toString())}
-                                className="flex-shrink-0"
                                 disabled={isFundingComplete}
                               >
                                 Max
@@ -739,8 +740,8 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                 </div>
               </div>
 
-              <div className="hidden lg:block w-96 flex-shrink-0 border-l border-border p-6 overflow-x-hidden">
-                <div className="mb-6 relative overflow-hidden">
+              <div className="hidden lg:block w-96 flex-shrink-0 border-l border-border p-6">
+                <div className="mb-6 relative">
                   {showCelebration && (
                     <>
                       {celebrationEmojis.map((emoji, index) => (
@@ -806,6 +807,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                         size="sm"
                         onClick={() => setPresetAmount("0")}
                         disabled={isFundingComplete}
+                      className="flex-1 flex items-center gap-2 bg-black text-white border-gray-700 hover:bg-gray-900 text-xs"
                       >
                         Reset
                       </Button>
@@ -814,6 +816,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                         size="sm"
                         onClick={() => setPresetAmount("0.1")}
                         disabled={isFundingComplete}
+                     className="flex-1 flex items-center gap-2 bg-black text-white border-gray-700 hover:bg-gray-900 text-xs"
                       >
                         0.1 USKY
                       </Button>
@@ -822,12 +825,14 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                         size="sm"
                         onClick={() => setPresetAmount("0.5")}
                         disabled={isFundingComplete}
+                       className="flex-1 flex items-center gap-2 bg-black text-white border-gray-700 hover:bg-gray-900 text-xs"
                       >
                         0.5 USKY
                       </Button>
                       <Button
                         variant="outline"
                         size="sm"
+                        className="flex-1 flex items-center gap-2 bg-black text-white border-gray-700 hover:bg-gray-900 text-xs"
                         onClick={() => setPresetAmount("1")}
                         disabled={isFundingComplete}
                       >
@@ -835,6 +840,7 @@ export default function MovieDetailPage({ params }: { params: { id: string } }) 
                       </Button>
                       <Button
                         variant="outline"
+                        className="flex-1 flex items-center gap-2 bg-black text-white border-gray-700 hover:bg-gray-900 text-xs"
                         size="sm"
                         onClick={() => setPresetAmount(movie.balance.toString())}
                         disabled={isFundingComplete}

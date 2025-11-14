@@ -31,7 +31,7 @@ export default function FundingPage() {
               <h1 className="text-3xl font-bold">Funding</h1>
             </div>
 
-            <div className="flex flex-row gap-2 md:gap-3 mb-6 justify-end items-center flex-wrap">
+            {/* <div className="flex flex-row gap-2 md:gap-3 mb-6 justify-end items-center flex-wrap">
               <Button
                 variant="outline"
                 className="px-3 md:px-6 py-1.5 md:py-2 text-xs md:text-sm bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-colors whitespace-nowrap"
@@ -42,7 +42,7 @@ export default function FundingPage() {
               <Button className="px-3 md:px-6 py-1.5 md:py-2 text-xs md:text-sm bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors whitespace-nowrap">
                 + Create New Campaign
               </Button>
-            </div>
+            </div> */}
 
             {/* Funding Table */}
             <FundingTable />

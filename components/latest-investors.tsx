@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyTitle } from "@/components/ui/empty"
 import { Plus } from "lucide-react"
+import investorsData from "@/data/latest-investors.json"
 
 interface Investor {
   id: string
@@ -14,7 +15,11 @@ interface Investor {
   avatar: string
 }
 
+<<<<<<< HEAD
 const investors: Investor[] = []
+=======
+const investors: Investor[] = investorsData
+>>>>>>> main
 
 export function LatestInvestors() {
   const investorCount = investors.length
@@ -34,8 +39,13 @@ export function LatestInvestors() {
             </EmptyDescription>
           </EmptyHeader>
           <EmptyContent>
+<<<<<<< HEAD
             <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-full px-6 py-2 text-sm gap-2">
               <Plus className="w-4 h-4" />
+=======
+            <Button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-full px-8 py-6 md:py-3 text-base gap-2">
+              <Plus className="w-5 h-5" />
+>>>>>>> main
               Create Film
             </Button>
           </EmptyContent>

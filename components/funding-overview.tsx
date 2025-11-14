@@ -4,12 +4,33 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
+import dataByTimeframe from "@/data/funding-overview.json"
 
+<<<<<<< HEAD
 const dataByTimeframe = {
   "1H": [],
   "4H": [],
   "1D": [],
   "1M": [],
+=======
+const emptyData = {
+  "1H": Array.from({ length: 12 }, (_, i) => ({
+    label: `00:${String(i * 5).padStart(2, "0")}`,
+    value: 0,
+  })),
+  "4H": Array.from({ length: 6 }, (_, i) => ({
+    label: `${String(i * 4).padStart(2, "0")}:00`,
+    value: 0,
+  })),
+  "1D": Array.from({ length: 12 }, (_, i) => ({
+    label: `${String(i * 2).padStart(2, "0")}:00`,
+    value: 0,
+  })),
+  "1M": Array.from({ length: 4 }, (_, i) => ({
+    label: `Week ${i + 1}`,
+    value: 0,
+  })),
+>>>>>>> main
   "6M": [
     { label: "Jan", value: 0 },
     { label: "Feb", value: 0 },
@@ -56,28 +77,87 @@ export function FundingOverview() {
   const cardBg = isDark ? "#1f2937" : "#ffffff"
   const barColor = isDark ? "#d1d5db" : "#e5e7eb"
 
-  const chartData = dataByTimeframe[timeframe]
+  const hasData = dataByTimeframe && Object.keys(dataByTimeframe).length > 0
+  const dataSource = hasData ? dataByTimeframe : emptyData
+  const chartData = dataSource[timeframe]
 
   return (
     <Card className="bg-card border-border">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
         <CardTitle className="text-xl font-semibold">Funding Overview</CardTitle>
         <div className="flex gap-0 bg-black/40 rounded-lg p-1 border border-border">
-          {(["1H", "4H", "1D", "1M", "6M", "1Y"] as const).map((period) => (
-            <Button
-              key={period}
-              variant="ghost"
-              size="sm"
-              onClick={() => setTimeframe(period)}
-              className={`h-9 px-4 text-sm font-medium rounded-md transition-colors ${
-                timeframe === period
-                  ? "bg-gray-700 text-white hover:bg-gray-600"
-                  : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
-              }`}
-            >
-              {period}
-            </Button>
-          ))}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setTimeframe("1H")}
+            className={`h-9 px-3 text-sm font-medium rounded-md transition-colors ${
+              timeframe === "1H"
+                ? "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
+            }`}
+          >
+            1H
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setTimeframe("4H")}
+            className={`h-9 px-3 text-sm font-medium rounded-md transition-colors ${
+              timeframe === "4H"
+                ? "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
+            }`}
+          >
+            4H
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setTimeframe("1D")}
+            className={`h-9 px-3 text-sm font-medium rounded-md transition-colors ${
+              timeframe === "1D"
+                ? "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
+            }`}
+          >
+            1D
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setTimeframe("1M")}
+            className={`h-9 px-3 text-sm font-medium rounded-md transition-colors ${
+              timeframe === "1M"
+                ? "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
+            }`}
+          >
+            1M
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setTimeframe("6M")}
+            className={`h-9 px-3 text-sm font-medium rounded-md transition-colors ${
+              timeframe === "6M"
+                ? "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
+            }`}
+          >
+            6M
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setTimeframe("1Y")}
+            className={`h-9 px-3 text-sm font-medium rounded-md transition-colors ${
+              timeframe === "1Y"
+                ? "bg-gray-700 text-white hover:bg-gray-600"
+                : "bg-transparent text-white/70 hover:text-white hover:bg-gray-800/50"
+            }`}
+          >
+            1Y
+          </Button>
         </div>
       </CardHeader>
       <CardContent>

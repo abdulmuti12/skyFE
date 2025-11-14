@@ -3,14 +3,36 @@
 import { useState, useEffect } from "react"
 import { InvestorSidebar } from "@/components/investor-sidebar"
 import { Header } from "@/components/header-investor"
-import { TransactionsTable } from "@/components/transactions-table"
+import { TransactionsTable } from "@/components/transactions-table-investor"
 import { Button } from "@/components/ui/button"
 import { TopUpModal } from "@/components/top-up-modal"
 import { PaymentMethodModal } from "@/components/payment-method-modal"
 import { CreditCardModal } from "@/components/credit-card-modal"
 import { QrisModal } from "@/components/qris-modal"
+import transactionsData from "@/data/transactions_data.json"
 
-export default function TransactionsPage() {
+/*************  ✨ Windsurf Command ⭐  *************/
+/**
+ * TransactionsPage
+ *
+ * A page for creators to view their transactions.
+ *
+ * This page renders a table of transactions, and also allows creators to top up their account.
+ *
+ * The page also includes a sidebar for navigation.
+ *
+ * @param {boolean} isDark - Whether the page is in dark mode.
+ * @param {boolean} mounted - Whether the page has finished mounting.
+ * @param {boolean} isSidebarOpen - Whether the sidebar is open.
+ * @param {boolean} isDesktopSidebarOpen - Whether the desktop sidebar is open.
+ * @param {boolean} isTopUpModalOpen - Whether the top up modal is open.
+ * @param {boolean} isPaymentModalOpen - Whether the payment method modal is open.
+ * @param {boolean} isCreditCardModalOpen - Whether the credit card modal is open.
+ * @param {boolean} isQrisModalOpen - Whether the QRIS modal is open.
+ * @param {string} selectedAmount - The amount selected for topping up.
+ * @return {JSX.Element} The rendered page.
+ */
+/*******  29a6a200-bd08-4881-9b30-ce3d0b9ec295  *******/export default function TransactionsPage() {
   const [isDark, setIsDark] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -70,6 +92,8 @@ export default function TransactionsPage() {
     setIsPaymentModalOpen(true)
   }
 
+  const hasTransactions = transactionsData && transactionsData.length > 0
+
   if (!mounted) return null
 
   return (
@@ -100,12 +124,14 @@ export default function TransactionsPage() {
             <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <h1 className="text-2xl md:text-3xl font-bold">Transactions</h1>
 
-              <Button
-                onClick={() => setIsTopUpModalOpen(true)}
-                className="w-full md:w-auto px-6 py-2 text-sm bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors whitespace-nowrap"
-              >
-                Top Up USKY
-              </Button>
+              {hasTransactions && (
+                <Button
+                  onClick={() => setIsTopUpModalOpen(true)}
+                  className="w-full md:w-auto px-6 py-2 text-sm bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors whitespace-nowrap"
+                >
+                  Top Up USKY
+                </Button>
+              )}
             </div>
 
             {/* Transactions Table */}
