@@ -60,7 +60,18 @@ export default function InvestorDashboard() {
               onDesktopMenuClick={() => setIsDesktopSidebarOpen(!isDesktopSidebarOpen)}
             />
 
-            <main className="flex-1 overflow-y-auto p-3 md:p-4 lg:p-6 pb-6">
+            <main 
+              className="flex-1 overflow-y-auto p-3 md:p-4 lg:p-6 pb-6 scrollbar-hide"
+              style={{
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+              }}
+            >
+              <style jsx>{`
+                main::-webkit-scrollbar {
+                  display: none;
+                }
+              `}</style>
               <InvestmentTrendingSection />
               <InvestmentGrid />
             </main>
