@@ -30,19 +30,19 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/assets/logo/logos.png",
+        url: "/assets/logo/skylo.png",
         sizes: "192x192",
         type: "image/png",
       },
       {
-        url: "/assets/logo/logos.png",
+        url: "/assets/logo/skylo.png",
         sizes: "512x512",
         type: "image/png",
       },
     ],
-    shortcut: "/assets/logo/logos.png",
+    shortcut: "/assets/logo/skylo.png",
     apple: {
-      url: "/assets/logo/logos.png",
+      url: "/assets/logo/skylo.png",
       sizes: "180x180",
       type: "image/png",
     },
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/assets/logo/logos.png",
+        url: "/assets/logo/logos2.png",
         width: 750,
         height: 500,
         alt: "SKYLO Logo",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     site: "@skylo",
     title: "Create & Share AI Videos on Web3",
     description: "SKYLO empowers users to make AI videos within a Web3 ecosystem, simplifying content creation and decentralized engagement",
-    images: ["/assets/logo/logos.png"],
+    images: ["/assets/logo/logos2.png"],
   },
 }
 
