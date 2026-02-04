@@ -7,13 +7,11 @@ import { ClientThemeProvider } from "@/components/client-theme-provider"
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
-// 1. Konfigurasi Viewport
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1.0,
 }
 
-// 2. Konfigurasi Metadata
 export const metadata: Metadata = {
   metadataBase: new URL("https://skylo.id"),
   title: "SKYLO | Create & Share AI Videos on Web3",
@@ -25,20 +23,30 @@ export const metadata: Metadata = {
   authors: [{ name: "SKYLO" }],
   generator: "App",
   
-  // Custom Meta Tags
   other: {
     "google_font_api": "AIzaSyBG58yNdAjc20_8jAvLNSVi9E4Xhwjau_k",
   },
 
-  // --- BAGIAN LOGO (FAVICON) ---
-  // Tambahkan ini agar logo muncul di tab browser (sebelah judul)
   icons: {
-    icon: "/assets/logo/logos.png",
+    icon: [
+      {
+        url: "/assets/logo/logos.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "/assets/logo/logos.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
     shortcut: "/assets/logo/logos.png",
-    apple: "/assets/logo/logos.png", // Untuk icon bookmark di iPhone/Mac
+    apple: {
+      url: "/assets/logo/logos.png",
+      sizes: "180x180",
+      type: "image/png",
+    },
   },
-
-  // Open Graph (Facebook/WA)
   openGraph: {
     title: "Create & Share AI Videos on Web3",
     description: "SKYLO empowers users to make AI videos within a Web3 ecosystem, simplifying content creation and decentralized engagement",
