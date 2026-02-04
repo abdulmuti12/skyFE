@@ -13,14 +13,22 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://skylo.id"),
+  
+  metadataBase: new URL("https://skylo.id"), 
+  
+  //  <title> dan <meta name="description">
   title: "SKYLO | Create & Share AI Videos on Web3",
   description: "Join SKYLO — the platform where anyone can create, share, and trade AI videos on Web3",
+  
+  
   keywords: [
     "AI video", "Web3", "tokenized content", "blockchain video", 
     "Skylo", "create AI videos", "share", "watch", "engage", "crypto", "NFT video"
   ],
+  
+  // <meta name="Author">
   authors: [{ name: "SKYLO" }],
+  
   generator: "App",
   
   other: {
@@ -47,6 +55,8 @@ export const metadata: Metadata = {
       type: "image/png",
     },
   },
+
+  //  property="og:..."
   openGraph: {
     title: "Create & Share AI Videos on Web3",
     description: "SKYLO empowers users to make AI videos within a Web3 ecosystem, simplifying content creation and decentralized engagement",
@@ -56,7 +66,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/assets/logo/logos2.png",
+        url: "/assets/logo/logos.png", 
         width: 750,
         height: 500,
         alt: "SKYLO Logo",
@@ -64,13 +74,12 @@ export const metadata: Metadata = {
     ],
   },
 
-  // Twitter Card
   twitter: {
     card: "summary_large_image",
     site: "@skylo",
     title: "Create & Share AI Videos on Web3",
     description: "SKYLO empowers users to make AI videos within a Web3 ecosystem, simplifying content creation and decentralized engagement",
-    images: ["/assets/logo/logos2.png"],
+    images: ["/assets/logo/logos2.png"], 
   },
 }
 
@@ -80,6 +89,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
+    // <meta charset="UTF-8"> sudah otomatis ditangani Next.js di sini
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
         <ClientThemeProvider>{children}</ClientThemeProvider>
